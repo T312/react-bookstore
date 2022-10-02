@@ -1,0 +1,36 @@
+// background
+$main-bg: #fff;
+$main-color: #1a94ff;
+
+// text color
+$text-main-color: #000;
+$text-secondary-color: #8d8d8d;
+$text-white: #fff;
+
+// button
+$btn-main-bg: $main-color;
+$btn-main-color: #fff;
+
+// header
+$header-height: 120px;
+$header-tablet-height: 70px;
+$header-mobile-height: 40px;
+$header-shrink-height: 70px;
+
+$box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+
+$colors: (
+    "blue": #4267b2,
+    "orange": #fbb96b,
+    "pink": #fe7e73,
+    "white": #fff,
+    "black": #000,
+    "main": $main-color,
+);
+
+// responsive
+$mobile-width: 600px;
+$tablet-width: 1024px;
+
+// frame
+$numbers: (0, 1, 2, 3, 4, 5, 6, 8);
