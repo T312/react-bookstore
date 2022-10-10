@@ -29,4 +29,89 @@ productRoute.get(
   })
 );
 
+// @route POST api/products
+// @desc post all products
+// @access private
+productRoute.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const { name, price, description, image, countInStock } = req.body;
+    const productExist = await Product.findOne({ name });
+    if (productExist) {
+      res.status(400);
+      throw new Error("Product name already exist");
+    } else {
+      const product = new Product({
+        name,
+        price,
+        description,
+        image,
+        countInStock,
+      });
+      if (product) {
+        const createdproduct = await product.save();
+        res.status(201).json(createdproduct);
+      } else {
+        res.status(400);
+        throw new Error("Invalid product data");
+      }
+    }
+  })
+);
+
+// @route Update api/product
+// @desc update product
+// @access private
+productRoute.put(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const { name, price, description, image, countInStock } = req.body;
+    const productExist = await Product.findOne({ name });
+    try {
+      if (productExist) {
+        res.status(400);
+        throw new Error("Product name already exist");
+      } else {
+        const product = new Product({
+          name,
+          price,
+          description,
+          image,
+          countInStock,
+        });
+        if (product) {
+          const createdproduct = await product.save();
+          res.status(201).json(createdproduct);
+        } else {
+          res.status(400);
+          throw new Error("Invalid product data");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  })
+);
+
+// @route delete api/product
+// @desc delete product
+// @access private
+// DELETE PRODUCT
+productRoute.delete(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      await product.remove();
+      res.json({ message: "Product deleted" });
+    } else {
+      res.status(404);
+      throw new Error("Product not Found");
+    }
+  })
+);
+
 export default productRoute;

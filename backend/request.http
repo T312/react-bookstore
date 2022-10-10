@@ -1,0 +1,24 @@
+POST http://localhost:8000/api/product
+Content-Type: application/json
+
+
+{
+    "name":"Long",
+    "price":169000,
+    "author" : [
+        {
+        "name" : "Paulo",
+        "description":"sinh năm 2000"
+        }
+    ],
+    "description":"Nha gia kim",
+    "image":"http://books.google.com/books/content?id=RRLmDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "countInStock":10,
+    "rating" : 10,
+    "numReviews" : 10
+
+}
+
+
+
+   
