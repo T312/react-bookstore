@@ -3,7 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 
 import "./header.scss";
 
-import logo from "../../assets/logo2.png";
+import logo from "../../assets/images/logo.png";
+
+// import Input from "../../components/input/Input";
 
 const headerNav = [
   {

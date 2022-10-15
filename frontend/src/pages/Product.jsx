@@ -1,11 +1,8 @@
-import React from 'react';
+import React from "react";
+import Helmet from "../components/helmet/Helmet";
 
 const Product = () => {
-    return (
-        <div>
-            Product
-        </div>
-    )
-}
+  return <Helmet title=''>Product</Helmet>;
+};
 
 export default Product;

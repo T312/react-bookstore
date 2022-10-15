@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import Grid from "../grid/Grid";
 
-import logo from "../../assets/logo2.png";
+import logo from "../../assets/images/logo.png";
 
 import "./footer.scss";
 
