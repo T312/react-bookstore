@@ -60,9 +60,9 @@ POST http://localhost:8000/v1/auth/register
 Content-Type: application/json
 
 {
-    "name": "asdmin",
-    "email": "1s@gmail.com",
-    "password": "sss1"
+    "name": "Longadmin",
+    "email": "1s22@gmail.com",
+    "password": "ssư2s1"
 }
 ###
 
@@ -70,8 +70,8 @@ POST http://localhost:8000/v1/auth/login
 Content-Type: application/json
 
 {
-    "email": "Lsm1a@gmail.com",
-    "password": "s1123"
+    "email": "1s22@gmail.com",
+    "password": "ssư2s1"
 }
 
 ###
@@ -112,3 +112,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMzIwO
       "itemsPrice" : 1111111,
       "totalPrice" : 11111
 }
+
+
+###
+GET  http://localhost:8000/v1/order
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMzIwOTRmMzk2MDJmZDA1NDA5NCIsImlhdCI6MTY2NTk3NTA3MiwiZXhwIjoxNjY4NTY3MDcyfQ.UdkYsiAZ29gHNMcnPePU8OMm9w6xE3K-kIHIeIS93EY
+
+
