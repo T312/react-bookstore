@@ -92,9 +92,12 @@
         }
 
         &__left {
+           
             &__close {
-                display: none;
+                display: none; 
             }
+
+           
 
             @include tablet {
                 flex-direction: column;
@@ -102,7 +105,7 @@
                 position: absolute;
                 left: 0;
                 top: 0;
-                width: 100%;
+                width: 80%;
                 height: 100vh;
                 justify-content: flex-start;
                 padding-top: 30px;
@@ -114,6 +117,7 @@
                 }
 
                 &__item ~ &__item {
+                   
                     margin-left: unset;
                     margin-top: 20px;
                 }
@@ -123,6 +127,48 @@
                     position: absolute;
                     left: 20px;
                     font-size: 2.5rem;
+                }
+            }
+
+            &__sign-up {
+                margin-top: 40px;
+                width: 100%;
+                display: block;
+                font-size: 16px;
+                line-height: 50px;
+                font-weight: normal;
+                background: #1d1d1b;
+                color: #fff;
+                padding: 0 0 0 20px;
+
+            }
+
+            @include mobile {
+                &__btn {
+                    @include flex(center, center);
+                    width: 100%;
+                    border-bottom: 1px solid #949494;
+                    
+                } 
+    
+                &__login {
+                    line-height: 24px;
+                    padding: 15px 20px;
+                    i{
+                        margin-right: 4px;
+                        font-size:2rem;
+                    }
+                      
+                }
+    
+                &__cart {
+                    line-height: 24px;
+                    padding: 15px 20px;
+                    border-left: 1px solid #949494;
+                    i{
+                        margin-right: 4px;
+                        font-size:2rem;
+                    }
                 }
             }
         }

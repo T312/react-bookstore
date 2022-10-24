@@ -6,26 +6,27 @@
     overflow: hidden;
     position: relative;
     margin-bottom: 50px;
-
-    margin-top: calc(#{$header-height} * -1);
-
+   
     @include tablet {
         margin-top: calc(#{$header-tablet-height} * -1);
     }
 
     @include mobile {
         margin-top: calc(#{$header-mobile-height} * -1);
+       
+       
     }
 
     &__item {
-        @include flex(center, space-between);
 
-        opacity: 0;
+        @include flex(center, space-between);
         visibility: hidden;
         pointer-events: none;
         position: absolute;
         inset: 0;
-        padding: 0 50px;
+        opacity: 0;
+       
+        
 
         @include tablet {
             flex-direction: column-reverse;
@@ -45,20 +46,22 @@
 
         &__info {
             width: 58.33%;
-            margin-top: 16rem;
 
             @include tablet {
                 width: 100%;
                 flex-grow: 1;
+                
             }
 
             &__title,
             &__description {
                 margin-bottom: 60px;
+               
 
                 @include tablet {
                     margin-bottom: 15px;
                 }
+               
             }
 
             &__title {
@@ -69,8 +72,9 @@
                 overflow: hidden;
 
                 @include mobile {
+                    padding-top:3rem;
                     font-size: 2.5rem;
-                    line-height: 3.75rem;
+                    line-height: 3rem;
                 }
             }
 
@@ -126,19 +130,20 @@
             img {
                 height: 60vh;
                 position: absolute;
-                bottom: 0;
+                top: 120px;
                 right: 0;
                 transform: scale(0);
                 transition: transform 0.7s ease;
 
                 @include tablet {
-                    height: 100%;
+                   top: 50px;
+                    height: 80%;
                     position: relative;
                 }
                 @include mobile {
-                    margin-top: 50rem;
-                    height: 30vh;
-                    margin-bottom: 4rem;
+                    top:60px;
+                    height: 80%;
+                    
                 }
             }
         }
@@ -154,10 +159,12 @@
         bottom: 50px;
         left: 50%;
         transform: translateX(-50%);
+        
 
         @include tablet {
             bottom: 20px;
         }
+
 
         &__item ~ &__item {
             margin-left: 10px;

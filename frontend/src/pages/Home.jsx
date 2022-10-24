@@ -15,77 +15,110 @@ import heroSliderData from "../assets/fake-data/hero-slider";
 import policy from "../assets/fake-data/policy";
 import productData from "../data/products";
 
+import banner from "../assets/images/banner.png";
+
 const Home = () => {
   return (
     <Helmet title='Home'>
-      {/* hero slide */}
-      <HeroSlider
-        data={heroSliderData}
-        control={true}
-        auto={false}
-        timeOut={5000}
-      />
-      {/* end hero slide */}
+      <div className='container'>
+        {/* hero slide */}
+        <HeroSlider
+          data={heroSliderData}
+          control={true}
+          auto={false}
+          timeOut={5000}
+        />
+        {/* end hero slide */}
 
-      {/* policy */}
+        {/* policy */}
 
-      <Section>
-        <SectionBody>
-          <Grid col={4} mdCol={2} smCol={1} gap={20}>
-            {policy.map((item, index) => (
-              <PolicyCard
-                key={index}
-                name={item.name}
-                description={item.description}
-                icon={item.icon}
-              />
-            ))}
-          </Grid>
-        </SectionBody>
-      </Section>
+        <Section>
+          <SectionBody>
+            <Grid col={4} mdCol={2} smCol={1} gap={20}>
+              {policy.map((item, index) => (
+                <PolicyCard
+                  key={index}
+                  name={item.name}
+                  description={item.description}
+                  icon={item.icon}
+                />
+              ))}
+            </Grid>
+          </SectionBody>
+        </Section>
 
-      {/* end policy */}
+        {/* end policy */}
 
-      {/* best selling section */}
-      <Section>
-        <SectionTitle>Top sách bán chạy</SectionTitle>
-        <SectionBody>
-          <Grid col={5} mdCol={2} smCol={1} gap={20}>
-            {productData.getProducts(5).map((item, index) => (
-              <ProductCard
-                key={index}
-                image={item.image}
-                name={item.name}
-                price={Number(item.price)}
-                // slug={item.slug}
-              />
-            ))}
-          </Grid>
-        </SectionBody>
-      </Section>
-      {/* end best selling section */}
+        {/* best selling section */}
+        <Section>
+          <SectionTitle>Top sách bán chạy</SectionTitle>
+          <SectionBody>
+            <Grid col={5} mdCol={2} smCol={1} gap={20}>
+              {productData.getProducts(5).map((item, index) => (
+                <ProductCard
+                  key={index}
+                  image={item.image}
+                  name={item.name}
+                  author={item.author}
+                  rating={item.rating}
+                  price={Number(item.price)}
+                />
+              ))}
+            </Grid>
+          </SectionBody>
+        </Section>
+        {/* end best selling section */}
 
-      {/* new arrival section */}
-      <Section>
-        <SectionTitle>Sách mới</SectionTitle>
-        <SectionBody>
-          <Grid col={4} mdCol={2} smCol={1} gap={20}></Grid>
-        </SectionBody>
-      </Section>
-      {/* end new arrival section */}
+        {/* new arrival section */}
+        <Section>
+          <SectionTitle>Sách mới</SectionTitle>
+          <SectionBody>
+            <Grid col={5} mdCol={2} smCol={1} gap={20}>
+              {productData.getProducts(10).map((item, index) => (
+                <ProductCard
+                  key={index}
+                  image={item.image}
+                  name={item.name}
+                  author={item.author}
+                  rating={item.rating}
+                  price={Number(item.price)}
+                />
+              ))}
+            </Grid>
+          </SectionBody>
+        </Section>
+        {/* end new arrival section */}
 
-      {/* banner */}
-      <Section></Section>
-      {/* end banner */}
+        {/* banner */}
+        <Section>
+          <SectionBody>
+            <Link to='/catalog'>
+              <img src={banner} alt='' />
+            </Link>
+          </SectionBody>
+        </Section>
+        {/* end banner */}
 
-      {/* popular product section */}
-      <Section>
-        <SectionTitle>Phổ biến</SectionTitle>
-        <SectionBody>
-          <Grid col={4} mdCol={2} smCol={1} gap={20}></Grid>
-        </SectionBody>
-      </Section>
-      {/* end popular product section */}
+        {/* popular product section */}
+        <Section>
+          <SectionTitle>Phổ biến</SectionTitle>
+          <SectionBody>
+            <Grid col={5} mdCol={2} smCol={1} gap={20}>
+              {productData.getProducts(10).map((item, index) => (
+                <ProductCard
+                  key={index}
+                  image={item.image}
+                  name={item.name}
+                  author={item.author}
+                  rating={item.rating}
+                  price={Number(item.price)}
+                />
+              ))}
+            </Grid>
+          </SectionBody>
+        </Section>
+        {/* end popular product section */}
+      </div>
     </Helmet>
   );
 };
