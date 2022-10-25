@@ -10,6 +10,7 @@ const heroSliderData = [
     image: slider_1,
     color: "black",
     author: "Daniel Kahneman",
+    path: "/catalog/_id",
   },
 
   {
@@ -19,6 +20,7 @@ const heroSliderData = [
     image: slider_2,
     color: "orange",
     author: "Paulo Coelho",
+    path: "/catalog/_id",
   },
   {
     title: "Rich Dad Poor Dad",
@@ -27,6 +29,7 @@ const heroSliderData = [
     image: slider_3,
     color: "purple",
     author: "Robert T. Kiyosaki",
+    path: "/catalog/_id",
   },
 ];
 

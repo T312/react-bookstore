@@ -13,7 +13,7 @@ const Navigation = () => {
   return (
     <Routes>
       <Route exact path='/' element={<Home />} />
-      <Route path='/catalog/:slug' element={<Product />} />
+      <Route path='/catalog/:_id' element={<Product />} />
       <Route path='/catalog' element={<Catalog />} />
       <Route path='/accessories' element={<Accessory />} />
       <Route path='/cart' element={<Cart />} />
