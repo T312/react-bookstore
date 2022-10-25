@@ -1,31 +1,30 @@
 import express from "express";
-import asyncHandler from "express-async-handler";
-import User from "../models/UserModel.js";
+import { protect, admin } from "../Middleware/auth.js";
+import {
+  authUser,
+  registerUser,
+  getUserProfile,
+  updateUserProfile,
+  getUserByAdmin,
+  deleteUser,
+  getUserById,
+  updateUser,
+} from "../controller/UserController.js";
 
 const userRouter = express.Router();
 
-//@route GET api/auth/login
-//@desc check if user is login
-//@access public
-userRouter.post(
-  "/login",
-  asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+userRouter.post("/login", authUser);
 
-    if (user && (await user.matchPassword(password))) {
-      res.json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin,
-        token: generateToken(user._id),
-        createdAt: user.createdAt,
-      });
-    } else {
-      res.status(401);
-      throw new Error("Invalid Email or Password");
-    }
-  })
-);
+userRouter.post("/register", registerUser);
+
+userRouter
+  .get("/profile", protect, getUserProfile)
+  .put("/profile", protect, updateUserProfile);
+
+userRouter
+  .get("/users", protect, admin, getUserByAdmin)
+  .delete("/users", protect, admin, deleteUser)
+  .get("/users", protect, admin, getUserById)
+  .put("/users", protect, admin, updateUser);
+
 export default userRouter;

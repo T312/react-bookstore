@@ -1,7 +1,7 @@
 @use '../../scss/' as *;
 
 .custom-checkbox {
-    @include flex(center, flex-start);
+        
     cursor: pointer;
 
     &:hover {

@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 //---------------------
 import Button from "../button/Button";
 import numberWithCommas from "../../utils/numberWithCommas";
@@ -10,7 +12,7 @@ import "./product-card.scss";
 const ProductCard = (props) => {
   return (
     <div className='product-card'>
-      <Link>
+      <Link to={`/catalog/${props._id}`}>
         <div className='product-card__image'>
           <img src={props.image} alt='' />
           <div className='product-card__wrap-list-icon'>
@@ -27,7 +29,7 @@ const ProductCard = (props) => {
         </div>
 
         <h3 className='product-card__name'>{props.name}</h3>
-        <span className='product-card__author'>By: {props.author}</span>
+        {/* <span className='product-card__author'>By: {props.author}</span> */}
         <span className='product-card__star'>
           <i className='bx bxs-star'></i>
           <i className='bx bxs-star'></i>

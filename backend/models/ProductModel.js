@@ -16,15 +16,6 @@ const reviewSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-const authorSchema = mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    description: { type: String },
-  },
-  {
-    timestamps: true,
-  }
-);
 
 const productSchema = mongoose.Schema(
   {
@@ -39,7 +30,14 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    author: [authorSchema],
+    category: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: String,
+      required: true,
+    },
     reviews: [reviewSchema],
     rating: {
       type: Number,

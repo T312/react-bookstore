@@ -503,13 +503,13 @@ const getProducts = (count) => {
   return products.slice(start, start + count);
 };
 
-const getProductBySlug = (slug) => products.find((e) => e.slug === slug);
+const getProductById = (_id) => products.find((e) => e._id === _id);
 
 const getCartItemsInfo = (cartItems) => {
   let res = [];
   if (cartItems.length > 0) {
     cartItems.forEach((e) => {
-      let product = getProductBySlug(e.slug);
+      let product = getProductById(e._id);
       res.push({
         ...e,
         product: product,
@@ -523,7 +523,7 @@ const getCartItemsInfo = (cartItems) => {
 const productData = {
   getAllProducts,
   getProducts,
-  getProductBySlug,
+  getProductById,
   getCartItemsInfo,
 };
 

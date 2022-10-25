@@ -62,6 +62,7 @@ const Home = () => {
                   author={item.author}
                   rating={item.rating}
                   price={Number(item.price)}
+                  _id={item._id}
                 />
               ))}
             </Grid>
@@ -82,6 +83,7 @@ const Home = () => {
                   author={item.author}
                   rating={item.rating}
                   price={Number(item.price)}
+                  _id={item._id}
                 />
               ))}
             </Grid>
@@ -112,6 +114,7 @@ const Home = () => {
                   author={item.author}
                   rating={item.rating}
                   price={Number(item.price)}
+                  _id={item._id}
                 />
               ))}
             </Grid>

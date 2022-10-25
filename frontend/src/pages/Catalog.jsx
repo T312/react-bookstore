@@ -2,10 +2,11 @@ import React, { useState, useCallback, useRef, useEffect } from "react";
 //-------------------------
 import "../scss/components/catalog.scss";
 import Helmet from "../components/helmet/Helmet";
-import Grid from "../components/grid/Grid";
-import ProductCard from "../components/productcard/ProductCard";
+// import Grid from "../components/grid/Grid";
+// import ProductCard from "../components/productcard/ProductCard";
 import CheckBox from "../components/checkbox/CheckBox";
 import Button from "../components/button/Button";
+import InfinityList from "../components/infinitylist/InfinityList";
 
 //-------------------------
 import productData from "../data/products";
@@ -28,12 +29,12 @@ const Catalog = () => {
 
   const [products, setProducts] = useState(productList);
 
-  console.log(products);
+  // console.log(products);
 
   // filter
   const [filter, setFilter] = useState(initialFilter);
 
-  console.log(filter);
+  // console.log(filter);
 
   const filterSelect = (type, checked, item) => {
     if (checked) {
@@ -41,7 +42,7 @@ const Catalog = () => {
         case "CATEGORY":
           setFilter({
             ...filter,
-            category: [...filter.category, item.category],
+            category: [...filter.category, item.categorySlug],
           });
           break;
         case "AUTHOR":
@@ -62,7 +63,7 @@ const Catalog = () => {
       switch (type) {
         case "CATEGORY":
           const newCategory = filter.category.filter(
-            (e) => e !== item.category,
+            (e) => e !== item.categorySlug,
           );
           setFilter({ ...filter, category: newCategory });
           break;
@@ -91,7 +92,7 @@ const Catalog = () => {
     let temp = productList;
     // danh mục
     if (filter.category.length > 0) {
-      temp = temp.filter((e) => filter.category.includes(e.category));
+      temp = temp.filter((e) => filter.category.includes(e.categorySlug));
     }
     // tác giả
     if (filter.author.length > 0) {
@@ -155,7 +156,7 @@ const Catalog = () => {
                       onChange={(input) =>
                         filterSelect("CATEGORY", input.checked, item)
                       }
-                      checked={filter.category.includes(item.category)}
+                      checked={filter.category.includes(item.categorySlug)}
                     />
                   </div>
                 ))}
@@ -236,18 +237,7 @@ const Catalog = () => {
             </Button>
           </div>
           <div className='catalog__content'>
-            <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {products.map((item, index) => (
-                <ProductCard
-                  key={index}
-                  image={item.image}
-                  name={item.name}
-                  author={item.author}
-                  rating={item.rating}
-                  price={Number(item.price)}
-                />
-              ))}
-            </Grid>
+            <InfinityList data={products} />
           </div>
         </div>
       </div>
