@@ -1,12 +1,15 @@
 @use "../../scss/" as *;
 
 input {
-    border: 0;
+   outline: none;
     background-color: $main-bg;
     padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-    border: 1px solid black;
-    border-radius: 30px;
-    color: white;
+    font-size: 1.2rem;
+    width: 100%;
+    border: 1px solid $main-color;
+    border-radius: 10px;
+    color: $txt-main-color;
     font-family: Roboto, serif;
+    margin: 0 4px 16px 0;
+    
 }
