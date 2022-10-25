@@ -1,0 +1,121 @@
+POST http://localhost:8000/v1/product
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMzIwOTRmMzk2MDJmZDA1NDA5NCIsImlhdCI6MTY2NTk3NTA3MiwiZXhwIjoxNjY4NTY3MDcyfQ.UdkYsiAZ29gHNMcnPePU8OMm9w6xE3K-kIHIeIS93EY
+
+{
+    "name":"Thói quen nhỏ tạo thành công lớnss",
+    "price":169000,
+    "author" : "paulo",
+    "category" : "viễn tưởng",
+    "description":"Nha gia kim",
+    "image":"http://books.google.com/books/content?id=RRLmDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "countInStock":10
+}
+
+###
+POST http://localhost:8000/v1/product/634cd18c788ccbd74cc2a1cc/review
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNkMjY0Nzg4Y2NiZDc0Y2MyYTFkMSIsImlhdCI6MTY2NTk3ODk4MCwiZXhwIjoxNjY4NTcwOTgwfQ.yClN68dNdVe-sBRUrPXMoUzK8axvlPVl-2rmKT5vcBw
+
+{
+    "rating": 10,
+    "comment":"hay nhất"
+}
+###
+GET http://localhost:8000/v1/product
+
+###
+GET http://localhost:8000/v1/product/634cd18c788ccbd74cc2a1cc
+
+###
+PUT http://localhost:8000/v1/product/634cd18c788ccbd74cc2a1cc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMzIwOTRmMzk2MDJmZDA1NDA5NCIsImlhdCI6MTY2NTk3NTA3MiwiZXhwIjoxNjY4NTY3MDcyfQ.UdkYsiAZ29gHNMcnPePU8OMm9w6xE3K-kIHIeIS93EY
+Content-Type: application/json
+
+{
+    "name": "Thói quen nhỏ tạo thành công lớn"
+}
+
+###
+GET http://localhost:8000/v1/product/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMzIwOTRmMzk2MDJmZDA1NDA5NCIsImlhdCI6MTY2NTk3NTA3MiwiZXhwIjoxNjY4NTY3MDcyfQ.UdkYsiAZ29gHNMcnPePU8OMm9w6xE3K-kIHIeIS93EY
+
+
+###
+GET http://localhost:8000/v1/product/top
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMzIwOTRmMzk2MDJmZDA1NDA5NCIsImlhdCI6MTY2NTk3NTA3MiwiZXhwIjoxNjY4NTY3MDcyfQ.UdkYsiAZ29gHNMcnPePU8OMm9w6xE3K-kIHIeIS93EY
+
+
+###
+POST http://localhost:8000/v1/auth/register
+Content-Type: application/json
+
+{
+    "name": "Hise2u",
+    "email": "Lsm1a@gmail.com",
+    "password": "s1123"
+}
+###
+POST http://localhost:8000/v1/auth/register
+Content-Type: application/json
+
+{
+    "name": "Longadmin",
+    "email": "1s22@gmail.com",
+    "password": "ssư2s1"
+}
+###
+
+POST http://localhost:8000/v1/auth/login
+Content-Type: application/json
+
+{
+    "email": "1s22@gmail.com",
+    "password": "ssư2s1"
+}
+
+###
+
+GET http://localhost:8000/v1/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMTMwYzg1NjNmYmJkYWVlOWEzOCIsImlhdCI6MTY2NTk3NDYyNiwiZXhwIjoxNjY4NTY2NjI2fQ.ACeNLvbvWBwt5805zOcaIl6M__Ni55K4V7APrz9AoOQ
+
+###
+PUT  http://localhost:8000/v1/auth/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMTMwYzg1NjNmYmJkYWVlOWEzOCIsImlhdCI6MTY2NTk3NDYyNiwiZXhwIjoxNjY4NTY2NjI2fQ.ACeNLvbvWBwt5805zOcaIl6M__Ni55K4V7APrz9AoOQ
+
+{
+    "name": "admin2",
+    "email": "12@gmail.com",
+    "password": "12"
+}
+
+###
+GET http://localhost:8000/v1/auth
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMzIwOTRmMzk2MDJmZDA1NDA5NCIsImlhdCI6MTY2NTk3NTA3MiwiZXhwIjoxNjY4NTY3MDcyfQ.UdkYsiAZ29gHNMcnPePU8OMm9w6xE3K-kIHIeIS93EY
+
+
+###
+POST  http://localhost:8000/v1/order
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMzIwOTRmMzk2MDJmZDA1NDA5NCIsImlhdCI6MTY2NTk3NTA3MiwiZXhwIjoxNjY4NTY3MDcyfQ.UdkYsiAZ29gHNMcnPePU8OMm9w6xE3K-kIHIeIS93EY
+
+{
+     "orderDetails" : [{
+        "name" : "Toi tu ki",
+        "qty" : 2,
+        "image" : "http://books.google.com/books/content?id=RRLmDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+        "price" : 169000,
+        "product" : "634cd18c788ccbd74cc2a1cc"
+        }],
+    
+      "shippingPrice" : 100000,
+      "itemsPrice" : 1111111,
+      "totalPrice" : 11111
+}
+
+
+###
+GET  http://localhost:8000/v1/order
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGNjMzIwOTRmMzk2MDJmZDA1NDA5NCIsImlhdCI6MTY2NTk3NTA3MiwiZXhwIjoxNjY4NTY3MDcyfQ.UdkYsiAZ29gHNMcnPePU8OMm9w6xE3K-kIHIeIS93EY
+
+

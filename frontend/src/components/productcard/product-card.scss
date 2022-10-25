@@ -1,0 +1,16 @@
+@use "../../scss/" as *;
+
+.product-card {
+    &__image {
+        padding-top: 20px;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 20px;
+
+        img {
+            top: 0;
+            left: 50%;
+            height: 250px;
+        }
+    }
+}
