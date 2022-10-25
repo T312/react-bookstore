@@ -31,8 +31,9 @@ const productSchema = mongoose.Schema(
       required: true,
     },
     category: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "Category",
     },
     author: {
       type: String,
@@ -58,6 +59,16 @@ const productSchema = mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
+      min: 0,
+      max: 500,
+    },
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    },
+    publisher: {
+      type: String,
+      required: true,
     },
   },
   {
