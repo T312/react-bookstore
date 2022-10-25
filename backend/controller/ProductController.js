@@ -22,6 +22,35 @@ const getAllProducts = asyncHandler(async (req, res) => {
     .sort({ _id: -1 });
   res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
+// @route get v1/products?categories=
+// @desc Filtering and Getting Products by Category
+// @access public
+
+// @route get v1/products/featured
+// @desc Get Featured Products
+// @access public
+const getFeaturedProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({ isFeatured: true });
+  if (products) {
+    res.json({ products: products });
+  } else {
+    res.status(404);
+    throw new Error("Product not Found");
+  }
+});
+
+// @route get v1/products/count
+// @desc get count products
+// @access private/admin
+const getProductCount = asyncHandler(async (req, res) => {
+  const productCount = await Product.countDocuments((count) => count);
+  if (productCount) {
+    res.json({ productCount: productCount });
+  } else {
+    res.status(404);
+    throw new Error("Product not Found");
+  }
+});
 
 // @route get v1/products/:id
 // @desc get sigle product
@@ -54,6 +83,7 @@ const createProduct = asyncHandler(async (req, res) => {
       image,
       author,
       category,
+      isFeatured,
       countInStock,
     });
     if (product) {
@@ -78,7 +108,7 @@ const updatedProduct = asyncHandler(async (req, res) => {
     product.description = description || product.description;
     product.image = image || product.image;
     product.countInStock = countInStock || product.countInStock;
-
+    product.isFeatured = isFeatured || product.isFeatured;
     const updatedProduct = await product.save();
     res.json(updatedProduct);
   } else {
@@ -163,4 +193,6 @@ export {
   getAllProductsByAdmin,
   getTopProduct,
   createProductReview,
+  getFeaturedProducts,
+  getProductCount,
 };

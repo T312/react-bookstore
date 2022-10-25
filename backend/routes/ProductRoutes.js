@@ -8,6 +8,8 @@ import {
   getAllProductsByAdmin,
   getTopProduct,
   createProductReview,
+  getFeaturedProducts,
+  getProductCount,
 } from "../controller/ProductController.js";
 import { protect, admin } from "../Middleware/auth.js";
 const productRoute = express.Router();
