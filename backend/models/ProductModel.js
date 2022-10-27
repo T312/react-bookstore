@@ -24,7 +24,8 @@ const productSchema = mongoose.Schema(
       required: true,
     },
     image: {
-      type: String,
+      link: { type: String },
+      image_id: { type: String },
     },
     description: {
       type: String,
@@ -75,6 +76,13 @@ const productSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+productSchema.virtual("id").get(function () {
+  return this._id.toHexString();
+});
+
+productSchema.set("toJSON", {
+  virtuals: true,
+});
 const Product = mongoose.model("Product", productSchema);
 
 export default Product;
