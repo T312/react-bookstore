@@ -11,6 +11,14 @@ const categorySchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+categorySchema.virtual("id").get(function () {
+  return this._id.toHexString();
+});
+
+categorySchema.set("toJSON", {
+  virtuals: true,
+});
 const Category = mongoose.model("Category", categorySchema);
 
 export default Category;
