@@ -42,7 +42,7 @@ const Catalog = () => {
         case "CATEGORY":
           setFilter({
             ...filter,
-            category: [...filter.category, item.categorySlug],
+            category: [...filter.category, item.category],
           });
           break;
         case "AUTHOR":
@@ -63,7 +63,7 @@ const Catalog = () => {
       switch (type) {
         case "CATEGORY":
           const newCategory = filter.category.filter(
-            (e) => e !== item.categorySlug,
+            (e) => e !== item.category,
           );
           setFilter({ ...filter, category: newCategory });
           break;
@@ -92,7 +92,7 @@ const Catalog = () => {
     let temp = productList;
     // danh mục
     if (filter.category.length > 0) {
-      temp = temp.filter((e) => filter.category.includes(e.categorySlug));
+      temp = temp.filter((e) => filter.category.includes(e.category));
     }
     // tác giả
     if (filter.author.length > 0) {
@@ -156,7 +156,7 @@ const Catalog = () => {
                       onChange={(input) =>
                         filterSelect("CATEGORY", input.checked, item)
                       }
-                      checked={filter.category.includes(item.categorySlug)}
+                      checked={filter.category.includes(item.category)}
                     />
                   </div>
                 ))}
