@@ -27,6 +27,12 @@ const productSchema = mongoose.Schema(
       link: { type: String },
       image_id: { type: String },
     },
+    descriptionImages: [
+      {
+        link: { type: String },
+        image_id: { type: String },
+      },
+    ],
     description: {
       type: String,
       required: true,
