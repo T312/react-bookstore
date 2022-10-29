@@ -12,27 +12,32 @@ import {
   getProductCount,
 } from "../controller/ProductController.js";
 import { protect, admin } from "../Middleware/auth.js";
-import multer from "multer";
-
-const storage = multer.diskStorage({
-  // notice you are calling the multer.diskStorage() method here, not multer()
-  destination: function (req, file, cb) {
-    cb(null, "img/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + "-" + Date.now());
-  },
-});
-const upload = multer({ storage });
+import upload from "../utils/multer.js";
 
 const productRoute = express.Router();
 
-productRoute
-  .get("/", getAllProducts)
-  .post("/", upload.single("image"), protect, admin, createProduct);
+// productRoute
+//   .get("/", getAllProducts)
+//   .post("/", upload.single("image"), protect, admin, createProduct);
+
+productRoute.get("/", getAllProducts).post(
+  "/",
+  // upload.single("image"),
+  upload.array("descriptionImages", 10),
+  protect,
+  admin,
+  createProduct
+);
 
 productRoute
-  .put("/:id", upload.single("image"), protect, admin, updatedProduct)
+  .put(
+    "/:id",
+    upload.array("descriptionImages", 10),
+    protect,
+    admin,
+    updatedProduct
+  )
+  // .put("/:id", upload.single("image"), protect, admin, updatedProduct)
   .delete("/:id", protect, admin, deleteProduct);
 
 productRoute.get("/all", protect, admin, getAllProductsByAdmin);
