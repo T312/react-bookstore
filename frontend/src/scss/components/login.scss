@@ -1,0 +1,198 @@
+@use '../../scss/' as *;
+
+.login {
+    @include flex(center, center);
+}
+
+.form {
+    
+    margin: 100px;
+    padding: 50px 60px;
+    box-shadow: $box-shadow;
+    color: $txt-main-color;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+   
+
+    &__logo {
+    display: block;
+    margin-bottom: 50px;
+    
+        img {
+            height: 50px;
+        }
+    }
+
+    &__group {
+        position: relative;
+        margin-bottom: 20px;
+
+        &__checkbox {
+            text-align: left;
+
+            input {
+                opacity: 0;
+                height: 0;
+                width: 0;
+                cursor: pointer;
+            }
+
+            label {
+                cursor: pointer;
+                // padding-left: 30px;
+                position: relative;
+            }
+
+            label::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 22px;
+                height: 22px;
+                
+            }
+        }
+    }
+
+    &__input {
+       
+        border: 2px solid transparent;
+        height: 46px;
+        width: 100%;
+        position: relative;
+        color: $txt-second-color;
+        border-radius: 10px;
+        padding: 0 20px;
+        font-size: 16px;
+        outline: none;
+        transition: border 0.3s ease-in-out;
+
+        &:focus {
+            border: 2px solid $main-color;
+        }
+
+        &__icon {
+            position: absolute;
+            right: 10px;
+            top: 14px;
+            transform: scale(0);
+            transition: transform 0.3s ease-in-out;
+
+            &__err {
+                color: #c0392b;
+
+                &__msg {
+                    display: block;
+                    text-align: left;
+                    font-size: 14px;
+                    margin-top: 10px;
+                    padding-left: 20px;
+                    color: #c0392b;
+                }
+            }
+
+            &__success {
+                color: #27ae60;
+            }
+        }
+    }
+
+    &__delimiter {
+        font-size: 1.25rem;
+    }
+
+    &__btn {
+        margin: 15px 0;
+        height: 46px;
+        width: 100%;
+        border-radius: 10px;
+        border: none;
+        background-color: $main-color;
+        cursor: pointer;
+        outline: none;
+        color: $txt-white;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 16px;
+        transition: 0.3s ease-in-out;
+        
+        
+    }
+
+    &__btn:hover {
+        opacity: 0.8;
+        color: #fff;
+    }
+
+    &__social {
+        margin: 15px 0 30px;
+        @include flex(center, space-between);
+       
+
+        &__item {
+           
+            &__fb {
+                background-color: #3b5999;
+                padding: 10px;
+                width: 30%;
+                height: 44px;
+                border-radius: 10px;
+                transition: 0.3s ease-in-out;
+            }
+
+            &__fb:hover {
+                opacity: 0.8;
+            }
+
+            &__tw {
+                background-color: #1da1f2;
+                padding: 10px;
+                width: 30%;
+                height: 44px;
+                border-radius: 10px;
+                transition: 0.3s ease-in-out;
+            }
+
+            &__tw:hover {
+                opacity: 0.8;
+            }
+
+            &__gg {
+                background-color: #df4a32;
+                padding: 10px;
+                width: 30%;
+                height: 44px;
+                border-radius: 10px;  
+                transition: 0.3s ease-in-out;  
+            }
+
+            &__gg:hover {
+                opacity: 0.8;
+            }
+        
+        }
+
+        i {
+            font-size: 2rem;
+            color: #fff;
+        } 
+
+       
+    }
+
+    
+
+    &__txt {
+        margin-top: 15px;
+        font-size: 1.25rem;
+        display: block;
+
+    }
+
+     
+}
+
+
+
