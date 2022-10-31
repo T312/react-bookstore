@@ -49,6 +49,10 @@
         font-size: 1rem;
     }
 
+    &-md {
+        font-size: 1rem;
+    }
+
     &-sm &__txt {
         padding: 0.7rem 1.5rem;
     }
@@ -56,4 +60,8 @@
     &-block {
         width: 100%;
     }
+}
+
+.btn:hover {
+    opacity: 0.9;
 }
