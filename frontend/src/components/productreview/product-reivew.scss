@@ -1,0 +1,124 @@
+@use "../../scss/" as *;
+
+.overlay {
+  @include flex(center, center);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  margin-top: 4.5rem;
+  .feedback-user {
+    // position: absolute;
+    // visibility: hidden;
+    // opacity: 0;
+    width: 50%;
+    height: 90%;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: #fff;
+    // transform: scale(0.9);
+    // transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    backface-visibility: hidden;
+    animation: modalComeIn ease 0.5s;
+
+    .feedback-header,
+    .feedback-content {
+      padding: 2rem;
+    }
+    .feedback-header {
+      color: #fff;
+      background-color: $main-color;
+      .title {
+        margin-bottom: 1rem;
+        font-weight: 600;
+        font-size: 24px;
+        text-transform: uppercase;
+      }
+      .txt {
+        line-height: 1.5;
+        font-size: 1.25rem;
+      }
+      .close-btn {
+        text-align: right;
+        // margin-bottom: 10px;
+      }
+      .close-btn i {
+        cursor: pointer;
+        font-size: 3rem;
+      }
+    }
+    .feedback-content {
+      .rating .title {
+        font-weight: 600;
+        color: $txt-main-color;
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
+      .stars {
+        font-size: 20px;
+        color: #ffcc48;
+        i {
+          font-size: 2rem;
+        }
+      }
+      .forms {
+        display: flex;
+        flex-direction: column;
+        margin: 2rem 0;
+
+        .forms-input:nth-child(1) {
+          margin-bottom: 1rem;
+        }
+        label {
+          font-size: 1.25rem;
+          display: inline-block;
+          margin-bottom: 10px;
+          font-weight: 600;
+          color: $txt-main-color;
+          @include flex(flex-start, flex-start);
+        }
+        input,
+        textarea {
+          background-color: #f5f9fb;
+          outline: none;
+          border: none;
+          padding: 10px 12px;
+          display: block;
+          width: 100%;
+          border-radius: 5px;
+          font-size: 1.25rem;
+          border: 1px solid transparent;
+          &::placeholder {
+            color: #b1b1b1;
+          }
+          &:focus {
+            border-color: $main-color;
+          }
+        }
+        textarea {
+          resize: none;
+        }
+      }
+
+      .btn-feedback {
+        @include flex(center, space-between);
+      }
+    }
+  }
+}
+
+@keyframes modalComeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

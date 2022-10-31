@@ -57,12 +57,12 @@ const Home = () => {
               {productData.getProducts(5).map((item, index) => (
                 <ProductCard
                   key={index}
-                  image={item.image}
+                  image={item.image.link}
                   name={item.name}
                   author={item.author}
                   rating={item.rating}
                   price={Number(item.price)}
-                  _id={item._id}
+                  id={item.id}
                 />
               ))}
             </Grid>
@@ -78,12 +78,12 @@ const Home = () => {
               {productData.getProducts(10).map((item, index) => (
                 <ProductCard
                   key={index}
-                  image={item.image}
+                  image={item.image.link}
                   name={item.name}
                   author={item.author}
                   rating={item.rating}
                   price={Number(item.price)}
-                  _id={item._id}
+                  id={item.id}
                 />
               ))}
             </Grid>
@@ -109,12 +109,12 @@ const Home = () => {
               {productData.getProducts(10).map((item, index) => (
                 <ProductCard
                   key={index}
-                  image={item.image}
+                  image={item.image.link}
                   name={item.name}
                   author={item.author}
                   rating={item.rating}
                   price={Number(item.price)}
-                  _id={item._id}
+                  id={item.id}
                 />
               ))}
             </Grid>
