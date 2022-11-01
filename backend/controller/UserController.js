@@ -1,59 +1,5 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/UserModel.js";
-import generateToken from "../utils/generateToken.js";
-import argon2 from "argon2";
-
-//@route  v1/auth/login
-//@desc login the user
-//@access public
-const authUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  const passwordValid = await argon2.verify(user.password, password);
-  if (user && passwordValid) {
-    res.json({
-      success: true,
-      message: "Login success",
-      token: generateToken(user._id),
-      user: user,
-    });
-  } else {
-    res.status(401);
-    throw new Error("Invalid Email or Password");
-  }
-});
-
-//@route  v1/auth/register
-//@desc check if user is register
-//@access public
-const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
-
-  const userExists = await User.findOne({ email });
-
-  if (userExists) {
-    res.status(400);
-    throw new Error("User already exists");
-  }
-  const hashedPassword = await argon2.hash(password);
-  const user = await User.create({
-    name,
-    email,
-    password: hashedPassword,
-  });
-
-  if (user) {
-    res.status(201).json({
-      success: true,
-      message: "register profile success",
-      token: generateToken(user._id),
-      user: user,
-    });
-  } else {
-    res.status(400);
-    throw new Error("Invalid User Data");
-  }
-});
 
 //@route  v1/auth/profile
 //@desc get user profile
@@ -90,7 +36,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       success: true,
       message: "Update profile success",
       user: updatedUser,
-      token: generateToken(updatedUser._id),
+      // token: generateToken(updatedUser._id),
     });
   } else {
     res.status(404);
@@ -167,8 +113,6 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 export {
-  authUser,
-  registerUser,
   getUserProfile,
   updateUserProfile,
   getUserByAdmin,
