@@ -9,6 +9,7 @@ import categoryRoute from "./routes/CategoryRoutes.js";
 dotenv.config();
 connectDB();
 const app = express();
+
 app.use(express.json());
 app.use("/v1/auth", userRouter);
 app.use("/v1/product", productRoute);

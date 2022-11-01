@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 //-------------------------
 import Helmet from "../components/helmet/Helmet";
 import HeroSlider from "../components/hero-slider/HeroSlider";
@@ -10,14 +11,23 @@ import Section, {
   SectionTitle,
   SectionBody,
 } from "../components/section/Section";
+import { listProduct } from "../redux/actions/ProductActions";
+
 //-------------------------
 import heroSliderData from "../assets/fake-data/hero-slider";
 import policy from "../assets/fake-data/policy";
-import productData from "../data/products";
-
+// import productData from "../data/products";
 import banner from "../assets/images/banner.png";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  const productList = useSelector((state) => state.productList);
+  const { products } = productList;
+
+  useEffect(() => {
+    dispatch(listProduct());
+  }, [dispatch]);
   return (
     <Helmet title='Home'>
       <div className='container'>
@@ -54,15 +64,15 @@ const Home = () => {
           <SectionTitle>Top sách bán chạy</SectionTitle>
           <SectionBody>
             <Grid col={5} mdCol={2} smCol={1} gap={20}>
-              {productData.getProducts(5).map((item, index) => (
+              {products.map((product) => (
                 <ProductCard
-                  key={index}
-                  image={item.image.link}
-                  name={item.name}
-                  author={item.author}
-                  rating={item.rating}
-                  price={Number(item.price)}
-                  id={item.id}
+                  key={product.id}
+                  product={product}
+                  // image={product.descriptionImages[0].link}
+                  // name={product.name}
+                  // author={product.author}
+                  // rating={product.rating}
+                  // price={Number(product.price)}
                 />
               ))}
             </Grid>
@@ -75,15 +85,14 @@ const Home = () => {
           <SectionTitle>Sách mới</SectionTitle>
           <SectionBody>
             <Grid col={5} mdCol={2} smCol={1} gap={20}>
-              {productData.getProducts(10).map((item, index) => (
+              {products.map((product) => (
                 <ProductCard
-                  key={index}
-                  image={item.image.link}
-                  name={item.name}
-                  author={item.author}
-                  rating={item.rating}
-                  price={Number(item.price)}
-                  id={item.id}
+                  key={product.id}
+                  // image={product.descriptionImages[0].link}
+                  // name={product.name}
+                  // author={product.author}
+                  // rating={product.rating}
+                  // price={Number(product.price)}
                 />
               ))}
             </Grid>
@@ -106,15 +115,14 @@ const Home = () => {
           <SectionTitle>Phổ biến</SectionTitle>
           <SectionBody>
             <Grid col={5} mdCol={2} smCol={1} gap={20}>
-              {productData.getProducts(10).map((item, index) => (
+              {products.map((product) => (
                 <ProductCard
-                  key={index}
-                  image={item.image.link}
-                  name={item.name}
-                  author={item.author}
-                  rating={item.rating}
-                  price={Number(item.price)}
-                  id={item.id}
+                  key={product.id}
+                  // image={product.descriptionImages[0].link}
+                  // name={product.name}
+                  // author={product.author}
+                  // rating={product.rating}
+                  // price={Number(product.price)}
                 />
               ))}
             </Grid>
