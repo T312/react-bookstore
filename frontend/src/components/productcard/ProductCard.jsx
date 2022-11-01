@@ -12,7 +12,7 @@ import "./product-card.scss";
 const ProductCard = (props) => {
   return (
     <div className='product-card'>
-      <Link to={`/catalog/${props._id}`}>
+      <Link to={`/catalog/${props.id}`}>
         <div className='product-card__image'>
           <img src={props.image} alt='' />
           <div className='product-card__wrap-list-icon'>
@@ -54,10 +54,10 @@ const ProductCard = (props) => {
 };
 
 ProductCard.propTypes = {
-  image: PropTypes.string.isRequired,
+  image: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  _id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default ProductCard;
