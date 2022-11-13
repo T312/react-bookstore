@@ -23,7 +23,7 @@
     }
 
     &__list {
-      width: 8%;
+      width: 10%;
       margin-right: 50px;
 
       &__item {
@@ -44,8 +44,8 @@
       img {
         position: absolute;
         top: 0;
-        left: 30%;
-        height: 100%;
+        left: 40%;
+        height: 120%;
         transform: translateX(-50%);
       }
     }
@@ -56,6 +56,7 @@
     position: sticky;
     top: $header-shrink-height;
     padding-top: 2rem;
+    margin-left: 80px;
     // right: 20%;
 
     @include mobile {
@@ -208,11 +209,11 @@
 
 .product-description {
   width: 100%;
-  padding: 0rem 0rem 3rem;
-  height: 200px;
+  padding: 3rem 0 0 0;
+  height: 310px;
   overflow: hidden;
   position: relative;
-  z-index: 99;
+  // z-index: 99;
 
   @include mobile {
     display: none;
@@ -237,7 +238,7 @@
   }
 
   &__content {
-    width: 560px;
+    // width: 560px;
     font-size: 1.25rem;
     line-height: 1.875rem;
     text-align: justify;
