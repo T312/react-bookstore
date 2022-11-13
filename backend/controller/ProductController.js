@@ -81,9 +81,7 @@ const getProductById = asyncHandler(async (req, res) => {
   }
   const product = await Product.findById(req.params.id).populate("category");
   if (product) {
-    res.json({
-      product: product,
-    });
+    res.json({ product: product });
   } else {
     res.status(404);
     throw new Error("Product not Found");
@@ -169,7 +167,7 @@ const updatedProduct = asyncHandler(async (req, res) => {
     urls = await Promise.all(
       await product.descriptionImages.filter((item) => {
         return !removeImages.includes(item.image_id);
-      })
+      }),
     );
   } else if (req.files && !removeImages) {
     const files = req.files;
@@ -187,8 +185,8 @@ const updatedProduct = asyncHandler(async (req, res) => {
     }
     urls = await Promise.all(
       await product.descriptionImages.filter(
-        (item) => !removeImages.includes(item.image_id)
-      )
+        (item) => !removeImages.includes(item.image_id),
+      ),
     );
     const files = req.files;
     for (const file of files) {
@@ -260,7 +258,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 
   if (product) {
     const alreadyReviewed = product.reviews.find(
-      (r) => r.user.toString() === req.user._id.toString()
+      (r) => r.user.toString() === req.user._id.toString(),
     );
     if (alreadyReviewed) {
       res.status(400);

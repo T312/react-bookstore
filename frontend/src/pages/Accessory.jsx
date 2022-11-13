@@ -4,7 +4,7 @@ import Section, {
   SectionBody,
   SectionTitle,
 } from "../components/section/Section";
-import ProductReview from "../components/productreview/ProductReview";
+// import ProductReview from "../components/productreview/ProductReview";
 
 const Accessory = () => {
   return (

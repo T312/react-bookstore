@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 //-------------------------
 import "../scss/components/catalog.scss";
 import Helmet from "../components/helmet/Helmet";
@@ -7,15 +8,24 @@ import Helmet from "../components/helmet/Helmet";
 import CheckBox from "../components/checkbox/CheckBox";
 import Button from "../components/button/Button";
 import InfinityList from "../components/infinitylist/InfinityList";
-
 //-------------------------
 import productData from "../data/products";
 import category from "../assets/fake-data/category";
 import author from "../assets/fake-data/author";
 import provider from "../assets/fake-data/provider";
 import productPrice from "../assets/fake-data/product-price";
+//-------------------------
+import { getProductAll } from "../features/product/pathAPI";
 
 const Catalog = () => {
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+  const { products } = productList;
+
+  useEffect(() => {
+    dispatch(getProductAll());
+  }, [dispatch]);
+
   // Tạo bộ lọc ban đầu
   const initialFilter = {
     category: [],
@@ -24,10 +34,7 @@ const Catalog = () => {
     price: [],
   };
 
-  // Get all sản phẩm
-  const productList = productData.getAllProducts();
-
-  const [products, setProducts] = useState(productList);
+  const [product, setProduct] = useState(productList);
 
   // console.log(products);
 
@@ -119,7 +126,7 @@ const Catalog = () => {
         return check !== undefined;
       });
     }
-    setProducts(temp);
+    setProduct(temp);
   }, [filter, productList]);
 
   useEffect(() => {
