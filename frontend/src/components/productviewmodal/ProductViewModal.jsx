@@ -1,34 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 //------------------------
 import ProductView from "../productview/ProductView";
 import Button from "../button/Button";
-import { getProductAll, getProduct } from "../../features/product/pathAPI";
+import { getProduct } from "../../features/product/pathAPI";
 import { closeModal } from "../../features/productmodal/productModalSlice";
 //------------------------
 import "./product-view-modal.scss";
 
 const ProductViewModal = () => {
-  const { id } = useParams();
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.productList);
-  const { products } = productList;
+  const productModal = useSelector((state) => state.productModal.value);
+
+  const [productDet, setProductDet] = useState(undefined);
 
   const productDetails = useSelector((state) => state.productDetails);
   const { product } = productDetails;
 
-  const [productDet, setProductDet] = useState(undefined);
-
   useEffect(() => {
-    const modal = dispatch(getProduct());
-    setProductDet(modal);
-  }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(getProductAll());
-  // }, [dispatch]);
+    setProductDet(dispatch(getProduct(productModal)));
+  }, [dispatch, productModal]);
 
   return (
     <div
