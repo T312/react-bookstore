@@ -16,10 +16,11 @@
     overflow: hidden;
 
     img {
+      // position: absolute;
       top: 0;
       left: 50%;
-      height: 60%;
-      width: 60%;
+      height: 100%;
+      // width: 50%;
     }
   }
 
@@ -69,7 +70,11 @@
     color: $txt-main-color;
     font-size: 1.25rem;
     font-weight: 500;
-    word-break: break-word;
+    width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 2rem;
   }
 
   &__author {
@@ -98,6 +103,7 @@
 
   &__btn {
     margin: 0 0 10px;
+    bottom: 0;
     @include tablet {
       display: none;
     }

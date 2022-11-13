@@ -5,7 +5,7 @@ import Grid from "../grid/Grid";
 import ProductCard from "../productcard/ProductCard";
 
 const InfinityList = (props) => {
-  const perLoad = 6; // items each load
+  const perLoad = 10; // items each load
 
   const listRef = useRef(null);
 
@@ -60,16 +60,8 @@ const InfinityList = (props) => {
   return (
     <div ref={listRef}>
       <Grid col={4} mdCol={2} smCol={1} gap={20}>
-        {data.map((item, index) => (
-          <ProductCard
-            key={index}
-            image={item.descriptionImages[0].link}
-            name={item.name}
-            author={item.author}
-            rating={item.rating}
-            price={Number(item.price)}
-            id={item.id}
-          />
+        {data.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </Grid>
     </div>

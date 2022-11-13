@@ -1,30 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { openModal } from "../../features/productmodal/productModalSlice";
 import "./product-card.scss";
+
 //---------------------
 import Button from "../button/Button";
 import numberWithCommas from "../../utils/numberWithCommas";
-import { listProduct } from "../../redux/actions/ProductActions";
-
 //---------------------
 
 const ProductCard = ({ product }) => {
-  // const dispatch = useDispatch();
-
-  // const productList = useSelector((state) => state.productList);
-  // const { products } = productList;
-
-  // useEffect(() => {
-  //   dispatch(listProduct());
-  // }, [dispatch]);
-
+  const dispatch = useDispatch();
+  const image = product.descriptionImages
+    ? product.descriptionImages[0].link
+    : [];
   return (
     <div className='product-card'>
-      <Link to={`/catalog/${product.id}`} key={product.id}>
+      <Link to={`/product/${product.id}`}>
         <div className='product-card__image'>
-          <img src={product.descriptionImages[0].link} alt='' />
+          <img src={image} alt='' />
           <div className='product-card__wrap-list-icon'>
             <span>
               <i className='bx bx-share-alt'></i>
@@ -48,15 +43,20 @@ const ProductCard = ({ product }) => {
           <i className='bx bxs-star'></i>
         </span>
         <div className='product-card__price'>
-          {numberWithCommas(product.price)} ₫
+          {numberWithCommas(product.price - product.price * 0.1)} ₫
           <span className='product-card__price__old'>
-            <del> {numberWithCommas(179000)} ₫</del>
+            <del>{numberWithCommas(product.price)} ₫</del>
           </span>
         </div>
       </Link>
 
       <div className='product-card__btn'>
-        <Button size='sm' icon='bx bx-cart-alt' animate={true}>
+        <Button
+          size='sm'
+          icon='bx bx-cart-alt'
+          animate={true}
+          onClick={() => dispatch(openModal(product.id))}
+        >
           chọn mua
         </Button>
       </div>
@@ -68,11 +68,11 @@ ProductCard.propTypes = {
   descriptionImages: PropTypes.shape({
     link: PropTypes.string.isRequired,
     image_id: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
+    // _id: PropTypes.string.isRequired,
   }),
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  price: PropTypes.number,
+  id: PropTypes.string,
 };
 
 export default ProductCard;
