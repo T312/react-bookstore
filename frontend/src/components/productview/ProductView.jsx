@@ -84,9 +84,11 @@ const ProductView = (props) => {
           className={`product-description ${descriptionExpand ? "expand" : ""}`}
         >
           <div className='product-description__title'>Mô Tả Sản Phẩm</div>
-          <div className='product-description__content'>
-            {/* dangerouslySetInnerHTML={{ __html: product.description }} */}
-            {product.description}
+          <div
+            className='product-description__content'
+            dangerouslySetInnerHTML={{ __html: product.description }}
+          >
+            {/* {product.description} */}
           </div>
           <div className='product-description__toggle'>
             <Button
@@ -184,9 +186,11 @@ const ProductView = (props) => {
         }`}
       >
         <div className='product-description__title'>Mô Tả Sản Phẩm</div>
-        <div className='product-description__content'>
-          {" "}
-          {product.description}
+        <div
+          className='product-description__content'
+          dangerouslySetInnerHTML={{ __html: product.description }}
+        >
+          {/* {product.description} */}
         </div>
         <div className='product-description__toggle'>
           <Button
