@@ -1,0 +1,138 @@
+.overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  margin-top: 4.5rem;
+}
+.overlay .feedback-user {
+  width: 50%;
+  height: 90%;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: #fff;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-animation: modalComeIn ease 0.5s;
+          animation: modalComeIn ease 0.5s;
+}
+.overlay .feedback-user .feedback-header,
+.overlay .feedback-user .feedback-content {
+  padding: 2rem;
+}
+.overlay .feedback-user .feedback-header {
+  color: #fff;
+  background-color: #1a94ff;
+}
+.overlay .feedback-user .feedback-header .title {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.overlay .feedback-user .feedback-header .txt {
+  line-height: 1.5;
+  font-size: 1.25rem;
+}
+.overlay .feedback-user .feedback-header .close-btn {
+  text-align: right;
+}
+.overlay .feedback-user .feedback-header .close-btn i {
+  cursor: pointer;
+  font-size: 3rem;
+}
+.overlay .feedback-user .feedback-content .rating .title {
+  font-weight: 600;
+  color: #000;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+.overlay .feedback-user .feedback-content .stars {
+  font-size: 20px;
+  color: #ffcc48;
+}
+.overlay .feedback-user .feedback-content .stars i {
+  font-size: 2rem;
+}
+.overlay .feedback-user .feedback-content .forms {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+}
+.overlay .feedback-user .feedback-content .forms .forms-input:nth-child(1) {
+  margin-bottom: 1rem;
+}
+.overlay .feedback-user .feedback-content .forms label {
+  font-size: 1.25rem;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.overlay .feedback-user .feedback-content .forms input,
+.overlay .feedback-user .feedback-content .forms textarea {
+  background-color: #f5f9fb;
+  outline: none;
+  border: none;
+  padding: 10px 12px;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  border: 1px solid transparent;
+}
+.overlay .feedback-user .feedback-content .forms input::-moz-placeholder, .overlay .feedback-user .feedback-content .forms textarea::-moz-placeholder {
+  color: #b1b1b1;
+}
+.overlay .feedback-user .feedback-content .forms input:-ms-input-placeholder, .overlay .feedback-user .feedback-content .forms textarea:-ms-input-placeholder {
+  color: #b1b1b1;
+}
+.overlay .feedback-user .feedback-content .forms input::placeholder,
+.overlay .feedback-user .feedback-content .forms textarea::placeholder {
+  color: #b1b1b1;
+}
+.overlay .feedback-user .feedback-content .forms input:focus,
+.overlay .feedback-user .feedback-content .forms textarea:focus {
+  border-color: #1a94ff;
+}
+.overlay .feedback-user .feedback-content .forms textarea {
+  resize: none;
+}
+.overlay .feedback-user .feedback-content .btn-feedback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@-webkit-keyframes modalComeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalComeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}/*# sourceMappingURL=product-reivew.css.map */

@@ -1,0 +1,186 @@
+.wrapper {
+  --color-yellow: #ffcc48;
+  --color-border: #f4f4f4;
+}
+.wrapper .bxs-star,
+.wrapper .bx-star,
+.wrapper .bxs-star-half {
+  color: var(--color-yellow);
+  font-size: 1.5rem;
+}
+.wrapper .rating-box {
+  background-color: #fff;
+  padding: 1rem 2rem 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #e6e6e6;
+  width: 100%;
+}
+.wrapper .rating-header .title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: normal;
+  margin-bottom: 16px;
+  text-transform: capitalize;
+}
+.wrapper .info-review {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--color-border);
+  margin: 0 -2rem;
+  padding: 20px 2rem;
+}
+.wrapper .info-review .left {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.wrapper .info-review .left img {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+.wrapper .info-review .left .text-container {
+  margin: 0 8px;
+  font-weight: 600;
+  width: 100%;
+  line-height: 20px;
+}
+.wrapper .info-review .left .txt,
+.wrapper .info-review .left .author {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+.wrapper .info-review .left .txt {
+  font-weight: normal;
+  -webkit-line-clamp: 2;
+  color: #8d8d8d;
+}
+.wrapper .info-review .left .author {
+  -webkit-line-clamp: 1;
+  color: black;
+}
+.wrapper .info-review .right {
+  text-align: right;
+  font-weight: 600;
+}
+.wrapper .info-rating {
+  padding: 20px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #8d8d8d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrapper .info-rating .avg {
+  color: #000;
+  font-weight: 700;
+  font-size: 28px;
+}
+.wrapper .info-rating .rating-count {
+  margin-top: 5px;
+  text-align: right;
+}
+.wrapper .rating-bar {
+  width: 450px;
+}
+.wrapper .rating-bar .bar-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.wrapper .rating-bar .bar-item:not(:last-child) {
+  margin-bottom: 5px;
+}
+.wrapper .rating-bar .star i {
+  margin-left: 5px;
+}
+.wrapper .rating-bar .star,
+.wrapper .rating-bar .percent {
+  color: #1a94ff;
+  flex-shrink: 0;
+}
+.wrapper .rating-bar .progress {
+  flex-grow: 1;
+  margin: 0 10px;
+  height: 8px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #f5f8ff;
+}
+.wrapper .rating-bar .progress-line {
+  height: 100%;
+  width: 0%;
+  transition-delay: 0.5s;
+  transition: all 0.4s ease-in;
+  background-color: var(--color-yellow);
+}
+.wrapper .review-box {
+  padding: 30px 0 0;
+}
+.wrapper .review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #8d8d8d;
+  margin-bottom: 15px;
+}
+.wrapper .review-header .count-review span {
+  margin-right: 5px;
+}
+.wrapper .review-header .txt {
+  font-weight: 600;
+  cursor: pointer;
+}
+.wrapper .review-header .txt .bx-edit-alt {
+  font-size: 1.25rem;
+  margin-right: 10px;
+}
+.wrapper .review-content {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+.wrapper .review-content::-webkit-scrollbar {
+  width: 5px;
+}
+.wrapper .review-content::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.wrapper .review-content::-webkit-scrollbar-thumb {
+  visibility: hidden;
+  border-radius: 10px;
+  background-color: #ebebeb;
+}
+.wrapper .review-content:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+.wrapper .review-content .user-review:not(:last-child) {
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 15px;
+}
+.wrapper .review-content .user-rating {
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper .review-content .stars {
+  font-size: 14px;
+}
+.wrapper .review-content .comment-content:not(:empty) {
+  padding: 10px 0;
+  color: #8d8d8d;
+  font-size: 1.125rem;
+}
+.wrapper .review-content time {
+  color: #8d8d8d;
+  font-size: 1rem;
+}/*# sourceMappingURL=product.css.map */

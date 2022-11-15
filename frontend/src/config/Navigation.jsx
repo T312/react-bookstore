@@ -9,19 +9,21 @@ import Cart from "../pages/Cart";
 import About from "../pages/About";
 import Accessory from "../pages/Accessory";
 import Login from "../pages/Login";
-import Dashboard from "../pages/dashboard/pages/Dashboard";
+import ProductListPage from "../dashboard/pages/Products";
+import Dashboard from "../dashboard/pages/Dashboard";
 
 const Navigation = () => {
   return (
     <Routes>
-      <Route exact path='/' element={<Home />} />
-      <Route path='/product/:id' exact element={<Product />} />
-      <Route path='/catalog' element={<Catalog />} />
-      <Route path='/accessories' element={<Accessory />} />
-      <Route path='/cart' element={<Cart />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/about' element={<About />} />
-      <Route path='/dashboard' element={<Dashboard />} />
+      <Route exact path="/" element={<Home />} />
+      <Route path="/product/:id" exact element={<Product />} />
+      <Route path="/catalog" element={<Catalog />} />
+      <Route path="/accessories" element={<Accessory />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/products" element={<ProductListPage />} />
     </Routes>
   );
 };
