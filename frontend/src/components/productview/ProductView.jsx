@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -12,9 +13,6 @@ import numberWithCommas from "../../utils/numberWithCommas.js";
 const ProductView = (props) => {
   const { product } = props;
 
-  if (product === undefined) {
-  }
-
   const imageMain = product.descriptionImages
     ? product.descriptionImages[0].link
     : [];
@@ -26,9 +24,30 @@ const ProductView = (props) => {
     : [];
 
   const [previewImg, setPreviewImg] = useState(imageMain);
+  const [descriptionExpand, setDescriptionExpand] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
+  if (product === undefined)
+    product = {
+      name: "",
+      author: "",
+      descriptionImages: [],
+      description: "",
+      price: "",
+    };
+
   useEffect(() => {
     setPreviewImg(imageMain);
   }, [product]);
+
+  const updateQuantity = (type) => {
+    if (type === "plus") {
+      setQuantity(quantity + 1);
+    } else {
+      setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
+    }
+  };
+
   return (
     <div key={product.id} className='product'>
       <div className='product__images'>
@@ -61,13 +80,23 @@ const ProductView = (props) => {
         <div className='product__images__main'>
           <img src={previewImg} alt='' />
         </div>
-        <div className='product-description'>
+        <div
+          className={`product-description ${descriptionExpand ? "expand" : ""}`}
+        >
           <div className='product-description__title'>Mô Tả Sản Phẩm</div>
-          <div className='product-description__content'>
-            {product.description}
+          <div
+            className='product-description__content'
+            dangerouslySetInnerHTML={{ __html: product.description }}
+          >
+            {/* {product.description} */}
           </div>
           <div className='product-description__toggle'>
-            <Button size='sm'>Xem thêm</Button>
+            <Button
+              size='sm'
+              onClick={() => setDescriptionExpand(!descriptionExpand)}
+            >
+              {descriptionExpand ? "Thu gọn" : "Xem thêm"}
+            </Button>
           </div>
         </div>
       </div>
@@ -91,7 +120,7 @@ const ProductView = (props) => {
         </div>
         <div className='product__info__item'>
           <span className='product__info__item__price'>
-            {numberWithCommas(179000)} ₫
+            {numberWithCommas(product.price)} ₫
           </span>
         </div>
         <div className='product__info__item'>
@@ -126,11 +155,19 @@ const ProductView = (props) => {
         <div className='product__info__item'>
           <div className='product__info__item__title'>Số lượng</div>
           <div className='product__info__item__quantity'>
-            <div className='product__info__item__quantity__btn'>
+            <div
+              className='product__info__item__quantity__btn'
+              onClick={() => updateQuantity("minus")}
+            >
               <i className='bx bx-minus'></i>
             </div>
-            <div className='product__info__item__quantity__input'></div>
-            <div className='product__info__item__quantity__btn'>
+            <div className='product__info__item__quantity__input'>
+              {quantity}
+            </div>
+            <div
+              className='product__info__item__quantity__btn'
+              onClick={() => updateQuantity("plus")}
+            >
               <i className='bx bx-plus'></i>
             </div>
           </div>
@@ -143,11 +180,25 @@ const ProductView = (props) => {
           <Button>mua ngay</Button>
         </div>
       </div>
-      <div className='product-description mobile'>
+      <div
+        className={`product-description mobile ${
+          descriptionExpand ? "expand" : ""
+        }`}
+      >
         <div className='product-description__title'>Mô Tả Sản Phẩm</div>
-        <div className='product-description__content'></div>
+        <div
+          className='product-description__content'
+          dangerouslySetInnerHTML={{ __html: product.description }}
+        >
+          {/* {product.description} */}
+        </div>
         <div className='product-description__toggle'>
-          <Button size='sm'>Xem thêm</Button>
+          <Button
+            size='sm'
+            onClick={() => setDescriptionExpand(!descriptionExpand)}
+          >
+            {descriptionExpand ? "Thu gọn" : "Xem thêm"}
+          </Button>
         </div>
       </div>
     </div>
@@ -155,7 +206,7 @@ const ProductView = (props) => {
 };
 
 // ProductView.propTypes = {
-//   product: PropTypes.array,
+//   product: PropTypes.object,
 // };
 
 export default ProductView;

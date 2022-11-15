@@ -44,12 +44,13 @@ const Product = () => {
 
   return (
     <Helmet title={product.name}>
-      <div className='container'>
+      <div className='container' style={{ marginTop: "100px" }}>
         <Section>
           <SectionBody>
             <ProductView product={product} />
           </SectionBody>
         </Section>
+
         <Section>
           <SectionTitle>Sản phẩm tương tự</SectionTitle>
           <SectionBody>
