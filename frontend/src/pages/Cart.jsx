@@ -9,11 +9,6 @@ import { getCartItemsInfo } from "../features/cart/pathAPI";
 import "../scss/components/cart.scss";
 
 const Cart = () => {
-  // const dispatch = useDispatch();
-  // const {id} = useParams()
-  // const productList = useSelector((state) => state.productList);
-  // const { products } = productList;
-
   const cartItems = useSelector((state) => state.cartItems.value);
   console.log("cartItems:", cartItems);
 
@@ -49,7 +44,9 @@ const Cart = () => {
               </div>
             </div>
             <div className='cart__info__btn'>
-              <Button size='block'>Đặt hàng</Button>
+              <Link to='/login'>
+                <Button size='block'>Đặt hàng</Button>
+              </Link>
               <Link to='/catalog'>
                 <Button size='block'>Tiếp tục mua hàng</Button>
               </Link>
