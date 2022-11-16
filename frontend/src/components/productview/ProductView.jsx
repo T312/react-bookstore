@@ -1,17 +1,20 @@
 /* eslint-disable no-const-assign */
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
 //----------------------------------
 import Button from "../button/Button";
-
+// import { addToCart } from "../../features/cart/pathAPI";
+// import { removeFromCart } from "../../features/cart/cartSlice";
+import { addItem } from "../../features/cart/cartSlice";
+import { closeModal } from "../../features/productmodal/productModalSlice";
 //----------------------------------
 import "./product-view.scss";
 import numberWithCommas from "../../utils/numberWithCommas.js";
 
 const ProductView = (props) => {
   const { product } = props;
+  const dispatch = useDispatch();
 
   const imageMain = product.descriptionImages
     ? product.descriptionImages[0].link
@@ -38,6 +41,7 @@ const ProductView = (props) => {
 
   useEffect(() => {
     setPreviewImg(imageMain);
+    setQuantity(1);
   }, [product]);
 
   const updateQuantity = (type) => {
@@ -45,6 +49,33 @@ const ProductView = (props) => {
       setQuantity(quantity + 1);
     } else {
       setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
+    }
+  };
+
+  const addToCart = () => {
+    let newItem = {
+      name: product.name,
+      price: product.price,
+      quantity: quantity,
+    };
+    if (dispatch(addItem(newItem))) {
+      alert("Đã thêm sản phẩm vào giỏ hàng!");
+    } else {
+      alert("Thêm sản phẩm thất bại");
+    }
+  };
+
+  const goToCart = () => {
+    let newItem = {
+      name: product.name,
+      price: product.price,
+      quantity: quantity,
+    };
+    if (dispatch(addItem(newItem))) {
+      dispatch(closeModal());
+      props.history?.push("/cart");
+    } else {
+      alert("Fail");
     }
   };
 
@@ -173,11 +204,11 @@ const ProductView = (props) => {
           </div>
         </div>
         <div className='product__info__item'>
-          <Button>
+          <Button onClick={() => addToCart()}>
             <i className='bx bx-cart-alt product__info__item__cart'></i>
             thêm vào giỏ hàng
           </Button>
-          <Button>mua ngay</Button>
+          <Button onClick={() => goToCart()}>mua ngay</Button>
         </div>
       </div>
       <div
