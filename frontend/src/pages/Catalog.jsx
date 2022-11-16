@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 //-------------------------
 import "../scss/components/catalog.scss";
 import Helmet from "../components/helmet/Helmet";
@@ -7,15 +8,24 @@ import Helmet from "../components/helmet/Helmet";
 import CheckBox from "../components/checkbox/CheckBox";
 import Button from "../components/button/Button";
 import InfinityList from "../components/infinitylist/InfinityList";
-
 //-------------------------
 import productData from "../data/products";
 import category from "../assets/fake-data/category";
 import author from "../assets/fake-data/author";
 import provider from "../assets/fake-data/provider";
 import productPrice from "../assets/fake-data/product-price";
+//-------------------------
+import { getProductAll } from "../features/product/pathAPI";
 
 const Catalog = () => {
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+  const { products } = productList;
+
+  useEffect(() => {
+    dispatch(getProductAll());
+  }, [dispatch]);
+
   // Tạo bộ lọc ban đầu
   const initialFilter = {
     category: [],
@@ -24,10 +34,7 @@ const Catalog = () => {
     price: [],
   };
 
-  // Get all sản phẩm
-  const productList = productData.getAllProducts();
-
-  const [products, setProducts] = useState(productList);
+  const [product, setProduct] = useState(productList);
 
   // console.log(products);
 
@@ -42,7 +49,7 @@ const Catalog = () => {
         case "CATEGORY":
           setFilter({
             ...filter,
-            category: [...filter.category, item.categorySlug],
+            category: [...filter.category, item.category],
           });
           break;
         case "AUTHOR":
@@ -63,7 +70,7 @@ const Catalog = () => {
       switch (type) {
         case "CATEGORY":
           const newCategory = filter.category.filter(
-            (e) => e !== item.categorySlug,
+            (e) => e !== item.category,
           );
           setFilter({ ...filter, category: newCategory });
           break;
@@ -92,7 +99,7 @@ const Catalog = () => {
     let temp = productList;
     // danh mục
     if (filter.category.length > 0) {
-      temp = temp.filter((e) => filter.category.includes(e.categorySlug));
+      temp = temp.filter((e) => filter.category.includes(e.category));
     }
     // tác giả
     if (filter.author.length > 0) {
@@ -119,7 +126,7 @@ const Catalog = () => {
         return check !== undefined;
       });
     }
-    setProducts(temp);
+    setProduct(temp);
   }, [filter, productList]);
 
   useEffect(() => {
@@ -156,7 +163,7 @@ const Catalog = () => {
                       onChange={(input) =>
                         filterSelect("CATEGORY", input.checked, item)
                       }
-                      checked={filter.category.includes(item.categorySlug)}
+                      checked={filter.category.includes(item.category)}
                     />
                   </div>
                 ))}

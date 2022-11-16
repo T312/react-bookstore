@@ -107,9 +107,15 @@ const Header = () => {
                 <i className="bx bx-cart-alt"></i>
               </Link>
             </div>
+<<<<<<< HEAD
             <div className="header__menu__item header__menu__right__item">
               <Link to="/login">
                 <i className="bx bxs-user"></i>
+=======
+            <div className='header__menu__item header__menu__right__item'>
+              <Link to='/login'>
+                <i className='bx bxs-user'></i>
+>>>>>>> a13fa5ef03ebe02c7146ad2581d7df0ef3f13b36
               </Link>
             </div>
           </div>

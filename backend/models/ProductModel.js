@@ -14,7 +14,7 @@ const reviewSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const productSchema = mongoose.Schema(
@@ -27,6 +27,12 @@ const productSchema = mongoose.Schema(
       link: { type: String },
       image_id: { type: String },
     },
+    descriptionImages: [
+      {
+        link: { type: String },
+        image_id: { type: String },
+      },
+    ],
     description: {
       type: String,
       required: true,
@@ -74,7 +80,7 @@ const productSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 productSchema.virtual("id").get(function () {
   return this._id.toHexString();

@@ -1,5 +1,6 @@
 {
   "name": "frontend",
+  "proxy": "http://localhost:8000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,19 +13,33 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "babel-loader": "^8.2.5",
+<<<<<<< HEAD
     "mdb-react-ui-kit": "^4.2.0",
+=======
+    "moment": "^2.29.4",
+>>>>>>> a13fa5ef03ebe02c7146ad2581d7df0ef3f13b36
     "prop-types": "^15.8.1",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-hook-form": "^7.38.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.8",
     "redux": "^4.2.0",
+=======
+    "react-redux": "^7.2.6",
+    "react-router": "^6.4.2",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "5.0.1",
+    "react-toastify": "^9.0.8",
+    "redux": "^4.1.2",
+>>>>>>> a13fa5ef03ebe02c7146ad2581d7df0ef3f13b36
     "redux-devtools-extension": "^2.13.9",
-    "sass": "^1.42.1",
+    "redux-thunk": "^2.4.1",
+    "sass": "^1.55.0",
     "swiper": "^6.8.4",
     "web-vitals": "^2.1.4"
   },

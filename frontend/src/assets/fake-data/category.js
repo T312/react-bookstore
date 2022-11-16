@@ -1,51 +1,51 @@
 const category = [
   {
     display: "Sách Kỹ năng",
-    categorySlug: "sach-ky-nang",
+    category: "sach-ky-nang",
   },
   {
     display: "Sách Văn học",
-    categorySlug: "sach-van-hoc",
+    category: "sach-van-hoc",
   },
   {
     display: "Sách Kinh tế - Chính trị",
-    categorySlug: "sach-kinh-te-chinh-tri",
+    category: "sach-kinh-te-chinh-tri",
   },
   {
     display: "Sách Tâm lý học",
-    categorySlug: "sach-tam-ly",
+    category: "sach-tam-ly",
   },
   {
     display: "Sách Ngoại ngữ",
-    categorySlug: "sach-ngoai-ngu",
+    category: "sach-ngoai-ngu",
   },
   {
     display: "Sách Tình cảm",
-    categorySlug: "sach-tinh-cam",
+    category: "sach-tinh-cam",
   },
   {
     display: "Sách Khoa học",
-    categorySlug: "sach-khoa-hoc",
+    category: "sach-khoa-hoc",
   },
   {
     display: "Sách Tiểu thuyết",
-    categorySlug: "sach-tieu-thuyet",
+    category: "sach-tieu-thuyet",
   },
   {
     display: "Sách Trinh thám",
-    categorySlug: "sach-trinh-tham",
+    category: "sach-trinh-tham",
   },
   {
     display: "Sách Lịch sử",
-    categorySlug: "sach-lich-su",
+    category: "sach-lich-su",
   },
   {
     display: "Sách Địa lý",
-    categorySlug: "sach-dia-ly",
+    category: "sach-dia-ly",
   },
   {
     display: "Sách Văn hóa",
-    categorySlug: "sach-van-hoa",
+    category: "sach-van-hoa",
   },
 ];
 
