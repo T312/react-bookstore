@@ -1,21 +1,21 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //-------------------------
-import "../scss/components/catalog.scss";
-import Helmet from "../components/helmet/Helmet";
+import "./catalog.scss";
+import Helmet from "../../components/helmet/Helmet";
 // import Grid from "../components/grid/Grid";
 // import ProductCard from "../components/productcard/ProductCard";
-import CheckBox from "../components/checkbox/CheckBox";
-import Button from "../components/button/Button";
-import InfinityList from "../components/infinitylist/InfinityList";
+import CheckBox from "../../components/checkbox/CheckBox";
+import Button from "../../components/button/Button";
+import InfinityList from "../../components/infinitylist/InfinityList";
 //-------------------------
-import productData from "../data/products";
-import category from "../assets/fake-data/category";
-import author from "../assets/fake-data/author";
-import provider from "../assets/fake-data/provider";
-import productPrice from "../assets/fake-data/product-price";
+
+import category from "../../assets/fake-data/category";
+import author from "../../assets/fake-data/author";
+import provider from "../../assets/fake-data/provider";
+import productPrice from "../../assets/fake-data/product-price";
 //-------------------------
-import { getProductAll } from "../features/product/pathAPI";
+import { getProductAll } from "../../features/product/pathAPI";
 
 const Catalog = () => {
   const dispatch = useDispatch();

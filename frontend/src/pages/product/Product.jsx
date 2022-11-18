@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // -------------------------------
-import Helmet from "../components/helmet/Helmet";
+import Helmet from "../../components/helmet/Helmet";
 import Section, {
   SectionBody,
   SectionTitle,
-} from "../components/section/Section";
-import Grid from "../components/grid/Grid";
-import ProductCard from "../components/productcard/ProductCard";
-import ProductView from "../components/productview/ProductView";
-import ProductReview from "../components/productreview/ProductReview";
-import Button from "../components/button/Button";
+} from "../../components/section/Section";
+import Grid from "../../components/grid/Grid";
+import ProductCard from "../../components/productcard/ProductCard";
+import ProductView from "../../components/productview/ProductView";
+import ProductReview from "../../components/productreview/ProductReview";
+import Button from "../../components/button/Button";
 // import numberWithCommas from "../utils/numberWithCommas";
-import { getProductAll, getProduct } from "../features/product/pathAPI";
+import { getProductAll, getProduct } from "../../features/product/pathAPI";
 //--------------------------------
-import users from "../assets/images/users.png";
-import "../scss/components/product.scss";
+import users from "../../assets/images/users.png";
+import "./product.scss";
 
 const Product = () => {
   const { id } = useParams();
