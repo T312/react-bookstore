@@ -1,9 +1,9 @@
 import React from "react";
-import Helmet from "../components/helmet/Helmet";
+import Helmet from "../../components/helmet/Helmet";
 import Section, {
   SectionBody,
   SectionTitle,
-} from "../components/section/Section";
+} from "../../components/section/Section";
 // import ProductReview from "../components/productreview/ProductReview";
 
 const Accessory = () => {
