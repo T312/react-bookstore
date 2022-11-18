@@ -44,23 +44,24 @@ const CartItem = (props) => {
     dispatch(removeItem(item));
   };
 
-  // const imageMain = item.descriptionImages
-  //   ? item.descriptionImages[0].link
-  //   : [];
-  console.log("object:", item.descriptionImages);
+  const imageMain = item.descriptionImages ? item.descriptionImages : [];
+
   return (
     <div className='cart__item' ref={itemRef}>
       <div className='cart__item__image'>
-        <img src='' alt='' />
+        <img src={imageMain} alt='' />
       </div>
       <div className='cart__item__info'>
         <div className='cart__item__info__name'>
           <Link to={`/catalog/${item.name}`}>
-            {`${item.name} - ${item.author}`}
+            <strong>{`${item.name}`}</strong> <br /> {`${item.author}`}
           </Link>
         </div>
         <div className='cart__item__info__price'>
-          {numberWithCommas(item.price)}
+          {numberWithCommas(item.price)} đ
+          {/* <span className='product-card__price__old'>
+            <del>{numberWithCommas(item.price)} ₫</del>
+          </span> */}
         </div>
         <div className='cart__item__info__quantity'>
           <div className='product__info__item__quantity'>

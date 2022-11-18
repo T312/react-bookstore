@@ -26,8 +26,8 @@ export const cartItemsSlice = createSlice({
           {
             id: duplicate[0].id,
             name: newItem.name,
+            descriptionImages: newItem.descriptionImages,
             author: newItem.author,
-            image: newItem.descriptionImages[0].link,
             price: newItem.price,
             quantity: newItem.quantity + duplicate[0].quantity,
           },
@@ -50,7 +50,6 @@ export const cartItemsSlice = createSlice({
           //sort Item
           state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0)),
         ),
-        console.log("addToCart:", state.value),
       );
     },
     updateItem: (state, action) => {
@@ -63,8 +62,8 @@ export const cartItemsSlice = createSlice({
           {
             id: item[0].id,
             name: newItem.name,
+            descriptionImages: newItem.descriptionImages,
             author: newItem.author,
-            image: newItem.descriptionImages[0].link,
             price: newItem.price,
             quantity: newItem.quantity,
           },

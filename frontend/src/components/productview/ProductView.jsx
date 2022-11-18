@@ -56,6 +56,7 @@ const ProductView = (props) => {
   const addToCart = () => {
     let newItem = {
       name: product.name,
+      descriptionImages: product.descriptionImages[0].link,
       author: product.author,
       price: product.price,
       quantity: quantity,
@@ -71,6 +72,7 @@ const ProductView = (props) => {
   const goToCart = () => {
     let newItem = {
       name: product.name,
+      descriptionImages: product.descriptionImages[0].link,
       author: product.author,
       price: product.price,
       quantity: quantity,
