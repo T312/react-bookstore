@@ -10,7 +10,6 @@ import "../scss/components/cart.scss";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value);
-  console.log("cartItems:", cartItems);
 
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(cartItems));
 
@@ -37,16 +36,18 @@ const Cart = () => {
         <div className='cart'>
           <div className='cart__info'>
             <div className='cart__info__txt'>
-              <p> Bạn đang có {totalProducts} sản phẩm trong giỏ hàng</p>
+              <p>
+                Bạn đang có (<strong>{totalProducts}</strong>) sản phẩm trong
+                giỏ hàng
+              </p>
               <div className='cart__info__txt__price'>
                 <span>Thành tiền:</span>{" "}
-                <span>{numberWithCommas(Number(totalPrice))}</span>
+                <span>{numberWithCommas(Number(totalPrice))} đ</span>
               </div>
             </div>
             <div className='cart__info__btn'>
-              <Link to='/login'>
-                <Button size='block'>Đặt hàng</Button>
-              </Link>
+              <Button size='block'>Đặt hàng</Button>
+
               <Link to='/catalog'>
                 <Button size='block'>Tiếp tục mua hàng</Button>
               </Link>
