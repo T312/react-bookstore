@@ -21,3 +21,24 @@ export const loginUser = createAsyncThunk(
     return data;
   }
 );
+export const registerUser = createAsyncThunk(
+  "registerUser",
+  async ({ name, email, password }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // withCredentials: true,
+    };
+    const data = await Axios.post(
+      "http://localhost:8000/v1/auth/register",
+      {
+        email,
+        password,
+        name,
+      },
+      config
+    );
+    return data;
+  }
+);
