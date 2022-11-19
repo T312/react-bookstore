@@ -1,7 +1,7 @@
 /* eslint-disable no-const-assign */
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //----------------------------------
 import Button from "../button/Button";
 // import { addToCart } from "../../features/cart/pathAPI";
@@ -14,6 +14,7 @@ import numberWithCommas from "../../utils/numberWithCommas.js";
 
 const ProductView = (props) => {
   const { product } = props;
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const imageMain = product.descriptionImages
@@ -34,7 +35,7 @@ const ProductView = (props) => {
     product = {
       name: "",
       author: "",
-      descriptionImages: [],
+
       description: "",
       price: "",
     };
@@ -55,9 +56,12 @@ const ProductView = (props) => {
   const addToCart = () => {
     let newItem = {
       name: product.name,
+      descriptionImages: product.descriptionImages[0].link,
+      author: product.author,
       price: product.price,
       quantity: quantity,
     };
+    console.log(newItem);
     if (dispatch(addItem(newItem))) {
       alert("Đã thêm sản phẩm vào giỏ hàng!");
     } else {
@@ -68,12 +72,14 @@ const ProductView = (props) => {
   const goToCart = () => {
     let newItem = {
       name: product.name,
+      descriptionImages: product.descriptionImages[0].link,
+      author: product.author,
       price: product.price,
       quantity: quantity,
     };
     if (dispatch(addItem(newItem))) {
-      dispatch(closeModal());
-      props.history?.push("/cart");
+      // dispatch(closeModal());
+      navigate("/cart");
     } else {
       alert("Fail");
     }

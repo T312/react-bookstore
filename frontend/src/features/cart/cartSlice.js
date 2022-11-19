@@ -16,7 +16,9 @@ export const cartItemsSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const newItem = action.payload;
+      //find Item
       const duplicate = state.value.filter((e) => e.name === newItem.name);
+      //delete Item
       if (duplicate.length > 0) {
         state.value = state.value.filter((e) => e.name !== newItem.name);
         state.value = [
@@ -24,6 +26,8 @@ export const cartItemsSlice = createSlice({
           {
             id: duplicate[0].id,
             name: newItem.name,
+            descriptionImages: newItem.descriptionImages,
+            author: newItem.author,
             price: newItem.price,
             quantity: newItem.quantity + duplicate[0].quantity,
           },
@@ -43,6 +47,7 @@ export const cartItemsSlice = createSlice({
       localStorage.setItem(
         "cartItems",
         JSON.stringify(
+          //sort Item
           state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0)),
         ),
       );
@@ -57,6 +62,8 @@ export const cartItemsSlice = createSlice({
           {
             id: item[0].id,
             name: newItem.name,
+            descriptionImages: newItem.descriptionImages,
+            author: newItem.author,
             price: newItem.price,
             quantity: newItem.quantity,
           },
@@ -81,7 +88,6 @@ export const cartItemsSlice = createSlice({
     },
   },
 });
-
 // Action creators are generated for each case reducer function
 export const { addItem, removeItem, updateItem } = cartItemsSlice.actions;
 

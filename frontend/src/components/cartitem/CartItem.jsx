@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { updateItem, removeItem } from "../../features/cart/cartSlice";
 // --------------------------------------------------
 import numberWithCommas from "../../utils/numberWithCommas";
-import bachdahanh01 from "../../assets/images/books/bachdahanh01.png";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
@@ -45,19 +44,24 @@ const CartItem = (props) => {
     dispatch(removeItem(item));
   };
 
+  const imageMain = item.descriptionImages ? item.descriptionImages : [];
+
   return (
     <div className='cart__item' ref={itemRef}>
       <div className='cart__item__image'>
-        <img src={bachdahanh01} alt='' />
+        <img src={imageMain} alt='' />
       </div>
       <div className='cart__item__info'>
         <div className='cart__item__info__name'>
           <Link to={`/catalog/${item.name}`}>
-            {`${item.product.name} - ${item.product.author}`}
+            <strong>{`${item.name}`}</strong> <br /> {`${item.author}`}
           </Link>
         </div>
         <div className='cart__item__info__price'>
-          {numberWithCommas(item.price)}
+          {numberWithCommas(item.price)} đ
+          {/* <span className='product-card__price__old'>
+            <del>{numberWithCommas(item.price)} ₫</del>
+          </span> */}
         </div>
         <div className='cart__item__info__quantity'>
           <div className='product__info__item__quantity'>

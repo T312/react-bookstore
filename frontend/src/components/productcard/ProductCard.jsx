@@ -43,10 +43,11 @@ const ProductCard = ({ product }) => {
           <i className='bx bxs-star'></i>
         </span>
         <div className='product-card__price'>
-          {numberWithCommas(product.price - product.price * 0.1)} ₫
-          <span className='product-card__price__old'>
+          {/* {numberWithCommas(product.price - product.price * 0.1)} ₫ */}
+          {numberWithCommas(product.price)} ₫
+          {/* <span className='product-card__price__old'>
             <del>{numberWithCommas(product.price)} ₫</del>
-          </span>
+          </span> */}
         </div>
       </Link>
 

@@ -1,5 +1,6 @@
 import React from "react";
-import Helmet from "../components/helmet/Helmet";
+import Helmet from "../../components/helmet/Helmet";
+import "./about.scss";
 
 const About = () => {
   return <Helmet title='About'>About</Helmet>;

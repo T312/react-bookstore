@@ -2,21 +2,21 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 //-------------------------
-import Helmet from "../components/helmet/Helmet";
-import HeroSlider from "../components/hero-slider/HeroSlider";
-import PolicyCard from "../components/policy/PolicyCard";
-import ProductCard from "../components/productcard/ProductCard";
-import Grid from "../components/grid/Grid";
+import Helmet from "../../components/helmet/Helmet";
+import HeroSlider from "../../components/hero-slider/HeroSlider";
+import PolicyCard from "../../components/policy/PolicyCard";
+import ProductCard from "../../components/productcard/ProductCard";
+import Grid from "../../components/grid/Grid";
 import Section, {
   SectionTitle,
   SectionBody,
-} from "../components/section/Section";
+} from "../../components/section/Section";
 // import { listProduct } from "../redux/actions/ProductActions";
-import { getProductAll } from "../features/product/pathAPI";
+import { getProductAll } from "../../features/product/pathAPI";
 //-------------------------
-import heroSliderData from "../assets/fake-data/hero-slider";
-import policy from "../assets/fake-data/policy";
-import banner from "../assets/images/banner.png";
+import heroSliderData from "../../assets/fake-data/hero-slider";
+import policy from "../../assets/fake-data/policy";
+import banner from "../../assets/images/banner.png";
 
 const Home = () => {
   const dispatch = useDispatch();
