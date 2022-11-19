@@ -7,7 +7,6 @@ import Button from "../button/Button";
 // import { addToCart } from "../../features/cart/pathAPI";
 // import { removeFromCart } from "../../features/cart/cartSlice";
 import { addItem } from "../../features/cart/cartSlice";
-import { closeModal } from "../../features/productmodal/productModalSlice";
 //----------------------------------
 import "./product-view.scss";
 import numberWithCommas from "../../utils/numberWithCommas.js";
@@ -35,9 +34,10 @@ const ProductView = (props) => {
     product = {
       name: "",
       author: "",
-
+      descriptionImages: [],
       description: "",
       price: "",
+      quantity: "",
     };
 
   useEffect(() => {

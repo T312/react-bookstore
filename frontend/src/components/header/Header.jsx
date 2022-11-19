@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { logoutUser } from "../../features/auth/authSlide";
 
@@ -66,6 +66,16 @@ const Header = () => {
     dispatch(logoutUser());
   };
 
+  const cartItemCount = useSelector((state) => state.cartItems.value);
+
+  console.log("cartItemCount: ", cartItemCount);
+  const [count, setCount] = useState(0);
+
+  // update count when new cart changes
+  useEffect(() => {
+    setCount(cartItemCount.length);
+  }, [cartItemCount]);
+
   return (
     <div className="header" ref={headerRef}>
       <div className="container">
@@ -116,7 +126,7 @@ const Header = () => {
               <Link to="/cart">
                 <i className="bx bx-cart-alt"></i>
               </Link>
-              <span className="badge">9</span>
+              <span className="badge">{count}</span>
             </div>
             {user ? (
               <>
