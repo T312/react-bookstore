@@ -12,7 +12,7 @@ import Accessory from "../pages/accessory/Accessory";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Profile from "../pages/profile/Profile";
-
+import Shipping from "../pages/shipping/Shipping";
 const Navigation = () => {
   return (
     <Routes>
@@ -24,6 +24,7 @@ const Navigation = () => {
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/about' element={<About />} />
+      <Route path='/shipping' element={<Shipping />} />
       <Route element={<ProtectedRoute />}>
         <Route path='/profile' element={<Profile />} />
       </Route>

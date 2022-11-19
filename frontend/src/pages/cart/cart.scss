@@ -68,7 +68,7 @@
       margin-right: 20px;
 
       img {
-        height: 150px;
+        height: 130px;
       }
     }
 
@@ -100,13 +100,14 @@
     }
 
     &__del {
-      font-size: 1.5rem;
+      color: red;
+      font-size: 1.75rem;
 
       i {
         cursor: pointer;
 
         &:hover {
-          color: $main-color;
+          opacity: 0.6;
         }
       }
     }
