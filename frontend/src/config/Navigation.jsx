@@ -3,14 +3,14 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 // ---------------------------
 import ProtectedRoute from "./ProtectedRoute";
-import Home from "../pages/Home";
-import Product from "../pages/Product";
-import Catalog from "../pages/Catalog";
-import Cart from "../pages/Cart";
-import About from "../pages/About";
-import Accessory from "../pages/Accessory";
-import Login from "../pages/Login";
-import Profile from "../pages/Profile";
+import Home from "../pages/home/Home";
+import Product from "../pages/product/Product";
+import Catalog from "../pages/catalog/Catalog";
+import Cart from "../pages/cart/Cart";
+import About from "../pages/about/About";
+import Accessory from "../pages/accessory/Accessory";
+import Login from "../pages/login/Login";
+import Profile from "../pages/profile/Profile";
 
 const Navigation = () => {
   return (
