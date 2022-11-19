@@ -30,6 +30,7 @@ export const cartItemsSlice = createSlice({
             author: newItem.author,
             price: newItem.price,
             quantity: newItem.quantity + duplicate[0].quantity,
+            qty: newItem.qty, //count element in cart
           },
         ];
       } else {
@@ -66,6 +67,7 @@ export const cartItemsSlice = createSlice({
             author: newItem.author,
             price: newItem.price,
             quantity: newItem.quantity,
+            qty: newItem.qty, //count element in cart
           },
         ];
       }
