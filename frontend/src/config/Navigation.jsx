@@ -10,20 +10,22 @@ import Cart from "../pages/cart/Cart";
 import About from "../pages/about/About";
 import Accessory from "../pages/accessory/Accessory";
 import Login from "../pages/login/Login";
+import Register from "../pages/register/Register";
 import Profile from "../pages/profile/Profile";
 
 const Navigation = () => {
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
-      <Route path="/product/:id" exact element={<Product />} />
-      <Route path="/catalog" element={<Catalog />} />
-      <Route path="/accessories" element={<Accessory />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/about" element={<About />} />
+      <Route exact path='/' element={<Home />} />
+      <Route path='/product/:id' exact element={<Product />} />
+      <Route path='/catalog' element={<Catalog />} />
+      <Route path='/accessories' element={<Accessory />} />
+      <Route path='/cart' element={<Cart />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
+      <Route path='/about' element={<About />} />
       <Route element={<ProtectedRoute />}>
-        <Route path="/profile" element={<Profile />} />
+        <Route path='/profile' element={<Profile />} />
       </Route>
     </Routes>
   );

@@ -4,7 +4,7 @@ import { logoutUser } from "../../features/auth/authSlide";
 //-------------------------
 // import Input from "../../components/input/Input";
 // import Button from "../../components/button/Button";
-
+import CartItem from "../cartitem/CartItem";
 //-------------------------
 import userImg from "../../assets/images/users.png";
 import "./header.scss";
@@ -113,27 +113,28 @@ const Header = () => {
               <Link to='/cart'>
                 <i className='bx bx-cart-alt'></i>
               </Link>
+              <span className='badge'>9</span>
             </div>
             {user ? (
               <>
-                <div className="header__menu__item header__menu__right__item">
-                  <div className="header__menu__right__item__user">
-                    <img src={userImg} alt="" />
-                    <div className="header__menu__right__item__user-name">
+                <div className='header__menu__item header__menu__right__item'>
+                  <div className='header__menu__right__item__user'>
+                    <img src={userImg} alt='' />
+                    <div className='header__menu__right__item__user-name'>
                       {user.name}
                     </div>
-                    <div className="header__menu__right__item__dropdown">
-                      <i class="bx bxs-down-arrow"></i>
+                    <div className='header__menu__right__item__dropdown'>
+                      <i class='bx bxs-down-arrow'></i>
 
-                      <div className="header__menu__right__item__dropdown-list">
-                        <div className="header__menu__right__item__dropdown-list__item">
-                          <Link to="/profile">Profile</Link>
+                      <div className='header__menu__right__item__dropdown-list'>
+                        <div className='header__menu__right__item__dropdown-list__item'>
+                          <Link to='/profile'>Profile</Link>
                         </div>
                         <div
                           onClick={logout}
-                          className="header__menu__right__item__dropdown-list__item"
+                          className='header__menu__right__item__dropdown-list__item'
                         >
-                          <Link to="/">Logout</Link>
+                          <Link to='/'>Logout</Link>
                         </div>
                       </div>
                     </div>
@@ -142,9 +143,9 @@ const Header = () => {
               </>
             ) : (
               <>
-                <div className="header__menu__item header__menu__right__item">
-                  <Link to="/login">
-                    <i className="bx bxs-user"></i>
+                <div className='header__menu__item header__menu__right__item'>
+                  <Link to='/login'>
+                    <i className='bx bxs-user'></i>
                   </Link>
                 </div>
               </>
