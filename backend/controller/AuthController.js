@@ -19,6 +19,7 @@ const loginUser = asyncHandler(async (req, res) => {
       success: true,
       message: "Login success",
       accessToken: accessToken(user._id),
+      refreshToken: refreshToken(user._id),
       user: user,
     });
   } else {
@@ -47,14 +48,15 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    res.cookie("refreshToken", refreshToken(user._id), {
-      httpOnly: true, //accessible only by web server
-      maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
-    });
+    // res.cookie("refreshToken", refreshToken(user._id), {
+    //   httpOnly: true, //accessible only by web server
+    //   maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
+    // });
     res.status(201).json({
       success: true,
       message: "register profile success",
       accessToken: accessToken(user._id),
+      refreshToken: refreshToken(user._id),
       user: user,
     });
   } else {
@@ -100,7 +102,11 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 const logoutUser = asyncHandler(async (req, res) => {
   const cookies = req.cookies;
   if (!cookies) return res.sendStatus(204); //No content
-  res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+    sameSite: "None",
+    secure: true,
+  });
   res.json({ message: "Cookie cleared" });
 });
 
