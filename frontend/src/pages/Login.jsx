@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 // ------------------------------------
 // import Button from "../components/button/Button";
-import Helmet from "../../components/helmet/Helmet";
-import CheckBox from "../../components/checkbox/CheckBox";
+import Helmet from "../components/helmet/Helmet";
+import CheckBox from "../components/checkbox/CheckBox";
 // ------------------------------------
-import "./login.scss";
-import logo from "../../assets/images/logo.png";
-import { loginUser } from "../../features/auth/pathAPI";
+import "../scss/components/login.scss";
+import logo from "../assets/images/logo.png";
+import { loginUser } from "../features/auth/pathAPI";
 const Login = () => {
   const {
     register,

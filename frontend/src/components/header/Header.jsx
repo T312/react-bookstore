@@ -1,13 +1,15 @@
 import React, { useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-
+import { logoutUser } from "../../features/auth/authSlide";
 //-------------------------
 // import Input from "../../components/input/Input";
 // import Button from "../../components/button/Button";
 
 //-------------------------
+import userImg from "../../assets/images/users.png";
 import "./header.scss";
 import logo from "../../assets/images/logo.png";
+import { useDispatch, useSelector } from "react-redux";
 
 const headerNav = [
   {
@@ -29,8 +31,10 @@ const headerNav = [
 ];
 
 const Header = () => {
+  const userInfo = useSelector((state) => state.authLogin);
+  const { error, loading, user } = userInfo;
   const { pathName } = useLocation();
-
+  const dispatch = useDispatch();
   const activeNav = headerNav.findIndex((e) => e.path === pathName);
 
   const headerRef = useRef(null);
@@ -55,6 +59,9 @@ const Header = () => {
   const menuLeft = useRef(null);
 
   const menuToggle = () => menuLeft.current.classList.toggle("active");
+  const logout = async () => {
+    dispatch(logoutUser());
+  };
 
   return (
     <div className='header' ref={headerRef}>
@@ -107,11 +114,41 @@ const Header = () => {
                 <i className='bx bx-cart-alt'></i>
               </Link>
             </div>
-            <div className='header__menu__item header__menu__right__item'>
-              <Link to='/login'>
-                <i className='bx bxs-user'></i>
-              </Link>
-            </div>
+            {user ? (
+              <>
+                <div className="header__menu__item header__menu__right__item">
+                  <div className="header__menu__right__item__user">
+                    <img src={userImg} alt="" />
+                    <div className="header__menu__right__item__user-name">
+                      {user.name}
+                    </div>
+                    <div className="header__menu__right__item__dropdown">
+                      <i class="bx bxs-down-arrow"></i>
+
+                      <div className="header__menu__right__item__dropdown-list">
+                        <div className="header__menu__right__item__dropdown-list__item">
+                          <Link to="/profile">Profile</Link>
+                        </div>
+                        <div
+                          onClick={logout}
+                          className="header__menu__right__item__dropdown-list__item"
+                        >
+                          <Link to="/">Logout</Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="header__menu__item header__menu__right__item">
+                  <Link to="/login">
+                    <i className="bx bxs-user"></i>
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
