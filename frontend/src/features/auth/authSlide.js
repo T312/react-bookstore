@@ -1,15 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser } from "./pathAPI";
+import { loginUser, registerUser } from "./pathAPI";
+
+const items =
+  localStorage.getItem("user") !== null
+    ? {
+        loading: false,
+        msg: "",
+        user: JSON.parse(localStorage.getItem("user")),
+        token: localStorage.getItem("accessToken"),
+        refreshToken: localStorage.getItem("refreshToken"),
+      }
+    : {
+        loading: false,
+        msg: "",
+        user: "",
+        token: "",
+        refreshToken: "",
+      };
 
 const authSlide = createSlice({
   name: "authLogin",
-  initialState: {
-    loading: false,
-    msg: "",
-    user: "",
-    token: "",
-    refreshToken: "",
-  },
+  initialState: items,
   reducers: {
     addToken: (state, action) => {
       state.token = localStorage.getItem("accessToken");
@@ -49,6 +60,29 @@ const authSlide = createSlice({
       }
     },
     [loginUser.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    },
+    // ********************************************************** register user ************************************
+    [registerUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [registerUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      if (action.payload.error) {
+        state.error = action.payload.error;
+      } else {
+        state.msg = action.payload.data.message;
+        state.token = action.payload.data.accessToken;
+        state.user = action.payload.data.user;
+        state.refreshToken = action.payload.data.refreshToken;
+
+        localStorage.setItem("user", JSON.stringify(action.payload.data.user));
+        localStorage.setItem("accessToken", action.payload.data.accessToken);
+        localStorage.setItem("refreshToken", action.payload.data.refreshToken);
+      }
+    },
+    [registerUser.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.error;
     },

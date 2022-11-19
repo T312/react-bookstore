@@ -12,7 +12,7 @@ const rootReducer = {
   productList: listProductsSlice,
   productDetails: productDetailsSlice,
   cartItems: cartItemsReducer,
-  authLogin: authSlide,
+  authUser: authSlide,
 };
 
 const store = configureStore({
