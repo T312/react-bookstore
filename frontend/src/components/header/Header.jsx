@@ -4,10 +4,11 @@ import { Link, useLocation } from "react-router-dom";
 //-------------------------
 // import Input from "../../components/input/Input";
 // import Button from "../../components/button/Button";
-
+import CartItem from "../cartitem/CartItem";
 //-------------------------
 import "./header.scss";
 import logo from "../../assets/images/logo.png";
+import user from "../../assets/images/users.png";
 
 const headerNav = [
   {
@@ -106,11 +107,31 @@ const Header = () => {
               <Link to='/cart'>
                 <i className='bx bx-cart-alt'></i>
               </Link>
+              <span className='badge'>9</span>
             </div>
             <div className='header__menu__item header__menu__right__item'>
-              <Link to='/login'>
+              {/* <Link to='/login'>
                 <i className='bx bxs-user'></i>
-              </Link>
+              </Link> */}
+
+              <div className='header__menu__right__item__user'>
+                <img src={user} alt='' />
+                <div className='header__menu__right__item__user-name'>
+                  Lâm Trung Hiếu
+                </div>
+                <div className='header__menu__right__item__dropdown'>
+                  <i class='bx bxs-down-arrow'></i>
+
+                  <div className='header__menu__right__item__dropdown-list'>
+                    <div className='header__menu__right__item__dropdown-list__item'>
+                      <Link to='/profile'>Profile</Link>
+                    </div>
+                    <div className='header__menu__right__item__dropdown-list__item'>
+                      <Link to='/logout'>Logout</Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
