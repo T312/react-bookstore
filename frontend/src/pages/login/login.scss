@@ -2,6 +2,9 @@
 
 .login {
   @include flex(center, center);
+  background-image: url("../../assets//images/bg-login-register.jpg");
+  background-position: center;
+  object-fit: cover;
 }
 
 .form {

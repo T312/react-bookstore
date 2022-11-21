@@ -53,35 +53,35 @@ const Catalog = () => {
   const showHideFilter = () => filterRef.current.classList.toggle("active");
   const clearFilter = () => setFilterCategory(initialFilter);
   return (
-    <Helmet title="Product">
-      <div className="container">
-        <div className="catalog">
-          <div className="catalog__filter">
+    <Helmet title='Product'>
+      <div className='container'>
+        <div className='catalog'>
+          <div className='catalog__filter' ref={filterRef}>
             <div
-              className="catalog__filter__close"
+              className='catalog__filter__close'
               onClick={() => showHideFilter()}
             >
-              <i className="bx bx-left-arrow-alt"></i>
+              <i className='bx bx-left-arrow-alt'></i>
             </div>
             <Filter
               filterCategory={filterCategory}
               setFilterCategory={(category) => setFilterCategory(category)}
             />
-            <div className="catalog__filter__widget">
-              <div className="catalog__filter__widget__content">
-                <Button size="sm" onClick={clearFilter}>
+            <div className='catalog__filter__widget'>
+              <div className='catalog__filter__widget__content'>
+                <Button size='sm' onClick={clearFilter}>
                   hủy lọc
                 </Button>
               </div>
             </div>
           </div>
-          <div className="catalog__filter__toggle">
-            <Button size="sm" onClick={() => showHideFilter()}>
+          <div className='catalog__filter__toggle'>
+            <Button size='sm' onClick={() => showHideFilter()}>
               bộ lọc
             </Button>
           </div>
-          <div className="catalog__content">
-            <div className="header__menu__item header__menu__right__item">
+          <div className='catalog__content'>
+            <div className='header__menu__item header__menu__right__item'>
               <Input setSearch={(search) => setSearch(search)} />
               <Sort sort={sort} setSort={(sort) => setSort(sort)} />
             </div>
