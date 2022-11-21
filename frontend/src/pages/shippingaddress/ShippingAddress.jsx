@@ -10,6 +10,7 @@ import numberWithCommas from "../../utils/numberWithCommas.js";
 import "./shipping-address.scss";
 
 import user from "../../assets/images/users.png";
+import AddressCard from "../../components/address-card/AddressCard";
 
 const ShippingAddress = () => {
   window.scrollTo(0, 0);
@@ -18,7 +19,7 @@ const ShippingAddress = () => {
       <div className='container'>
         <Section>
           <SectionTitle>---</SectionTitle>
-          <SectionTitle>Shipping Address</SectionTitle>
+          <SectionTitle>Địa chỉ giao hàng</SectionTitle>
           <SectionBody>
             <div className='profile'>
               {/* info card */}
@@ -45,7 +46,7 @@ const ShippingAddress = () => {
                     <Link to='/profile'>
                       <div className='profile__setting__btn__item'>
                         <button className='btn-item' type='button'>
-                          Profile Settings
+                          Cài đặt tài khoản
                         </button>
                       </div>
                     </Link>
@@ -59,12 +60,13 @@ const ShippingAddress = () => {
                     </div> */}
                     <div className='profile__setting__btn__item'>
                       <button className='btn-item' type='button'>
-                        Shipping Address
+                        Địa chỉ giao hàng
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
+              <AddressCard />
             </div>
           </SectionBody>
         </Section>

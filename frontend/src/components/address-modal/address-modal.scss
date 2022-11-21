@@ -9,12 +9,12 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.4);
   margin-top: 4.5rem;
-  .feedback-user {
+  .feedback-users {
     // position: absolute;
     // visibility: hidden;
     // opacity: 0;
     width: 50%;
-    height: 90%;
+    height: 80%;
     top: 0;
     left: 0;
     z-index: 9;
@@ -34,9 +34,8 @@
       color: #fff;
       background-color: $main-color;
       height: 100px;
-
       .title {
-        margin-top: -3rem;
+        margin-top: -2rem;
         font-weight: 600;
         font-size: 24px;
         // text-transform: uppercase;
