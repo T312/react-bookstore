@@ -65,7 +65,7 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <form>
+              <form className='form-profile'>
                 <div className='profile-tab'>
                   <div className='profile-tab__form'>
                     <div className='profile-tab__form__group'>

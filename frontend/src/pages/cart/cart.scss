@@ -1,8 +1,5 @@
 @use "../../scss/" as *;
 
-form {
-  width: 60%;
-}
 .cart {
   @include flex(flex-start, flex-start);
   padding: 10% 0;
