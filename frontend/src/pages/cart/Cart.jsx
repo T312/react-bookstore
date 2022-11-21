@@ -7,7 +7,11 @@ import Button from "../../components/button/Button";
 import numberWithCommas from "../../utils/numberWithCommas";
 import { getCartItemsInfo } from "../../features/cart/pathAPI";
 import "./cart.scss";
-
+import CheckoutStatus from "../../components/checkout-status/CheckoutStatus";
+import Section, {
+  SectionTitle,
+  SectionBody,
+} from "../../components/section/Section";
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value);
 
@@ -33,6 +37,7 @@ const Cart = () => {
   return (
     <Helmet title='Cart'>
       <div className='container'>
+        <div className='checkout-status'></div> <CheckoutStatus />
         <div className='cart'>
           <div iv className='cart__info'>
             <div className='cart__info__txt'>

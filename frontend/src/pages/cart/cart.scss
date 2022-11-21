@@ -1,8 +1,11 @@
 @use "../../scss/" as *;
 
+.checkout-status {
+  padding-top: 100px;
+}
 .cart {
   @include flex(flex-start, flex-start);
-  padding: 10% 0;
+  padding: 6rem 0;
   @include mobile {
     flex-wrap: wrap;
   }
