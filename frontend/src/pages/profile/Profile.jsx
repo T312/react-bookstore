@@ -18,7 +18,7 @@ const Profile = () => {
       <div className='container'>
         <Section>
           <SectionTitle>---</SectionTitle>
-          <SectionTitle>My Profile</SectionTitle>
+          <SectionTitle>Tài khoản của tôi</SectionTitle>
           <SectionBody>
             <div className='profile'>
               {/* info card */}
@@ -44,7 +44,7 @@ const Profile = () => {
                   <div className='profile__setting__btn'>
                     <div className='profile__setting__btn__item'>
                       <button className='btn-item' type='button'>
-                        Profile Settings
+                        Cài đặt tài khoản
                       </button>
                     </div>
                     {/* <div className='profile__setting__btn__item'>
@@ -58,7 +58,7 @@ const Profile = () => {
                     <Link to='/shipping-address'>
                       <div className='profile__setting__btn__item'>
                         <button className='btn-item' type='button'>
-                          Shipping Address
+                          Địa chỉ giao hàng
                         </button>
                       </div>
                     </Link>
@@ -72,7 +72,7 @@ const Profile = () => {
                       <input
                         type='username'
                         className='profile-tab__form__input'
-                        placeholder='Username'
+                        placeholder='Tên tài khoản'
                       />
                     </div>
                     <div className='profile-tab__form__group'>
@@ -87,20 +87,20 @@ const Profile = () => {
                       <input
                         type='new-password'
                         className='profile-tab__form__input'
-                        placeholder='New Password'
+                        placeholder='Mật khẩu mới'
                       />
                     </div>
                     <div className='profile-tab__form__group'>
                       <input
                         type='confirm-password'
                         className='profile-tab__form__input'
-                        placeholder='Confirm Password'
+                        placeholder='Nhập lại mật khẩu'
                       />
                     </div>
 
                     <div className='profile-tab__form__btn'>
                       <Button size='sm' type='submit'>
-                        Update Profile
+                        Cập nhật
                       </Button>
                     </div>
                   </div>
@@ -112,22 +112,22 @@ const Profile = () => {
           </SectionBody>
         </Section>
         <Section>
-          <SectionTitle>My Orders</SectionTitle>
+          <SectionTitle>Đơn hàng của tôi</SectionTitle>
           <SectionBody>
             <table className='table-order'>
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Total</th>
-                  <th>Paid</th>
-                  <th>Delivered</th>
-                  <th>Action</th>
+                  <th>Đơn hàng đã đặt</th>
+                  <th>Tổng số tiền</th>
+                  <th>Đã thanh toán</th>
+                  <th>Đã giao</th>
+                  <th>Chi tiết</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>2:42 PM Nov 20, 2022</td>
-                  <td>{numberWithCommas(20000)} đ</td>
+                  <td>12/11/2022 9:30</td>
+                  <td>{numberWithCommas(138000)} đ</td>
                   <td>
                     <i
                       className='bx bx-x'
@@ -141,12 +141,12 @@ const Profile = () => {
                     ></i>
                   </td>
                   <td>
-                    <Link to='/'>Details</Link>
+                    <Link to='/'>Xem đơn hàng</Link>
                   </td>
                 </tr>
                 <tr>
-                  <td>2:42 PM Nov 20, 2022</td>
-                  <td>{numberWithCommas(20000)} đ</td>
+                  <td>15/11/2022 12:30</td>
+                  <td>{numberWithCommas(138000)} đ</td>
                   <td>
                     <i
                       className='bx bx-x'
@@ -160,12 +160,12 @@ const Profile = () => {
                     ></i>
                   </td>
                   <td>
-                    <Link to='/'>Details</Link>
+                    <Link to='/'>Xem đơn hàng</Link>
                   </td>
                 </tr>
                 <tr>
-                  <td>2:42 PM Nov 20, 2022</td>
-                  <td>{numberWithCommas(20000)} đ</td>
+                  <td>20/11/2022 13:30</td>
+                  <td>{numberWithCommas(138000)} đ</td>
                   <td>
                     <i
                       className='bx bx-x'
@@ -179,12 +179,12 @@ const Profile = () => {
                     ></i>
                   </td>
                   <td>
-                    <Link to='/'>Details</Link>
+                    <Link to='/'>Xem đơn hàng</Link>
                   </td>
                 </tr>
                 <tr>
-                  <td>2:42 PM Nov 20, 2022</td>
-                  <td>{numberWithCommas(20000)} đ</td>
+                  <td>21/11/2022 17:00</td>
+                  <td>{numberWithCommas(138000)} đ</td>
                   <td>
                     <i
                       className='bx bx-x'
@@ -198,26 +198,7 @@ const Profile = () => {
                     ></i>
                   </td>
                   <td>
-                    <Link to='/'>Details</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2:42 PM Nov 20, 2022</td>
-                  <td>{numberWithCommas(20000)} đ</td>
-                  <td>
-                    <i
-                      className='bx bx-x'
-                      style={{ fontSize: "2rem", color: "red" }}
-                    ></i>
-                  </td>
-                  <td>
-                    <i
-                      className='bx bx-x'
-                      style={{ fontSize: "2rem", color: "red" }}
-                    ></i>
-                  </td>
-                  <td>
-                    <Link to='/'>Details</Link>
+                    <Link to='/'>Xem đơn hàng</Link>
                   </td>
                 </tr>
               </tbody>

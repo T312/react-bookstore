@@ -14,19 +14,19 @@ import { useDispatch, useSelector } from "react-redux";
 
 const headerNav = [
   {
-    display: "Home",
+    display: "Trang chủ",
     path: "/",
   },
   {
-    display: "Products",
+    display: "Sản phẩm",
     path: "/catalog",
   },
   {
-    display: "Accessories",
+    display: "Phụ kiện",
     path: "/accessories",
   },
   {
-    display: "About us",
+    display: "Liên hệ",
     path: "/about",
   },
 ];
@@ -116,10 +116,10 @@ const Header = () => {
               </div>
             ))}
           </div>
-          <div className="header__menu__right">
-            <div className="header__menu__item header__menu__right__item">
-              <Link to="/cart">
-                <i className="bx bx-cart-alt"></i>
+          <div className='header__menu__right'>
+            <div className='header__menu__item header__menu__right__item'>
+              <Link to='/cart'>
+                <i className='bx bx-cart-alt'></i>
               </Link>
               <span className='badge'>{count}</span>
             </div>
@@ -136,13 +136,13 @@ const Header = () => {
 
                       <div className='header__menu__right__item__dropdown-list'>
                         <div className='header__menu__right__item__dropdown-list__item'>
-                          <Link to='/profile'>Profile</Link>
+                          <Link to='/profile'>Tài khoản</Link>
                         </div>
                         <div
                           onClick={logout}
                           className='header__menu__right__item__dropdown-list__item'
                         >
-                          <Link to='/'>Logout</Link>
+                          <Link to='/'>Đăng xuất</Link>
                         </div>
                       </div>
                     </div>

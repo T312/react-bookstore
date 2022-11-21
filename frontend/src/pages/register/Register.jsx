@@ -34,14 +34,14 @@ const Register = () => {
           <div className='form'>
             <div className='form__logo'>
               <img src={logo} alt='' />
-              <div className='form__welcome'>Register account</div>
+              <div className='form__welcome'>Đăng ký tài khoản</div>
             </div>
 
             <div className='form__group'>
               <input
                 type='username'
                 className='form__input'
-                placeholder='Username'
+                placeholder='Tên tài khoản'
                 {...register("name", { required: true })}
               />
               <span className='form__input__icon__err'>
@@ -71,7 +71,7 @@ const Register = () => {
               <input
                 type='password'
                 className='form__input'
-                placeholder='Password'
+                placeholder='Mật khẩu'
                 {...register("password", { required: true })}
               />
               <span className='form__input__icon__err'>
@@ -82,8 +82,8 @@ const Register = () => {
               </span>
             </div>
             <div className='form__group__checkbox'></div>
-            <button className='form__btn'>Register</button>
-            <span className='form__delimiter'>or connect with</span>
+            <button className='form__btn'>Đăng ký</button>
+            <span className='form__delimiter'>Hoặc đăng nhập bằng</span>
             <div className='form__social'>
               <Link to='/' className='form__social__item__fb'>
                 <i className='bx bxl-facebook'></i>
@@ -96,9 +96,9 @@ const Register = () => {
               </Link>
             </div>
             <span className='form__txt'>
-              You have an account!
+              Bạn đã có tài khoản!
               <Link to='/login'>
-                <strong> Login</strong>
+                <strong> Đăng nhập</strong>
               </Link>
             </span>
           </div>

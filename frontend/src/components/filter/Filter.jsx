@@ -32,7 +32,7 @@ const Filter = ({ filterCategory, setFilterCategory }) => {
       switch (type) {
         case "CATEGORY":
           const newCategory = filterCategory.category.filter(
-            (e) => e !== item.id
+            (e) => e !== item.id,
           );
           setFilterCategory({ ...filterCategory, category: newCategory });
           break;
@@ -43,11 +43,11 @@ const Filter = ({ filterCategory, setFilterCategory }) => {
 
   return (
     <>
-      <div className="catalog__filter__widget">
-        <div className="catalog__filter__widget__title">danh mục sản phẩm</div>
-        <div className="catalog__filter__widget__content">
+      <div className='catalog__filter__widget'>
+        <div className='catalog__filter__widget__title'>danh mục sản phẩm</div>
+        <div className='catalog__filter__widget__content'>
           {categoryListApi.map((item, index) => (
-            <div key={index} className="catalog__filter__widget__content__item">
+            <div key={index} className='catalog__filter__widget__content__item'>
               <CheckBox
                 label={item.name}
                 onChange={(input) =>
@@ -59,11 +59,11 @@ const Filter = ({ filterCategory, setFilterCategory }) => {
           ))}
         </div>
       </div>
-      <div className="catalog__filter__widget">
-        <div className="catalog__filter__widget__title">Nhà cung cấp</div>
-        <div className="catalog__filter__widget__content">
+      <div className='catalog__filter__widget'>
+        <div className='catalog__filter__widget__title'>Nhà cung cấp</div>
+        <div className='catalog__filter__widget__content'>
           {provider.map((item, index) => (
-            <div key={index} className="catalog__filter__widget__content__item">
+            <div key={index} className='catalog__filter__widget__content__item'>
               <CheckBox
                 label={item.display}
                 onChange={(input) =>
@@ -76,11 +76,11 @@ const Filter = ({ filterCategory, setFilterCategory }) => {
         </div>
       </div>
 
-      <div className="catalog__filter__widget">
-        <div className="catalog__filter__widget__title">Giá sản phẩm</div>
-        <div className="catalog__filter__widget__content">
+      <div className='catalog__filter__widget'>
+        <div className='catalog__filter__widget__title'>Giá sản phẩm</div>
+        <div className='catalog__filter__widget__content'>
           {productPrice.map((item, index) => (
-            <div key={index} className="catalog__filter__widget__content__item">
+            <div key={index} className='catalog__filter__widget__content__item'>
               <CheckBox
                 label={item.display}
                 onChange={(input) => filterSelect("PRICE", input.checked, item)}
@@ -90,11 +90,11 @@ const Filter = ({ filterCategory, setFilterCategory }) => {
           ))}
         </div>
       </div>
-      <div className="catalog__filter__widget">
-        <div className="catalog__filter__widget__title">Tác giả</div>
-        <div className="catalog__filter__widget__content">
+      <div className='catalog__filter__widget'>
+        <div className='catalog__filter__widget__title'>Tác giả</div>
+        <div className='catalog__filter__widget__content'>
           {author.map((item, index) => (
-            <div key={index} className="catalog__filter__widget__content__item">
+            <div key={index} className='catalog__filter__widget__content__item'>
               <CheckBox
                 label={item.display}
                 onChange={(input) =>
