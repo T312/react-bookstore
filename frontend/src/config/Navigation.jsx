@@ -12,8 +12,7 @@ import Accessory from "../pages/accessory/Accessory";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Profile from "../pages/profile/Profile";
-<<<<<<< HEAD
-import Shipping from "../pages/shipping/Shipping";
+import NotFound from "../pages/404/notFound";
 const Navigation = () => {
   return (
     <Routes>
@@ -25,25 +24,10 @@ const Navigation = () => {
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/about' element={<About />} />
-      <Route path='/shipping' element={<Shipping />} />
-=======
-import NotFound from "../pages/404/notFound";
-const Navigation = () => {
-  return (
-    <Routes>
-      <Route exact path="/" element={<Home />} />
-      <Route path="/product/:id" exact element={<Product />} />
-      <Route path="/catalog" element={<Catalog />} />
-      <Route path="/accessories" element={<Accessory />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/about" element={<About />} />
->>>>>>> fc76f1a455cf603354097e674f5a43091bd437ef
       <Route element={<ProtectedRoute />}>
-        <Route path="/profile" element={<Profile />} />
+        <Route path='/profile' element={<Profile />} />
       </Route>
-      <Route path="*" element={<NotFound />} />
+      <Route path='*' element={<NotFound />} />
     </Routes>
   );
 };
