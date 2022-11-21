@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { updateItem, removeItem } from "../../features/cart/cartSlice";
 // --------------------------------------------------
 import numberWithCommas from "../../utils/numberWithCommas";
+import "./cart-item.scss";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
