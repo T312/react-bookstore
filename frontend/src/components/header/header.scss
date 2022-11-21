@@ -139,7 +139,9 @@
         font-size: 12px;
         margin-bottom: 20px;
       }
-
+      .search {
+        height: 20px;
+      }
       @include mobile {
         font-size: 1.5rem;
       }

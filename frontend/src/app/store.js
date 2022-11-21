@@ -6,6 +6,7 @@ import listProductsSlice from "../features/product/listProductsSlice";
 import productDetailsSlice from "../features/product/productDetailsSlice";
 import cartItemsReducer from "../features/cart/cartSlice";
 import authSlide from "../features/auth/authSlide";
+import listCategorySlice from "../features/category/listCategorySlide";
 
 const rootReducer = {
   productModal: productModalReducer,
@@ -13,6 +14,7 @@ const rootReducer = {
   productDetails: productDetailsSlice,
   cartItems: cartItemsReducer,
   authUser: authSlide,
+  categoryList: listCategorySlice,
 };
 
 const store = configureStore({

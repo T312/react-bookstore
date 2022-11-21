@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "babel-loader": "^8.2.5",
+    "jquery": "^3.6.1",
     "moment": "^2.29.4",
     "prop-types": "^15.8.1",
     "query-string": "^7.1.1",
@@ -53,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "style-loader": "^3.3.1"
   }
 }

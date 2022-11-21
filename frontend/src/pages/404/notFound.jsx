@@ -3,6 +3,7 @@ import Helmet from "../../components/helmet/Helmet";
 import Button from "../../components/button/Button";
 import Section, { SectionTitle } from "../../components/section/Section";
 import "./notFound.scss";
+import Image404 from "../../assets/images/2696450.jpg";
 const notFound = () => {
   return (
     <Helmet title="Accessories">
@@ -10,9 +11,12 @@ const notFound = () => {
         <Section>
           <SectionTitle>---------</SectionTitle>
           <SectionTitle className="title__404">Ooops... Error 404</SectionTitle>
-          <SectionTitle>
-            Sorry, but the page you are looking for doesn't exist
-          </SectionTitle>
+          {/* <SectionTitle>
+            Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve
+            mistyped the URL? Be sure to check your spelling.
+          </SectionTitle> */}
+
+          {/* <img src={Image404} alt="" /> */}
           <a href="/">Back to home</a>
         </Section>
       </div>
