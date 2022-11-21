@@ -31,10 +31,10 @@ const Cart = () => {
   }, [cartItems]);
 
   return (
-    <Helmet title='Giỏ hàng'>
+    <Helmet title='Cart'>
       <div className='container'>
         <div className='cart'>
-          <div className='cart__info'>
+          <div iv className='cart__info'>
             <div className='cart__info__txt'>
               <p>
                 Bạn đang có (<strong>{totalProducts}</strong>) sản phẩm trong
@@ -46,11 +46,16 @@ const Cart = () => {
               </div>
             </div>
             <div className='cart__info__btn'>
-              <Button size='block'>Đặt hàng</Button>
-
-              <Link to='/catalog'>
-                <Button size='block'>Tiếp tục mua hàng</Button>
-              </Link>
+              <div className='cart__info__btn__item'>
+                <Link to='/shipping'>
+                  <Button size='block'>Đặt hàng</Button>
+                </Link>
+              </div>
+              <div className='cart__info__btn__item'>
+                <Link to='/catalog'>
+                  <Button size='block'>Tiếp tục mua hàng</Button>
+                </Link>
+              </div>
             </div>
           </div>
           <div className='cart__list'>

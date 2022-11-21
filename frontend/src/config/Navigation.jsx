@@ -13,6 +13,8 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Profile from "../pages/profile/Profile";
 import NotFound from "../pages/404/notFound";
+import Shipping from "../pages/shipping/Shipping";
+import ShippingAddress from "../pages/shippingaddress/ShippingAddress";
 const Navigation = () => {
   return (
     <Routes>
@@ -26,6 +28,8 @@ const Navigation = () => {
       <Route path='/about' element={<About />} />
       <Route element={<ProtectedRoute />}>
         <Route path='/profile' element={<Profile />} />
+        <Route path='/shipping' element={<Shipping />} />
+        <Route path='/shipping-address' element={<ShippingAddress />} />
       </Route>
       <Route path='*' element={<NotFound />} />
     </Routes>

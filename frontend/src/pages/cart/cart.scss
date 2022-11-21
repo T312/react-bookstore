@@ -1,5 +1,8 @@
 @use "../../scss/" as *;
 
+form {
+  width: 60%;
+}
 .cart {
   @include flex(flex-start, flex-start);
   padding: 10% 0;
@@ -55,6 +58,10 @@
     &__btn {
       & > * {
         margin-bottom: 20px;
+      }
+
+      &__item {
+        width: 350px;
       }
     }
   }
