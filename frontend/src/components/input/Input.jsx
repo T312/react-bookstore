@@ -2,13 +2,14 @@ import React from "react";
 
 import "./input.scss";
 
-const Input = (props) => {
+const Input = ({ setSearch }) => {
   return (
     <input
-      type={props.type}
-      placeholder={props.placeholder}
-      value={props.value}
-      onChange={props.onChange ? (e) => props.onChange(e) : null}
+      type="text"
+      placeholder="Tìm kiếm"
+      // value={props.value}
+      onChange={({ currentTarget: input }) => setSearch(input.value)}
+      // onChange={props.onChange ? (e) => props.onChange(e) : null}
     />
   );
 };

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { logoutUser } from "../../features/auth/authSlide";
 
 //-------------------------
-// import Input from "../../components/input/Input";
+import Input from "../../components/input/Input";
 // import Button from "../../components/button/Button";
 import CartItem from "../cartitem/CartItem";
 //-------------------------
@@ -119,9 +119,6 @@ const Header = () => {
             ))}
           </div>
           <div className="header__menu__right">
-            <div className="header__menu__item header__menu__right__item">
-              <i className="bx bx-search-alt"></i>
-            </div>
             <div className="header__menu__item header__menu__right__item">
               <Link to="/cart">
                 <i className="bx bx-cart-alt"></i>
