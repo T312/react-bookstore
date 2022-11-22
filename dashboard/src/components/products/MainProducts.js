@@ -14,6 +14,8 @@ const MainProducts = () => {
 
   const productDelete = useSelector((state) => state.productDelete);
   const { error: errorDelete, success: successDelete } = productDelete;
+  const numberWithCommas = (num) =>
+    num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || "";
 
   useEffect(() => {
     dispatch(listProducts());
@@ -59,7 +61,7 @@ const MainProducts = () => {
         </header>
 
         <div className="card-body">
-          {errorDelete && (
+          {/* {errorDelete && (
             <Message variant="alert-danger">{errorDelete}</Message>
           )}
           {loading ? (
@@ -68,12 +70,102 @@ const MainProducts = () => {
             <Message variant="alert-danger">{error}</Message>
           ) : (
             <div className="row">
-              {/* Products */}
+    
               {products.map((product) => (
                 <Product product={product} key={product._id} />
               ))}
             </div>
-          )}
+          )} */}
+
+          <table className="table-order">
+            <thead>
+              <tr>
+                <th>Đơn hàng đã đặt</th>
+                <th>Tổng số tiền</th>
+                <th>Đã thanh toán</th>
+                <th>Đã giao</th>
+                <th>Chi tiết</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>12/11/2022 9:30</td>
+                <td>{numberWithCommas(138000)} đ</td>
+                <td>
+                  <i
+                    className="bx bx-x"
+                    style={{ fontSize: "2rem", color: "red" }}
+                  ></i>
+                </td>
+                <td>
+                  <i
+                    className="bx bx-x"
+                    style={{ fontSize: "2rem", color: "red" }}
+                  ></i>
+                </td>
+                <td>
+                  <Link to="/">Xem đơn hàng</Link>
+                </td>
+              </tr>
+              <tr>
+                <td>15/11/2022 12:30</td>
+                <td>{numberWithCommas(138000)} đ</td>
+                <td>
+                  <i
+                    className="bx bx-x"
+                    style={{ fontSize: "2rem", color: "red" }}
+                  ></i>
+                </td>
+                <td>
+                  <i
+                    className="bx bx-x"
+                    style={{ fontSize: "2rem", color: "red" }}
+                  ></i>
+                </td>
+                <td>
+                  <Link to="/">Xem đơn hàng</Link>
+                </td>
+              </tr>
+              <tr>
+                <td>20/11/2022 13:30</td>
+                <td>{numberWithCommas(138000)} đ</td>
+                <td>
+                  <i
+                    className="bx bx-x"
+                    style={{ fontSize: "2rem", color: "red" }}
+                  ></i>
+                </td>
+                <td>
+                  <i
+                    className="bx bx-x"
+                    style={{ fontSize: "2rem", color: "red" }}
+                  ></i>
+                </td>
+                <td>
+                  <Link to="/">Xem đơn hàng</Link>
+                </td>
+              </tr>
+              <tr>
+                <td>21/11/2022 17:00</td>
+                <td>{numberWithCommas(138000)} đ</td>
+                <td>
+                  <i
+                    className="bx bx-x"
+                    style={{ fontSize: "2rem", color: "red" }}
+                  ></i>
+                </td>
+                <td>
+                  <i
+                    className="bx bx-x"
+                    style={{ fontSize: "2rem", color: "red" }}
+                  ></i>
+                </td>
+                <td>
+                  <Link to="/">Xem đơn hàng</Link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
           <nav className="float-end mt-4" aria-label="Page navigation">
             <ul className="pagination">

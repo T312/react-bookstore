@@ -9,43 +9,52 @@ import Section, {
 import numberWithCommas from "../../utils/numberWithCommas.js";
 import "./shipping-address.scss";
 
-import user from "../../assets/images/users.png";
+import userImage from "../../assets/images/users.png";
 import AddressCard from "../../components/address-card/AddressCard";
 
 const ShippingAddress = () => {
   window.scrollTo(0, 0);
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const date = new Date(user.createdAt);
   return (
-    <Helmet title='Profile'>
-      <div className='container'>
+    <Helmet title="Profile">
+      <div className="container">
         <Section>
           <SectionTitle>---</SectionTitle>
           <SectionTitle>Địa chỉ giao hàng</SectionTitle>
           <SectionBody>
-            <div className='profile'>
+            <div className="profile">
               {/* info card */}
-              <div className='profile__info'>
-                <div className='profile__cover'></div>
-                <div className='profile__info__card'>
-                  <div className='profile__info__avatar'>
-                    <img src={user} alt='avatar' />
+              <div className="profile__info">
+                <div className="profile__cover"></div>
+                <div className="profile__info__card">
+                  <div className="profile__info__avatar">
+                    <img src={userImage} alt="avatar" />
                   </div>
-                  <div className='profile__info__text'>
-                    <div className='profile__info__text__username'>
+                  <div className="profile__info__text">
+                    <div className="profile__info__text__username">
                       <h5>
-                        <strong>Long</strong>
+                        <strong>{user.name}</strong>
                       </h5>
                     </div>
-                    <div className='profile__info__text__datetime'>
-                      <span> Đã tham gia 12/12/2022</span>
+                    <div className="profile__info__text__datetime">
+                      <span>
+                        {" "}
+                        Đã tham gia vào{" "}
+                        {`${date.getDate()}/${
+                          date.getMonth() + 1
+                        }/${date.getFullYear()}`}
+                      </span>
                     </div>
                   </div>
                 </div>
                 {/* tab item */}
-                <div className='profile__setting'>
-                  <div className='profile__setting__btn'>
-                    <Link to='/profile'>
-                      <div className='profile__setting__btn__item'>
-                        <button className='btn-item' type='button'>
+                <div className="profile__setting">
+                  <div className="profile__setting__btn">
+                    <Link to="/profile">
+                      <div className="profile__setting__btn__item">
+                        <button className="btn-item" type="button">
                           Cài đặt tài khoản
                         </button>
                       </div>
@@ -58,8 +67,8 @@ const ShippingAddress = () => {
                         </span>
                       </button>
                     </div> */}
-                    <div className='profile__setting__btn__item'>
-                      <button className='btn-item' type='button'>
+                    <div className="profile__setting__btn__item">
+                      <button className="btn-item" type="button">
                         Địa chỉ giao hàng
                       </button>
                     </div>

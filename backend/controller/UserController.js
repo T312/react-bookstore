@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/UserModel.js";
-
+import argon2 from "argon2";
 //@route  v1/auth/profile
 //@desc get user profile
 //@access private
@@ -23,13 +23,14 @@ const getUserProfile = asyncHandler(async (req, res) => {
 //@desc update user profile
 //@access private
 const updateUserProfile = asyncHandler(async (req, res) => {
+  console.log(req);
   const user = await User.findById(req.user._id);
 
   if (user) {
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
-    if (req.body.password) {
-      user.password = req.body.password;
+    user.name = req.body.user.name || user.name;
+    user.email = req.body.user.email || user.email;
+    if (req.body.user.password) {
+      user.password = await argon2.hash(req.body.user.password);
     }
     const updatedUser = await user.save();
     res.json({

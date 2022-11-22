@@ -72,7 +72,6 @@ export const logout = () => (dispatch) => {
 export const listUser = (limitUser, search) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_LIST_REQUEST });
-    console.log(limitUser);
     const {
       userLogin: { userInfo },
     } = getState();
