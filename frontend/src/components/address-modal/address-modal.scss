@@ -1,6 +1,7 @@
 @use "../../scss/" as *;
 
 .overlay {
+  z-index: 99;
   @include flex(center, center);
   position: fixed;
   top: 0;
