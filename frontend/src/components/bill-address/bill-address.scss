@@ -1,8 +1,6 @@
 @use "../../scss/" as *;
 
-.address-card {
-  width: 60%;
-  margin-bottom: 50px;
+.bill-address {
   &__infor {
     background-color: rgb(255, 255, 255);
     color: rgb(33, 43, 54);
@@ -55,6 +53,15 @@
         font-weight: 700;
         margin-left: 8px;
       }
+
+      &__btn-edit {
+        margin-left: 20px;
+        cursor: pointer;
+
+        i {
+          font-size: 1.75rem;
+        }
+      }
     }
 
     &__address {
@@ -64,24 +71,6 @@
         font-size: 1.25rem;
         font-weight: 400;
       }
-    }
-
-    &__btn-deliver {
-      @include flex(flex-end, flex-end);
-    }
-
-    &__btn-del {
-      font-size: 2rem;
-      color: red;
-      cursor: pointer;
-      i {
-        margin-right: 40px;
-      }
-    }
-
-    &__btn-new {
-      margin-right: 30px;
-      @include flex(flex-end, flex-end);
     }
   }
 }

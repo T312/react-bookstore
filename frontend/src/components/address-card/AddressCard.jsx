@@ -12,10 +12,7 @@ const AddressCard = () => {
           <h6 className='address-card__infor__text__name'>
             <strong>Nguyễn Thái Gia Long</strong>
           </h6>
-          <span className='address-card__infor__text__note'>
-            {" "}
-            (Địa chỉ nhà)
-          </span>
+          <span className='address-card__infor__text__note'>(Địa chỉ nhà)</span>
           <span className='address-card__infor__text__default'>Mặc định</span>
         </div>
         <div className='address-card__infor__address'>
@@ -33,8 +30,10 @@ const AddressCard = () => {
           <h6 className='address-card__infor__text__name'>
             <strong>Lâm Trung Hiếu</strong>
           </h6>
-          <span className='address-card__infor__text__note'> (Văn phòng)</span>
-          {/* <span className='address-card__infor__text__default'>Default</span> */}
+          <span className='address-card__infor__text__note'>
+            (Địa văn phòng)
+          </span>
+          {/* <span className='address-card__infor__text__default'>Mặc định</span> */}
         </div>
         <div className='address-card__infor__address'>
           <p className='address-card__infor__address-info'>
@@ -43,9 +42,6 @@ const AddressCard = () => {
           <p className='address-card__infor__address-info'>012345678</p>
         </div>
         <div className='address-card__infor__btn-deliver'>
-          <div className='address-card__infor__btn-del'>
-            <i class='bx bx-trash'></i>
-          </div>
           <Button size='sm'>Thiết lập mặc định</Button>
         </div>
       </div>
@@ -54,8 +50,10 @@ const AddressCard = () => {
           <h6 className='address-card__infor__text__name'>
             <strong>Dương Nhật Kha</strong>
           </h6>
-          <span className='address-card__infor__text__note'> (Văn phòng)</span>
-          {/* <span className='address-card__infor__text__default'>Default</span> */}
+          <span className='address-card__infor__text__note'>
+            (Địa văn phòng)
+          </span>
+          {/* <span className='address-card__infor__text__default'>Mặc định</span> */}
         </div>
         <div className='address-card__infor__address'>
           <p className='address-card__infor__address-info'>
@@ -64,9 +62,6 @@ const AddressCard = () => {
           <p className='address-card__infor__address-info'>012345678</p>
         </div>
         <div className='address-card__infor__btn-deliver'>
-          <div className='address-card__infor__btn-del'>
-            <i class='bx bx-trash'></i>
-          </div>
           <Button size='sm'>Thiết lập mặc định</Button>
         </div>
       </div>

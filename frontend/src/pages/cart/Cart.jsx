@@ -37,38 +37,45 @@ const Cart = () => {
   return (
     <Helmet title='Cart'>
       <div className='container'>
-        <div className='checkout-status'></div> <CheckoutStatus />
-        <div className='cart'>
-          <div iv className='cart__info'>
-            <div className='cart__info__txt'>
-              <p>
-                Bạn đang có (<strong>{totalProducts}</strong>) sản phẩm trong
-                giỏ hàng
-              </p>
-              <div className='cart__info__txt__price'>
-                <span>Thành tiền:</span>{" "}
-                <span>{numberWithCommas(Number(totalPrice))} đ</span>
+        <Section>
+          <SectionTitle>----</SectionTitle>
+          <SectionTitle>Giỏ hàng</SectionTitle>
+          <SectionBody>
+            {/* <div className='checkout-status'></div> */}
+            <CheckoutStatus />
+            <div className='cart'>
+              <div iv className='cart__info'>
+                <div className='cart__info__txt'>
+                  <p>
+                    Bạn đang có (<strong>{totalProducts}</strong>) sản phẩm
+                    trong giỏ hàng
+                  </p>
+                  <div className='cart__info__txt__price'>
+                    <span>Thành tiền</span>{" "}
+                    <span>{numberWithCommas(Number(totalPrice))} đ</span>
+                  </div>
+                </div>
+                <div className='cart__info__btn'>
+                  <div className='cart__info__btn__item'>
+                    <Link to='/shipping'>
+                      <Button size='block'>Đặt hàng</Button>
+                    </Link>
+                  </div>
+                  <div className='cart__info__btn__item'>
+                    <Link to='/catalog'>
+                      <Button size='block'>Tiếp tục mua hàng</Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className='cart__list'>
+                {cartProducts.map((item, index) => (
+                  <CartItem item={item} key={index} />
+                ))}
               </div>
             </div>
-            <div className='cart__info__btn'>
-              <div className='cart__info__btn__item'>
-                <Link to='/shipping'>
-                  <Button size='block'>Đặt hàng</Button>
-                </Link>
-              </div>
-              <div className='cart__info__btn__item'>
-                <Link to='/catalog'>
-                  <Button size='block'>Tiếp tục mua hàng</Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className='cart__list'>
-            {cartProducts.map((item, index) => (
-              <CartItem item={item} key={index} />
-            ))}
-          </div>
-        </div>
+          </SectionBody>
+        </Section>
       </div>
     </Helmet>
   );
