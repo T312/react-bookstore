@@ -61,7 +61,7 @@ const ProductView = (props) => {
       price: product.price,
       quantity: quantity,
     };
-    console.log(newItem);
+
     if (dispatch(addItem(newItem))) {
       alert("Đã thêm sản phẩm vào giỏ hàng!");
     } else {
