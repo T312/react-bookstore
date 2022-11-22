@@ -37,7 +37,7 @@ const authSlide = createSlice({
       localStorage.removeItem("user");
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-      window.localStorage.clear();
+      // window.localStorage.clear();
     },
   },
   extraReducers: {

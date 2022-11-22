@@ -28,77 +28,77 @@ const Register = () => {
   };
 
   return (
-    <form className="" onSubmit={handleSubmit(onSubmit)}>
-      <Helmet title="Login">
-        <div className="login">
-          <div className="form">
-            <div className="form__logo">
-              <img src={logo} alt="" />
-              <div className="form__welcome">Register account</div>
+    <form className='' onSubmit={handleSubmit(onSubmit)}>
+      <Helmet title='Register'>
+        <div className='login'>
+          <div className='form'>
+            <div className='form__logo'>
+              <img src={logo} alt='' />
+              <div className='form__welcome'>Đăng ký tài khoản</div>
             </div>
 
-            <div className="form__group">
+            <div className='form__group'>
               <input
-                type="username"
-                className="form__input"
-                placeholder="Username"
+                type='username'
+                className='form__input'
+                placeholder='Tên tài khoản'
                 {...register("name", { required: true })}
               />
-              <span className="form__input__icon__err">
+              <span className='form__input__icon__err'>
                 {/* <i className='bx bx-error-circle'></i> */}
               </span>
-              <span className="form__input__icon__success">
+              <span className='form__input__icon__success'>
                 {/* <i className='bx bx-check-circle'></i> */}
               </span>
-              <span className="form__input__err__msg"></span>
+              <span className='form__input__err__msg'></span>
             </div>
-            <div className="form__group">
+            <div className='form__group'>
               <input
-                type="email"
-                className="form__input"
-                placeholder="Email"
+                type='email'
+                className='form__input'
+                placeholder='Email'
                 {...register("email", { required: true })}
               />
-              <span className="form__input__icon__err">
+              <span className='form__input__icon__err'>
                 {/* <i className='bx bx-error-circle'></i> */}
               </span>
-              <span className="form__input__icon__success">
+              <span className='form__input__icon__success'>
                 {/* <i className='bx bx-check-circle'></i> */}
               </span>
-              <span className="form__input__err__msg"></span>
+              <span className='form__input__err__msg'></span>
             </div>
-            <div className="form__group">
+            <div className='form__group'>
               <input
-                type="password"
-                className="form__input"
-                placeholder="Password"
+                type='password'
+                className='form__input'
+                placeholder='Mật khẩu'
                 {...register("password", { required: true })}
               />
-              <span className="form__input__icon__err">
+              <span className='form__input__icon__err'>
                 {/* <i className='bx bx-error-circle'></i> */}
               </span>
-              <span className="form__input__con__success">
+              <span className='form__input__con__success'>
                 {/* <i className='bx bx-check-circle'></i> */}
               </span>
             </div>
-            <div className="form__group__checkbox"></div>
-            <button className="form__btn">Register</button>
-            <span className="form__delimiter">or connect with</span>
-            <div className="form__social">
-              <Link to="/" className="form__social__item__fb">
-                <i className="bx bxl-facebook"></i>
+            <div className='form__group__checkbox'></div>
+            <button className='form__btn'>Đăng ký</button>
+            <span className='form__delimiter'>Hoặc đăng nhập bằng</span>
+            <div className='form__social'>
+              <Link to='/' className='form__social__item__fb'>
+                <i className='bx bxl-facebook'></i>
               </Link>
-              <Link className="form__social__item__tw">
-                <i className="bx bxl-twitter"></i>
+              <Link className='form__social__item__tw'>
+                <i className='bx bxl-twitter'></i>
               </Link>
-              <Link className="form__social__item__gg">
-                <i className="bx bxl-google"></i>
+              <Link className='form__social__item__gg'>
+                <i className='bx bxl-google'></i>
               </Link>
             </div>
-            <span className="form__txt">
-              You have an account!
-              <Link to="/login">
-                <strong> Login</strong>
+            <span className='form__txt'>
+              Bạn đã có tài khoản!
+              <Link to='/login'>
+                <strong> Đăng nhập</strong>
               </Link>
             </span>
           </div>

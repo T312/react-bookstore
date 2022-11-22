@@ -5,8 +5,8 @@ import "./input.scss";
 const Input = ({ setSearch }) => {
   return (
     <input
-      type="text"
-      placeholder="Tìm kiếm"
+      type='text'
+      placeholder='Tìm kiếm'
       // value={props.value}
       onChange={({ currentTarget: input }) => setSearch(input.value)}
       // onChange={props.onChange ? (e) => props.onChange(e) : null}

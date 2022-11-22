@@ -1,0 +1,55 @@
+.status-bar {
+  width: max-content;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: 0 auto 0 auto; //căn giữa phần tử
+}
+
+.status-checkpoint {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 0;
+}
+
+.status-checkpoint .circle {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 0.2em solid #919eab;
+  background: #919eab;
+}
+
+.step {
+  font-size: 1.25rem;
+  margin-top: 0.6rem;
+}
+
+// .check1 {
+//   font-size: 2rem;
+//   color: #00ab55;
+// }
+.status-bar .connection {
+  align-self: flex-start;
+  border-top: 2px solid #e0e4e8;
+  margin: 0;
+  margin-top: 0.5em;
+  padding: 0;
+  width: 12rem;
+}
+
+.status-bar a.nav-link {
+  padding: 0;
+}
+
+@media screen and (max-width: 430px) {
+  .status-bar {
+    width: auto;
+    justify-content: space-between;
+  }
+
+  .status-bar .connection {
+    display: none;
+  }
+}
