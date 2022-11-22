@@ -48,7 +48,17 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 //@desc   get all users by admin
 //@access private/admin
 const getUserByAdmin = asyncHandler(async (req, res) => {
-  const users = await User.find({});
+  const limit = Number(req.query.limit);
+  const search = req.query.search
+    ? {
+        name: {
+          $regex: req.query.search,
+          $options: "i",
+        },
+      }
+    : {};
+  const count = await User.countDocuments({ ...search });
+  const users = await User.find({ ...search }).limit(limit);
   res.json({
     success: true,
     message: "Success loading",
