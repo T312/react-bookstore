@@ -11,7 +11,7 @@ const AddressCard = ({ address }) => {
       <div className='address-card__infor'>
         <div className='address-card__infor__text'>
           <h6 className='address-card__infor__text__name'>
-            <strong>{address.name}</strong>
+            <strong>sâdsd</strong>
           </h6>
           <span className='address-card__infor__text__note'>(Địa chỉ nhà)</span>
           <span className='address-card__infor__text__default'>Mặc định</span>

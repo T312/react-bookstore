@@ -9,7 +9,7 @@ import Section, {
 // import numberWithCommas from "../../utils/numberWithCommas.js";
 import "./shipping-address.scss";
 
-import user from "../../assets/images/users.png";
+import imguser from "../../assets/images/users.png";
 import AddressCard from "../../components/address-card/AddressCard";
 import { useSelector } from "react-redux";
 
@@ -32,7 +32,7 @@ const ShippingAddress = () => {
                 <div className='profile__cover'></div>
                 <div className='profile__info__card'>
                   <div className='profile__info__avatar'>
-                    <img src={user} alt='avatar' />
+                    <img src={imguser} alt='avatar' />
                   </div>
                   <div className='profile__info__text'>
                     <div className='profile__info__text__username'>
