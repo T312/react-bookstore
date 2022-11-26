@@ -7,7 +7,7 @@ import Button from "../../components/button/Button";
 import numberWithCommas from "../../utils/numberWithCommas";
 import { getCartItemsInfo } from "../../features/cart/pathAPI";
 import "./cart.scss";
-import CheckoutStatus from "../../components/checkout-status/CheckoutStatus";
+import CheckoutStatus1 from "../../components/checkout-status/CheckoutStatus1";
 import Section, {
   SectionTitle,
   SectionBody,
@@ -42,7 +42,7 @@ const Cart = () => {
           <SectionTitle>Giỏ hàng</SectionTitle>
           <SectionBody>
             {/* <div className='checkout-status'></div> */}
-            <CheckoutStatus />
+            <CheckoutStatus1 />
             <div className='cart'>
               <div iv className='cart__info'>
                 <div className='cart__info__txt'>

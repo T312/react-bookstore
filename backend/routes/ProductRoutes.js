@@ -26,7 +26,7 @@ productRoute.get("/", getAllProducts).post(
   upload.array("descriptionImages", 10),
   protect,
   admin,
-  createProduct
+  createProduct,
 );
 
 productRoute
@@ -35,7 +35,7 @@ productRoute
     upload.array("descriptionImages", 10),
     protect,
     admin,
-    updatedProduct
+    updatedProduct,
   )
   // .put("/:id", upload.single("image"), protect, admin, updatedProduct)
   .delete("/:id", protect, admin, deleteProduct);

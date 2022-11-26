@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import AddressModal from "../address-modal/AddressModal";
 import Button from "../button/Button";
 import "./address-card.scss";
 
-const AddressCard = () => {
+const AddressCard = ({ address }) => {
   const [openModal, setOpenModal] = useState(false);
   return (
     <div className='address-card'>
       <div className='address-card__infor'>
         <div className='address-card__infor__text'>
           <h6 className='address-card__infor__text__name'>
-            <strong>Nguyễn Thái Gia Long</strong>
+            <strong>{address.name}</strong>
           </h6>
           <span className='address-card__infor__text__note'>(Địa chỉ nhà)</span>
           <span className='address-card__infor__text__default'>Mặc định</span>

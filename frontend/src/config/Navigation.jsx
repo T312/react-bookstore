@@ -15,6 +15,7 @@ import Profile from "../pages/profile/Profile";
 import NotFound from "../pages/404/notFound";
 import Shipping from "../pages/shipping/Shipping";
 import ShippingAddress from "../pages/shippingaddress/ShippingAddress";
+import CheckoutOrderComplete from "../pages/checkordercomplete/CheckOrderComplete";
 const Navigation = () => {
   return (
     <Routes>
@@ -30,6 +31,7 @@ const Navigation = () => {
         <Route path='/profile' element={<Profile />} />
         <Route path='/shipping' element={<Shipping />} />
         <Route path='/shipping-address' element={<ShippingAddress />} />
+        <Route path='/order-complete' element={<CheckoutOrderComplete />} />
       </Route>
       <Route path='*' element={<NotFound />} />
     </Routes>

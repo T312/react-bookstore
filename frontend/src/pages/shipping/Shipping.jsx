@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AddressCard from "../../components/address-card/AddressCard";
-import CheckoutStatus from "../../components/checkout-status/CheckoutStatus";
+import CheckoutStatus2 from "../../components/checkout-status/CheckoutStatus2";
 import Section, {
   SectionTitle,
   SectionBody,
@@ -13,14 +13,16 @@ import Button from "../../components/button/Button";
 import { getCartItemsInfo } from "../../features/cart/pathAPI";
 import BillAddress from "../../components/bill-address/BillAddress";
 import Payment from "../../components/payment/Payment";
-
+// ------------------------------------
+import { createOrder } from "../../features/order/pathAPI";
 const Shipping = () => {
-  const cartItems = useSelector((state) => state.cartItems.value);
+  const cartItems = useSelector((state) => state.cartItems.value); //product in cart
+  // const orderCreate = useSelector((state) => state.orderCreate);
+  // const { order } = orderCreate;
+  // console.log("order: ", order);
 
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(cartItems));
-
   const [totalProducts, setTotalProducts] = useState(0);
-
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const Shipping = () => {
         <SectionTitle>---</SectionTitle>
         <SectionTitle>Thủ thục thanh toán</SectionTitle>
         <SectionBody>
-          <CheckoutStatus />
+          <CheckoutStatus2 />
         </SectionBody>
       </Section>
 
@@ -83,7 +85,7 @@ const Shipping = () => {
 
           <div className='shipping__info__btn'>
             <div className='shipping__info__btn__item'>
-              <Link to='/place-order'>
+              <Link to='/order-complete'>
                 <Button size='sm'>Hoàn tất thanh toán</Button>
               </Link>
             </div>

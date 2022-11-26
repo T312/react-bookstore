@@ -1,11 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { logoutUser } from "../../features/auth/authSlide";
-
-//-------------------------
-import Input from "../../components/input/Input";
-// import Button from "../../components/button/Button";
-import CartItem from "../cartitem/CartItem";
 //-------------------------
 import userImg from "../../assets/images/users.png";
 import "./header.scss";

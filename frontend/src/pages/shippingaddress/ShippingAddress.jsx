@@ -1,19 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Helmet from "../../components/helmet/Helmet";
-import Button from "../../components/button/Button";
+// import Button from "../../components/button/Button";
 import Section, {
   SectionTitle,
   SectionBody,
 } from "../../components/section/Section";
-import numberWithCommas from "../../utils/numberWithCommas.js";
+// import numberWithCommas from "../../utils/numberWithCommas.js";
 import "./shipping-address.scss";
 
 import user from "../../assets/images/users.png";
 import AddressCard from "../../components/address-card/AddressCard";
+import { useSelector } from "react-redux";
 
 const ShippingAddress = () => {
   window.scrollTo(0, 0);
+
+  const userInfo = useSelector((state) => state.authUser);
+  const { user } = userInfo;
+  console.log("user: ", user);
   return (
     <Helmet title='Profile'>
       <div className='container'>
