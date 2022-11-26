@@ -1,5 +1,5 @@
 import React from "react";
-import CheckBox from "../../components/checkbox/CheckBox";
+// import CheckBox from "../../components/checkbox/CheckBox";
 import "./payment.scss";
 
 const Payment = () => {
@@ -8,7 +8,7 @@ const Payment = () => {
       <h2 className='payment-title'>Chọn phương thức thanh toán</h2>
       <label className='containers'>
         Bằng Paypal
-        <input type='radio' checked='checked' name='radio' />
+        <input type='radio' defaultChecked='checked' name='radio' />
         <span className='checkmark'></span>
       </label>
       <label className='containers'>
