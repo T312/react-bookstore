@@ -24,6 +24,9 @@
 
     &__txt {
         padding: 1rem 2rem;
+        @include tablet {
+            font-size: 1.5rem;
+        }
     }
 
     &__icon {
@@ -51,6 +54,9 @@
 
     &-md {
         font-size: 1rem;
+        @include tablet {
+            width: 100%;
+        }
     }
 
     &-sm &__txt {
