@@ -11,10 +11,15 @@ import "./shipping-address.scss";
 
 import imguser from "../../assets/images/users.png";
 import AddressCard from "../../components/address-card/AddressCard";
+import { useSelector } from "react-redux";
 
 const ShippingAddress = () => {
   window.scrollTo(0, 0);
 
+  const userInfo = useSelector((state) => state.authUser);
+  const { user } = userInfo;
+  console.log("user: ", user);
+  const date = new Date(user.createdAt);
   return (
     <Helmet title='Profile'>
       <div className='container'>
@@ -33,11 +38,17 @@ const ShippingAddress = () => {
                   <div className='profile__info__text'>
                     <div className='profile__info__text__username'>
                       <h5>
-                        <strong>Long</strong>
+                        <strong>{user.name}</strong>
                       </h5>
                     </div>
                     <div className='profile__info__text__datetime'>
-                      <span> Đã tham gia 12/12/2022</span>
+                      <span>
+                        {" "}
+                        Đã tham gia vào{" "}
+                        {`${date.getDate()}/${
+                          date.getMonth() + 1
+                        }/${date.getFullYear()}`}
+                      </span>
                     </div>
                   </div>
                 </div>
