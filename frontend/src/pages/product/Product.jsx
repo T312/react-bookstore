@@ -17,6 +17,7 @@ import { getProductAll, getProduct } from "../../features/product/pathAPI";
 //--------------------------------
 import users from "../../assets/images/users.png";
 import "./product.scss";
+import Comment from "./Comment";
 
 const Product = () => {
   const { id } = useParams();
@@ -24,10 +25,13 @@ const Product = () => {
 
   const productList = useSelector((state) => state.productList);
   const { products } = productList;
-
+  const user = useSelector((state) => state.authUser);
   const productDetails = useSelector((state) => state.productDetails);
   const { product } = productDetails;
+  const { reviews } = product;
+  const checkReview = reviews ? reviews : [];
 
+  const date = new Date(user.user.createdAt);
   useEffect(() => {
     dispatch(getProduct(id));
   }, [dispatch, id]);
@@ -44,7 +48,7 @@ const Product = () => {
 
   return (
     <Helmet title={product.name}>
-      <div className='container' style={{ marginTop: "100px" }}>
+      <div className="container" style={{ marginTop: "100px" }}>
         <Section>
           <SectionBody>
             <ProductView product={product} />
@@ -64,111 +68,117 @@ const Product = () => {
         <Section>
           {/* <SectionTitle>Đánh Giá Sản Phẩm</SectionTitle> */}
           <SectionBody>
-            <div className='wrapper'>
-              <div className='rating-box'>
-                <div className='rating-header'>
-                  <h1 className='title'>Đánh giá sản phẩm</h1>
-                  <div className='info-review'>
-                    <div className='left'>
-                      <img src={users} alt='' />
-                      <div className='text-container'>
-                        <span className='author'>Lâm Trung Hiếu</span>
-                        <span className='txt'>Đã tham gia 2 năm</span>
+            <div className="wrapper">
+              <div className="rating-box">
+                <div className="rating-header">
+                  <h1 className="title">Đánh giá sản phẩm</h1>
+                  <div className="info-review">
+                    <div className="left">
+                      <img src={users} alt="" />
+                      <div className="text-container">
+                        <span className="author">{user.user.name}</span>
+                        <span className="txt">
+                          {" "}
+                          Đã tham gia vào{" "}
+                          {`${date.getDate()}/${
+                            date.getMonth() + 1
+                          }/${date.getFullYear()}`}
+                        </span>
                       </div>
                     </div>
                     {/* chưa làm */}
-                    <div className='right'></div>
+                    <div className="right"></div>
                   </div>
-                  <div className='info-rating'>
-                    <div className='star-count'>
-                      <span className='avg'>4.5 </span>
+                  <div className="info-rating">
+                    <div className="star-count">
+                      <span className="avg">4.5 </span>
                       /5
                     </div>
-                    <div className='stars'>
-                      <div className='avg-stars'>
-                        <i className='bx bxs-star'></i>
-                        <i className='bx bxs-star'></i>
-                        <i className='bx bxs-star'></i>
-                        <i className='bx bxs-star'></i>
-                        <i className='bx bxs-star-half'></i>
+                    <div className="stars">
+                      <div className="avg-stars">
+                        <i className="bx bxs-star"></i>
+                        <i className="bx bxs-star"></i>
+                        <i className="bx bxs-star"></i>
+                        <i className="bx bxs-star"></i>
+                        <i className="bx bxs-star-half"></i>
                       </div>
-                      <div className='rating-count'>
-                        <span className='count'> 224 </span>
+                      <div className="rating-count">
+                        <span className="count"> 224 </span>
                         Đánh giá
                       </div>
                     </div>
                   </div>
-                  <div className='rating-bar'>
-                    <div className='bar-item'>
-                      <div className='star'>
-                        5 <i className='bx bxs-star'></i>
+                  <div className="rating-bar">
+                    <div className="bar-item">
+                      <div className="star">
+                        5 <i className="bx bxs-star"></i>
                       </div>
-                      <div className='progress'>
+                      <div className="progress">
                         <div
                           style={{ width: "67%" }}
-                          className='progress-line'
+                          className="progress-line"
                         ></div>
                       </div>
-                      <div className='percent'>67%</div>
+                      <div className="percent">67%</div>
                     </div>
-                    <div className='bar-item'>
-                      <div className='star'>
-                        4 <i className='bx bxs-star'></i>
+                    <div className="bar-item">
+                      <div className="star">
+                        4 <i className="bx bxs-star"></i>
                       </div>
-                      <div className='progress'>
+                      <div className="progress">
                         <div
                           style={{ width: "13%" }}
-                          className='progress-line'
+                          className="progress-line"
                         ></div>
                       </div>
-                      <div className='percent'>13%</div>
+                      <div className="percent">13%</div>
                     </div>
-                    <div className='bar-item'>
-                      <div className='star'>
-                        3 <i className='bx bxs-star'></i>
+                    <div className="bar-item">
+                      <div className="star">
+                        3 <i className="bx bxs-star"></i>
                       </div>
-                      <div className='progress'>
+                      <div className="progress">
                         <div
                           style={{ width: "15%" }}
-                          className='progress-line'
+                          className="progress-line"
                         ></div>
                       </div>
-                      <div className='percent'>15%</div>
+                      <div className="percent">15%</div>
                     </div>
-                    <div className='bar-item'>
-                      <div className='star'>
-                        2 <i className='bx bxs-star'></i>
+                    <div className="bar-item">
+                      <div className="star">
+                        2 <i className="bx bxs-star"></i>
                       </div>
-                      <div className='progress'>
+                      <div className="progress">
                         <div
                           style={{ width: "3%" }}
-                          className='progress-line'
+                          className="progress-line"
                         ></div>
                       </div>
-                      <div className='percent'>3%</div>
+                      <div className="percent">3%</div>
                     </div>
-                    <div className='bar-item'>
-                      <div className='star'>
-                        1 <i className='bx bxs-star'></i>
+                    <div className="bar-item">
+                      <div className="star">
+                        1 <i className="bx bxs-star"></i>
                       </div>
-                      <div className='progress'>
+                      <div className="progress">
                         <div
                           style={{ width: "2%" }}
-                          className='progress-line'
+                          className="progress-line"
                         ></div>
                       </div>
-                      <div className='percent'>2%</div>
+                      <div className="percent">2%</div>
                     </div>
                   </div>
                 </div>
-                <div className='review-box'>
-                  <div className='review-header'>
-                    <div className='count-review'>
+                <div className="review-box">
+                  <div className="review-header">
+                    <div className="count-review">
                       <span>13</span>Đánh giá
                     </div>
-                    <div className='txt btn-write'>
-                      <Button size='sm' onClick={() => setOpenModal(true)}>
-                        <i className='bx bx-edit-alt'></i>
+                    <div className="txt btn-write">
+                      <Button size="sm" onClick={() => setOpenModal(true)}>
+                        <i className="bx bx-edit-alt"></i>
                         Viết đánh giá
                       </Button>
                       <ProductReview
@@ -177,64 +187,15 @@ const Product = () => {
                       />
                     </div>
                   </div>
-                  <div className='review-content'>
-                    <div className='user-review'>
-                      <div className='user-rating'>
-                        <div className='username'>
-                          <strong>Lâm Trung Hiếu</strong>
-                        </div>
-                        <div className='stars'>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bx-star'></i>
-                        </div>
-                      </div>
-                      <div className='comment-content'>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Aliquid magnam repellendus culpa blanditiis.
-                      </div>
-                      <time>Oct 30, 2022</time>
-                    </div>
-                    <div className='user-review'>
-                      <div className='user-rating'>
-                        <div className='username'>
-                          <strong>Nguyễn Longg</strong>
-                        </div>
-                        <div className='stars'>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bx-star'></i>
-                        </div>
-                      </div>
-                      <div className='comment-content'>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Aliquid magnam repellendus culpa blanditiis.
-                      </div>
-                      <time>Oct 30, 2022</time>
-                    </div>
-                    <div className='user-review'>
-                      <div className='user-rating'>
-                        <div className='username'>
-                          <strong>Kha Lười</strong>
-                        </div>
-                        <div className='stars'>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bxs-star'></i>
-                          <i className='bx bx-star'></i>
-                        </div>
-                      </div>
-                      <div className='comment-content'>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Aliquid magnam repellendus culpa blanditiis.
-                      </div>
-                      <time>Oct 30, 2022</time>
-                    </div>
+                  <div className="review-content">
+                    <>
+                      {checkReview.map((review) => (
+                        <Comment review={review} key={review._id} />
+                      ))}
+                    </>
+                    {/* {reviews.map((review) => {
+                      <Comment review={review} />;
+                    })} */}
                   </div>
                 </div>
               </div>
