@@ -1,8 +1,6 @@
 import { useEffect, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-// import SwiperCore, { Autoplay } from "swiper";
-// import { Swiper, SwiperSlide } from "swiper/react";
 import "./hero-slider.scss";
 import Button from "../button/Button";
 

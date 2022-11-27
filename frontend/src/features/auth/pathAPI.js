@@ -16,10 +16,10 @@ export const loginUser = createAsyncThunk(
         email,
         password,
       },
-      config
+      config,
     );
     return data;
-  }
+  },
 );
 export const registerUser = createAsyncThunk(
   "registerUser",
@@ -37,8 +37,8 @@ export const registerUser = createAsyncThunk(
         password,
         name,
       },
-      config
+      config,
     );
     return data;
-  }
+  },
 );

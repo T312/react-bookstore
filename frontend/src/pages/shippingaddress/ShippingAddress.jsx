@@ -1,22 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Helmet from "../../components/helmet/Helmet";
-import Button from "../../components/button/Button";
+// import Button from "../../components/button/Button";
 import Section, {
   SectionTitle,
   SectionBody,
 } from "../../components/section/Section";
-import numberWithCommas from "../../utils/numberWithCommas.js";
+// import numberWithCommas from "../../utils/numberWithCommas.js";
 import "./shipping-address.scss";
 
-import userImage from "../../assets/images/users.png";
+import imguser from "../../assets/images/users.png";
 import AddressCard from "../../components/address-card/AddressCard";
+import { useSelector } from "react-redux";
 
 const ShippingAddress = () => {
   window.scrollTo(0, 0);
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  const date = new Date(user.createdAt);
+  const userInfo = useSelector((state) => state.authUser);
+  const { user } = userInfo;
+  console.log("user: ", user);
   return (
     <Helmet title="Profile">
       <div className="container">
@@ -30,7 +32,7 @@ const ShippingAddress = () => {
                 <div className="profile__cover"></div>
                 <div className="profile__info__card">
                   <div className="profile__info__avatar">
-                    <img src={userImage} alt="avatar" />
+                    <img src={imguser} alt="avatar" />
                   </div>
                   <div className="profile__info__text">
                     <div className="profile__info__text__username">
