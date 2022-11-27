@@ -27,7 +27,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       dispatch(loginUser(data));
-      toast("Login successful");
+      toast("Đăng nhập thành công!");
       navigate("/");
     } catch (error) {
       console.log(error);

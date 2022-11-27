@@ -29,6 +29,7 @@ const Product = () => {
   const productDetails = useSelector((state) => state.productDetails);
   const { product } = productDetails;
   const { reviews } = product;
+
   const checkReview = reviews ? reviews : [];
 
   const date = new Date(user.user.createdAt);
@@ -103,7 +104,7 @@ const Product = () => {
                         <i className="bx bxs-star-half"></i>
                       </div>
                       <div className="rating-count">
-                        <span className="count"> 224 </span>
+                        <span className="count"> {checkReview.length} </span>
                         Đánh giá
                       </div>
                     </div>
@@ -174,7 +175,7 @@ const Product = () => {
                 <div className="review-box">
                   <div className="review-header">
                     <div className="count-review">
-                      <span>13</span>Đánh giá
+                      <span>{checkReview.length}</span>Đánh giá
                     </div>
                     <div className="txt btn-write">
                       <Button size="sm" onClick={() => setOpenModal(true)}>
