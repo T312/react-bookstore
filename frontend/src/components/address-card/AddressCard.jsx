@@ -6,68 +6,72 @@ import "./address-card.scss";
 
 const AddressCard = ({ address }) => {
   const [openModal, setOpenModal] = useState(false);
+
+  const userInfo = useSelector((state) => state.authUser);
+  const { user } = userInfo;
+
   return (
-    <div className="address-card">
-      <div className="address-card__infor">
-        <div className="address-card__infor__text">
-          <h6 className="address-card__infor__text__name">
-            <strong>sâdsd</strong>
+    <div className='address-card'>
+      <div className='address-card__infor'>
+        <div className='address-card__infor__text'>
+          <h6 className='address-card__infor__text__name'>
+            <strong>{user.name}</strong>
           </h6>
-          <span className="address-card__infor__text__note">(Địa chỉ nhà)</span>
-          <span className="address-card__infor__text__default">Mặc định</span>
+          <span className='address-card__infor__text__note'>(Địa chỉ nhà)</span>
+          <span className='address-card__infor__text__default'>Mặc định</span>
         </div>
-        <div className="address-card__infor__address">
-          <p className="address-card__infor__address-info">
+        <div className='address-card__infor__address'>
+          <p className='address-card__infor__address-info'>
             Lê Đức Thọ, quận Gò Vấp, TP. Hồ Chí Minh
           </p>
-          <p className="address-card__infor__address-info">012345678</p>
+          <p className='address-card__infor__address-info'>012345678</p>
         </div>
-        <div className="address-card__infor__btn-deliver">
-          <Button size="sm">Thiết lập mặc định</Button>
+        <div className='address-card__infor__btn-deliver'>
+          <Button size='sm'>Thiết lập mặc định</Button>
         </div>
       </div>
-      <div className="address-card__infor">
-        <div className="address-card__infor__text">
-          <h6 className="address-card__infor__text__name">
+      <div className='address-card__infor'>
+        <div className='address-card__infor__text'>
+          <h6 className='address-card__infor__text__name'>
             <strong>Lâm Trung Hiếu</strong>
           </h6>
-          <span className="address-card__infor__text__note">
+          <span className='address-card__infor__text__note'>
             (Địa văn phòng)
           </span>
           {/* <span className='address-card__infor__text__default'>Mặc định</span> */}
         </div>
-        <div className="address-card__infor__address">
-          <p className="address-card__infor__address-info">
+        <div className='address-card__infor__address'>
+          <p className='address-card__infor__address-info'>
             Lê Đức Thọ, quận Gò Vấp, TP. Hồ Chí Minh
           </p>
-          <p className="address-card__infor__address-info">012345678</p>
+          <p className='address-card__infor__address-info'>012345678</p>
         </div>
-        <div className="address-card__infor__btn-deliver">
-          <Button size="sm">Thiết lập mặc định</Button>
+        <div className='address-card__infor__btn-deliver'>
+          <Button size='sm'>Thiết lập mặc định</Button>
         </div>
       </div>
-      <div className="address-card__infor">
-        <div className="address-card__infor__text">
-          <h6 className="address-card__infor__text__name">
+      <div className='address-card__infor'>
+        <div className='address-card__infor__text'>
+          <h6 className='address-card__infor__text__name'>
             <strong>Dương Nhật Kha</strong>
           </h6>
-          <span className="address-card__infor__text__note">
+          <span className='address-card__infor__text__note'>
             (Địa văn phòng)
           </span>
           {/* <span className='address-card__infor__text__default'>Mặc định</span> */}
         </div>
-        <div className="address-card__infor__address">
-          <p className="address-card__infor__address-info">
+        <div className='address-card__infor__address'>
+          <p className='address-card__infor__address-info'>
             Lê Đức Thọ, quận Gò Vấp, TP. Hồ Chí Minh
           </p>
-          <p className="address-card__infor__address-info">012345678</p>
+          <p className='address-card__infor__address-info'>012345678</p>
         </div>
-        <div className="address-card__infor__btn-deliver">
-          <Button size="sm">Thiết lập mặc định</Button>
+        <div className='address-card__infor__btn-deliver'>
+          <Button size='sm'>Thiết lập mặc định</Button>
         </div>
       </div>
-      <div className="address-card__infor__btn-new">
-        <Button size="sm" onClick={() => setOpenModal(true)}>
+      <div className='address-card__infor__btn-new'>
+        <Button size='sm' onClick={() => setOpenModal(true)}>
           + Thêm địa chỉ mới
         </Button>
         <AddressModal open={openModal} onClose={() => setOpenModal(false)} />
