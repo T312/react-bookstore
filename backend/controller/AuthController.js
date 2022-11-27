@@ -11,10 +11,10 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
   const passwordValid = await argon2.verify(user.password, password);
   if (user && passwordValid) {
-    res.cookie("refreshToken", refreshToken(user._id), {
-      httpOnly: true, //accessible only by web server
-      maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
-    });
+    // res.cookie("refreshToken", refreshToken(user._id), {
+    //   httpOnly: true, //accessible only by web server
+    //   maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
+    // });
     res.json({
       success: true,
       message: "Login success",

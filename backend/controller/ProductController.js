@@ -104,6 +104,7 @@ const cloudinaryImageDestroyMethod = async (id) => {
 // @desc post product
 // @access private
 const createProduct = asyncHandler(async (req, res) => {
+  console.log(req);
   const {
     name,
     price,
@@ -115,6 +116,7 @@ const createProduct = asyncHandler(async (req, res) => {
     publisher,
   } = req.body;
   const urls = [];
+
   const files = req.files;
   for (const file of files) {
     const { path } = file;
@@ -156,8 +158,15 @@ const createProduct = asyncHandler(async (req, res) => {
 // @desc put product
 // @access private
 const updatedProduct = asyncHandler(async (req, res) => {
-  const { name, price, removeImages, description, countInStock, isFeatured } =
-    req.body;
+  const {
+    name,
+    price,
+    category,
+    removeImages,
+    description,
+    countInStock,
+    isFeatured,
+  } = req.body;
   const product = await Product.findById(req.params.id);
   let urls = [];
   if (removeImages && !req.files) {
@@ -200,6 +209,7 @@ const updatedProduct = asyncHandler(async (req, res) => {
     product.price = price || product.price;
     product.description = description || product.description;
     product.descriptionImages = urls.map((url) => url);
+    product.category = category || product.category;
     product.countInStock = countInStock || product.countInStock;
     product.isFeatured = isFeatured || product.isFeatured;
     const updatedProduct = await product.save();
@@ -237,7 +247,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @desc admin get all products
 // @access private
 const getAllProductsByAdmin = asyncHandler(async (req, res) => {
-  const products = await Product.find().sort({ _id: 1 });
+  const products = await Product.find().populate("category");
   res.json(products);
 });
 

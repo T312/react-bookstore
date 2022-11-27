@@ -1,50 +1,98 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Helmet from "../../components/helmet/Helmet";
 import Button from "../../components/button/Button";
 import Section, {
   SectionTitle,
   SectionBody,
 } from "../../components/section/Section";
+import { useForm } from "react-hook-form";
 import numberWithCommas from "../../utils/numberWithCommas.js";
 import "./profile.scss";
 
-import imguser from "../../assets/images/users.png";
+import userImage from "../../assets/images/users.png";
+import { logoutUser } from "../../features/auth/authSlide";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProfile } from "../../features/user/pathAPI";
 import OrderDetails from "../../components/orderdetails/OrderDetails";
-
 const Profile = () => {
   window.scrollTo(0, 0);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const userInfo = useSelector((state) => state.userDetails);
+  // localStorage.removeItem("user");
+  // localStorage.setItem("user", userInfo);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const date = new Date(user.createdAt); // formated_Date - SDK returned date
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onSubmit = async (data) => {
+    try {
+      if (data.confirmPassword == "" && data.password) {
+        alert("Mật khẩu chưa hợp lệ");
+        return;
+      } else if (
+        data.confirmPassword &&
+        data.password !== data.confirmPassword
+      ) {
+        alert("Xác thực mật khẩu chưa hợp lệ");
+        return;
+      } else if (data.confirmPassword == "" && data.password == "") {
+        delete data.confirmPassword;
+        delete data.password;
+      }
+      dispatch(updateProfile(data));
+
+      if (userInfo != {}) {
+        dispatch(logoutUser());
+      }
+
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <Helmet title='Profile'>
-      <div className='container'>
+    <Helmet title="Profile">
+      <div className="container">
         <Section>
           <SectionTitle>---</SectionTitle>
           <SectionTitle>Tài khoản của tôi</SectionTitle>
           <SectionBody>
-            <div className='profile'>
+            <div className="profile">
               {/* info card */}
-              <div className='profile__info'>
-                <div className='profile__cover'></div>
-                <div className='profile__info__card'>
-                  <div className='profile__info__avatar'>
-                    <img src={imguser} alt='avatar' />
+              <div className="profile__info">
+                <div className="profile__cover"></div>
+                <div className="profile__info__card">
+                  <div className="profile__info__avatar">
+                    <img src={userImage} alt="avatar" />
                   </div>
-                  <div className='profile__info__text'>
-                    <div className='profile__info__text__username'>
+                  <div className="profile__info__text">
+                    <div className="profile__info__text__username">
                       <h5>
-                        <strong>Long</strong>
+                        <strong>{user.name}</strong>
                       </h5>
                     </div>
-                    <div className='profile__info__text__datetime'>
-                      <span> Đã tham gia 12/12/2022</span>
+                    <div className="profile__info__text__datetime">
+                      <span>
+                        Đã tham gia vào{" "}
+                        {`${date.getDate()}/${
+                          date.getMonth() + 1
+                        }/${date.getFullYear()}`}
+                      </span>
                     </div>
                   </div>
                 </div>
                 {/* tab item */}
-                <div className='profile__setting'>
-                  <div className='profile__setting__btn'>
-                    <div className='profile__setting__btn__item'>
-                      <button className='btn-item' type='button'>
+                <div className="profile__setting">
+                  <div className="profile__setting__btn">
+                    <div className="profile__setting__btn__item">
+                      <button className="btn-item" type="button">
                         Cài đặt tài khoản
                       </button>
                     </div>
@@ -56,9 +104,9 @@ const Profile = () => {
                         </span>
                       </button>
                     </div> */}
-                    <Link to='/shipping-address'>
-                      <div className='profile__setting__btn__item'>
-                        <button className='btn-item' type='button'>
+                    <Link to="/shipping-address">
+                      <div className="profile__setting__btn__item">
+                        <button className="btn-item" type="button">
                           Địa chỉ giao hàng
                         </button>
                       </div>
@@ -66,41 +114,45 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <form className='form-profile'>
-                <div className='profile-tab'>
-                  <div className='profile-tab__form'>
-                    <div className='profile-tab__form__group'>
+              <form className="form-profile" onSubmit={handleSubmit(onSubmit)}>
+                <div className="profile-tab">
+                  <div className="profile-tab__form">
+                    <div className="profile-tab__form__group">
                       <input
-                        type='username'
-                        className='profile-tab__form__input'
-                        placeholder='Tên tài khoản'
+                        type="username"
+                        className="profile-tab__form__input"
+                        defaultValue={user.name}
+                        {...register("name", { required: true })}
                       />
                     </div>
-                    <div className='profile-tab__form__group'>
+                    <div className="profile-tab__form__group">
                       <input
-                        type='email'
-                        className='profile-tab__form__input'
-                        placeholder='Email'
-                      />
-                    </div>
-
-                    <div className='profile-tab__form__group'>
-                      <input
-                        type='new-password'
-                        className='profile-tab__form__input'
-                        placeholder='Mật khẩu mới'
-                      />
-                    </div>
-                    <div className='profile-tab__form__group'>
-                      <input
-                        type='confirm-password'
-                        className='profile-tab__form__input'
-                        placeholder='Nhập lại mật khẩu'
+                        type="email"
+                        className="profile-tab__form__input"
+                        defaultValue={user.email}
+                        {...register("email", { required: true })}
                       />
                     </div>
 
-                    <div className='profile-tab__form__btn'>
-                      <Button size='sm' type='submit'>
+                    <div className="profile-tab__form__group">
+                      <input
+                        type="new-password"
+                        className="profile-tab__form__input"
+                        placeholder="Mật khẩu mới"
+                        {...register("password")}
+                      />
+                    </div>
+                    <div className="profile-tab__form__group">
+                      <input
+                        type="confirm-password"
+                        className="profile-tab__form__input"
+                        placeholder="Nhập lại mật khẩu"
+                        {...register("confirmPassword")}
+                      />
+                    </div>
+
+                    <div className="profile-tab__form__btn">
+                      <Button size="sm" type="submit">
                         Cập nhật
                       </Button>
                     </div>

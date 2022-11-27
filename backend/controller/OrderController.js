@@ -70,7 +70,7 @@ const getOrderCount = asyncHandler(async (req, res) => {
 // @access private/admin
 const getAllOrderByAdmin = asyncHandler(async (req, res) => {
   const orders = await Order.find({})
-    .sort({ createdAt: -1 })
+
     .populate("user", "id name email")
     .populate({
       path: "orderItems",
