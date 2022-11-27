@@ -93,6 +93,9 @@
 
             &__btn {
                 overflow: hidden;
+                @include tablet {
+                    display: inline-block;
+                }
             }
 
             &__title > span,
