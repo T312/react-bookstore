@@ -24,6 +24,9 @@
     &__card {
       padding: 20px;
       @include flex(center, space-between);
+      @include tablet {
+        display: block; 
+      }
     }
 
     &__avatar {
@@ -42,6 +45,11 @@
         h5 {
           font-size: 1.5rem;
           margin-bottom: 0.5rem;
+        }
+      }
+      &__datetime {
+        @include tablet {
+          font-size: 1.2rem;
         }
       }
     }
@@ -80,6 +88,9 @@
           background: 0 0;
           border: 0;
           border-radius: 0.25rem;
+          @include tablet {
+            font-size: 1.4rem;
+          }
         }
       }
 

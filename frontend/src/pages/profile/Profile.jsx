@@ -9,12 +9,15 @@ import Section, {
 import { useForm } from "react-hook-form";
 import numberWithCommas from "../../utils/numberWithCommas.js";
 import "./profile.scss";
+import { orderListOfUser } from "../../features/order/pathAPI";
 
 import userImage from "../../assets/images/users.png";
 import { logoutUser } from "../../features/auth/authSlide";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../../features/user/pathAPI";
+
 import OrderDetails from "../../components/orderdetails/OrderDetails";
+
 const Profile = () => {
   window.scrollTo(0, 0);
 

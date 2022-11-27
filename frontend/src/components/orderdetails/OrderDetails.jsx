@@ -1,10 +1,18 @@
 import React from "react";
 import numberWithCommas from "../../utils/numberWithCommas";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { orderListOfUser } from "../../features/order/pathAPI";
+
 const OrderDetails = () => {
+  const dispatch = useDispatch();
+  const listOrderUser = useSelector((state) => state.listUserOrder);
+  const { order } = listOrderUser;
+
   return (
     <div>
-      <table className='table-order'>
+      <table className="table-order">
         <thead>
           <tr>
             <th>Đơn hàng đã đặt</th>
@@ -15,82 +23,62 @@ const OrderDetails = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>12/11/2022 9:30</td>
-            <td>{numberWithCommas(138000)} đ</td>
-            <td>
-              <i
-                className='bx bx-x'
-                style={{ fontSize: "2rem", color: "red" }}
-              ></i>
-            </td>
-            <td>
-              <i
-                className='bx bx-x'
-                style={{ fontSize: "2rem", color: "red" }}
-              ></i>
-            </td>
-            <td>
-              <Link to='/'>Xem đơn hàng</Link>
-            </td>
-          </tr>
-          <tr>
-            <td>15/11/2022 12:30</td>
-            <td>{numberWithCommas(138000)} đ</td>
-            <td>
-              <i
-                className='bx bx-x'
-                style={{ fontSize: "2rem", color: "red" }}
-              ></i>
-            </td>
-            <td>
-              <i
-                className='bx bx-x'
-                style={{ fontSize: "2rem", color: "red" }}
-              ></i>
-            </td>
-            <td>
-              <Link to='/'>Xem đơn hàng</Link>
-            </td>
-          </tr>
-          <tr>
-            <td>20/11/2022 13:30</td>
-            <td>{numberWithCommas(138000)} đ</td>
-            <td>
-              <i
-                className='bx bx-x'
-                style={{ fontSize: "2rem", color: "red" }}
-              ></i>
-            </td>
-            <td>
-              <i
-                className='bx bx-x'
-                style={{ fontSize: "2rem", color: "red" }}
-              ></i>
-            </td>
-            <td>
-              <Link to='/'>Xem đơn hàng</Link>
-            </td>
-          </tr>
-          <tr>
-            <td>21/11/2022 17:00</td>
-            <td>{numberWithCommas(138000)} đ</td>
-            <td>
-              <i
-                className='bx bx-x'
-                style={{ fontSize: "2rem", color: "red" }}
-              ></i>
-            </td>
-            <td>
-              <i
-                className='bx bx-x'
-                style={{ fontSize: "2rem", color: "red" }}
-              ></i>
-            </td>
-            <td>
-              <Link to='/'>Xem đơn hàng</Link>
-            </td>
-          </tr>
+          {order.map((order, index) => {
+            const date = new Date(order.createdAt);
+            return (
+              <>
+                <tr>
+                  <td>
+                    {`${date.getDate()}/${
+                      date.getMonth() + 1
+                    }/${date.getFullYear()} ${date.getHours()}:${
+                      date.getMinutes() < 10
+                        ? "0" + date.getMinutes()
+                        : date.getMinutes()
+                    }`}
+                  </td>
+                  <td>{numberWithCommas(order.totalPrice)} đ</td>
+                  <td>
+                    {order.isPaid ? (
+                      <>
+                        <i
+                          class="bx bx-check-double"
+                          style={{ fontSize: "2rem", color: "green" }}
+                        ></i>
+                      </>
+                    ) : (
+                      <>
+                        <i
+                          className="bx bx-x"
+                          style={{ fontSize: "2rem", color: "red" }}
+                        ></i>
+                      </>
+                    )}
+                  </td>
+                  <td>
+                    {order.isDelivered ? (
+                      <>
+                        <i
+                          class="bx bx-check-double"
+                          style={{ fontSize: "2rem", color: "green" }}
+                        ></i>
+                      </>
+                    ) : (
+                      <>
+                        <i
+                          className="bx bx-x"
+                          style={{ fontSize: "2rem", color: "red" }}
+                        ></i>
+                      </>
+                    )}
+                  </td>
+                  <td>
+                    <Link to="/">Xem đơn hàng</Link>
+                  </td>
+                </tr>
+              </>
+            );
+          })}
         </tbody>
       </table>
     </div>

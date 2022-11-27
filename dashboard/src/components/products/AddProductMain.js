@@ -40,7 +40,7 @@ const AddProductMain = () => {
       form.append("publisher", data.publisher);
 
       console.log(form);
-      dispatch(createProduct(data, files));
+      dispatch(createProduct(form));
     } catch (error) {
       console.log(error);
     }

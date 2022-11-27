@@ -9,7 +9,7 @@ import authSlide from "../features/auth/authSlide";
 import listCategorySlice from "../features/category/listCategorySlide";
 import userDetailsSlice from "../features/user/userSlide";
 import orderCreateSlice from "../features/order/orderCreateSlice";
-
+import listUserOrderSlide from "../features/order/listUserOrderSlide";
 const rootReducer = {
   productModal: productModalReducer,
   productList: listProductsSlice,
@@ -19,6 +19,7 @@ const rootReducer = {
   categoryList: listCategorySlice,
   userDetails: userDetailsSlice,
   orderCreate: orderCreateSlice,
+  listUserOrder: listUserOrderSlide,
 };
 
 const store = configureStore({
