@@ -19,6 +19,7 @@ const ShippingAddress = () => {
   const userInfo = useSelector((state) => state.authUser);
   const { user } = userInfo;
   console.log("user: ", user);
+  const date = new Date(user.createdAt);
   return (
     <Helmet title="Profile">
       <div className="container">
