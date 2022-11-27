@@ -19,7 +19,6 @@ const Shipping = () => {
   const cartItems = useSelector((state) => state.cartItems.value); //product in cart
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order } = orderCreate;
-  // console.log("order: ", order);
 
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(cartItems));
   const [totalProducts, setTotalProducts] = useState(0);
@@ -61,7 +60,7 @@ const Shipping = () => {
         totalPrice: totalPrice * 0.9 + 30000,
         itemsPrice: totalPrice,
         shippingAddress: shippingAddress,
-        isPaid: checkCash == "Paypal" ? true : false,
+        isPaid: checkCash === "Paypal" ? true : false,
       }),
     );
   };
@@ -72,7 +71,7 @@ const Shipping = () => {
     <div className='container'>
       <Section>
         <SectionTitle>---</SectionTitle>
-        <SectionTitle>Thủ thục thanh toán</SectionTitle>
+        <SectionTitle>Thủ tục thanh toán</SectionTitle>
         <SectionBody>
           <CheckoutStatus2 />
         </SectionBody>
