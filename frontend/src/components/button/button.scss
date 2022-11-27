@@ -49,6 +49,10 @@
 
     &-sm {
         font-size: 1rem;
+        width: 30%;
+        @include tablet {
+            width: 100%;
+        }
     }
 
     &-md {
