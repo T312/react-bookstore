@@ -7,6 +7,9 @@ import { createProduct } from "./../../Redux/Actions/ProductActions";
 import Toast from "../LoadingError/Toast";
 import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/Loading";
+import DropFileInput from "../DropFileInput/DropFile";
+import { useForm } from "react-hook-form";
+import { listCategory } from "../../Redux/Actions/CategoryActions";
 
 const ToastObjects = {
   pauseOnFocusLoss: false,
@@ -14,125 +17,193 @@ const ToastObjects = {
   pauseOnHover: false,
   autoClose: 2000,
 };
-const AddProductMain = () => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
-  const [countInStock, setCountInStock] = useState(0);
-  const [description, setDescription] = useState("");
 
+const AddProductMain = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      const form = new FormData();
+      files.forEach((file, i) => {
+        form.append(`file-${i}`, file);
+      });
+      form.append("name", data.name);
+      form.append("description", data.description);
+      form.append("category", data.category);
+      form.append("price", data.price);
+      form.append("countInStock", data.countInStock);
+      form.append("author", data.author);
+      form.append("publisher", data.publisher);
+
+      console.log(form);
+      dispatch(createProduct(data, files));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const [files, setFiles] = useState([]);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(listCategory(2, ""));
+  }, []);
+
+  const categoryList = useSelector((state) => state.categoryList);
+  const { category } = categoryList;
 
   const productCreate = useSelector((state) => state.productCreate);
   const { loading, error, product } = productCreate;
 
-  useEffect(() => {
-    if (product) {
-      toast.success("Product Added", ToastObjects);
-      dispatch({ type: PRODUCT_CREATE_RESET });
-      setName("");
-      setDescription("");
-      setCountInStock(0);
-      setImage("");
-      setPrice(0);
-    }
-  }, [product, dispatch]);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(createProduct(name, price, description, image, countInStock));
+  const onFileChange = (files) => {
+    setFiles(files);
   };
 
   return (
     <>
       <Toast />
       <section className="content-main" style={{ maxWidth: "1200px" }}>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="content-header">
-            <Link to="/products" className="btn btn-danger text-white">
-              Go to products
-            </Link>
             <h2 className="content-title">Add product</h2>
-            <div>
-              <button type="submit" className="btn btn-primary">
-                Publish now
-              </button>
-            </div>
           </div>
 
-          <div className="row mb-4">
+          <div className="row mb-2">
             <div className="col-xl-8 col-lg-8">
               <div className="card mb-4 shadow-sm">
                 <div className="card-body">
                   {error && <Message variant="alert-danger">{error}</Message>}
                   {loading && <Loading />}
                   <div className="mb-4">
-                    <label htmlFor="product_title" className="form-label">
-                      Product title
-                    </label>
                     <input
                       type="text"
-                      placeholder="Type here"
+                      placeholder="Product title"
                       className="form-control"
                       id="product_title"
                       required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      // onChange={(e) => setName(e.target.value)}
+                      {...register("name", { required: true })}
                     />
                   </div>
                   <div className="mb-4">
-                    <label htmlFor="product_price" className="form-label">
-                      Price
-                    </label>
-                    <input
-                      type="number"
-                      placeholder="Type here"
-                      className="form-control"
-                      id="product_price"
-                      required
-                      value={price}
-                      onChange={(e) => setPrice(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="product_price" className="form-label">
-                      Count In Stock
-                    </label>
-                    <input
-                      type="number"
-                      placeholder="Type here"
-                      className="form-control"
-                      id="product_price"
-                      required
-                      value={countInStock}
-                      onChange={(e) => setCountInStock(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="form-label">Description</label>
                     <textarea
-                      placeholder="Type here"
+                      style={{ minHeight: " calc(10.5em + 0.75rem + 2px" }}
+                      placeholder="Description"
                       className="form-control"
                       rows="7"
                       required
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
+                      // onChange={(e) => setDescription(e.target.value)}
+                      {...register("description", { required: true })}
                     ></textarea>
                   </div>
                   <div className="mb-4">
-                    <label className="form-label">Images</label>
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Enter Image URL"
-                      value={image}
-                      required
-                      onChange={(e) => setImage(e.target.value)}
+                    <DropFileInput
+                      onFileChange={(files) => onFileChange(files)}
+                      // {...register("files", { required: true })}
                     />
-                    <input className="form-control mt-3" type="file" />
+                    {/* <input
+                      type="file"
+                      {...register("file", { required: true })}
+                    /> */}
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="col">
+              <div className="mb-4">
+                <label htmlFor="product_price" className="form-label">
+                  Category
+                </label>
+                <select
+                  className="form-select"
+                  // {...register("category", { required: true })}
+                >
+                  {category.map((cate) => {
+                    return (
+                      <option
+                        value={cate.id}
+                        {...register("category", { required: true })}
+                      >
+                        {cate.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className="mb-4">
+                <label htmlFor="product_price" className="form-label">
+                  Price
+                </label>
+                <input
+                  type="number"
+                  placeholder="Price"
+                  className="form-control"
+                  id="product_price"
+                  required
+                  // onChange={(e) => setPrice(e.target.value)}\
+                  {...register("price", { required: true })}
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="product_price" className="form-label">
+                  Count In Stock
+                </label>
+                <input
+                  type="number"
+                  placeholder="Price"
+                  className="form-control"
+                  id="product_price"
+                  required
+                  // onChange={(e) => setCountInStock(e.target.value)}
+                  {...register("countInStock", { required: true })}
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="product_price" className="form-label">
+                  Publisher
+                </label>
+                <input
+                  type="text"
+                  placeholder="Publisher"
+                  className="form-control"
+                  id="product_title"
+                  required
+                  // onChange={(e) => setName(e.target.value)}
+                  {...register("publisher", { required: true })}
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="product_price" className="form-label">
+                  Author
+                </label>
+                <input
+                  type="text"
+                  placeholder="Author"
+                  className="form-control"
+                  id="product_title"
+                  required
+                  // onChange={(e) => setName(e.target.value)}
+                  {...register("author", { required: true })}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="btn-submit">
+            <div className="btn-action">
+              <Link
+                to="/products"
+                className="btn btn-primary  text-white "
+                style={{ background: "#dc3545 !important" }}
+              >
+                Go to products
+              </Link>
+            </div>
+            <div className="btn-action">
+              <button type="submit" className="btn btn-primary">
+                Publish now
+              </button>
             </div>
           </div>
         </form>

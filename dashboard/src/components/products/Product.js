@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "../../Redux/Actions/ProductActions";
 
-const Product = (props) => {
-  const { product } = props;
+const Product = ({ product }) => {
+  const { name, descriptionImages, category, price, createdAt, countInStock } =
+    product;
+  const date = new Date(createdAt);
   const dispatch = useDispatch();
 
   const deletehandler = (id) => {
@@ -15,34 +17,41 @@ const Product = (props) => {
 
   return (
     <>
-      <div className="col-md-6 col-sm-6 col-lg-3 mb-5">
-        <div className="card card-product-grid shadow-sm">
-          <Link to="#" className="img-wrap">
-            <img src={product.image} alt="Product" />
-          </Link>
-          <div className="info-wrap">
-            <Link to="#" className="title text-truncate">
-              {product.name}
+      <tr className="">
+        <td>
+          <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" />
+          </div>
+        </td>
+        <td>
+          <img src={descriptionImages[0].link} style={{ height: "50px" }} />
+        </td>
+        <td>
+          <div>{name}</div>
+        </td>
+
+        <td>{`${date.getDate()}/${
+          date.getMonth() + 1
+        }/${date.getFullYear()}`}</td>
+        <td>{category.name}</td>
+        <td>{price}</td>
+        <td>{countInStock}</td>
+        <td className="text-end">
+          <div className="dropdown">
+            <Link to="#" data-bs-toggle="dropdown" className="btn btn-light">
+              <i className="fas fa-ellipsis-h"></i>
             </Link>
-            <div className="price mb-2">${product.price}</div>
-            <div className="row">
-              <Link
-                to={`/product/${product._id}/edit`}
-                className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
-              >
-                <i className="fas fa-pen"></i>
+            <div className="dropdown-menu">
+              <Link className="dropdown-item" to="#">
+                Edit info
               </Link>
-              <Link
-                to="#"
-                onClick={() => deletehandler(product._id)}
-                className="btn btn-sm btn-outline-danger p-2 pb-3 col-md-6"
-              >
-                <i className="fas fa-trash-alt"></i>
+              <Link className="dropdown-item text-danger" to="#">
+                Delete
               </Link>
             </div>
           </div>
-        </div>
-      </div>
+        </td>
+      </tr>
     </>
   );
 };

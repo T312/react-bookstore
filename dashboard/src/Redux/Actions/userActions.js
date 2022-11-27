@@ -69,12 +69,12 @@ export const logout = () => (dispatch) => {
 };
 
 // ALL USER
-export const listUser = (limitUser, search) => async (dispatch, getState) => {
+export const listUser = (limitUser, search) => async (dispatch) => {
   try {
     dispatch({ type: USER_LIST_REQUEST });
-    const {
-      userLogin: { userInfo },
-    } = getState();
+    // const {
+    //   userLogin: { userInfo },
+    // } = getState();
     const token = localStorage.getItem("accessToken");
     const config = {
       headers: {

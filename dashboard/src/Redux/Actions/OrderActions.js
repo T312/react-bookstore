@@ -16,21 +16,23 @@ export const listOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_LIST_REQUEST });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+    // const {
+    //   userLogin: { userInfo },
+    // } = getState();
+
+    const token = localStorage.getItem("accessToken");
 
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
     const { data } = await axios.get(
-      `http://localhost:1000/api/orders/all`,
+      `http://localhost:8000/v1/order/all`,
       config
     );
-
+    console.log(data);
     dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =

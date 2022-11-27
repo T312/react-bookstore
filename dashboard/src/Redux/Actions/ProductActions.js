@@ -18,25 +18,25 @@ import {
 import axios from "axios";
 import { logout } from "./userActions";
 
-export const listProducts = () => async (dispatch, getState) => {
+export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+    // const {
+    //   userLogin: { userInfo },
+    // } = getState();
+    const token = localStorage.getItem("accessToken");
 
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
     const { data } = await axios.get(
-      `http://localhost:1000/api/products/all`,
+      `http://localhost:8000/v1/product/all`,
       config
     );
-
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -88,24 +88,27 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 
 // CREATE PRODUCT
 export const createProduct =
-  (name, price, description, image, countInStock) =>
+  (
+    { name, price, description, countInStock, author, category, publisher },
+    files
+  ) =>
   async (dispatch, getState) => {
     try {
       dispatch({ type: PRODUCT_CREATE_REQUEST });
 
-      const {
-        userLogin: { userInfo },
-      } = getState();
+      const token = localStorage.getItem("accessToken");
 
       const config = {
         headers: {
-          Authorization: `Bearer ${userInfo.token}`,
+          Authorization: `Bearer ${token}`,
+          // "Content-type": `multipart/form-data;   `,
         },
+        files: files,
       };
 
       const { data } = await axios.post(
-        `http://localhost:1000/api/products/`,
-        { name, price, description, image, countInStock },
+        `http://localhost:8000/v1/product`,
+        { name, price, description, countInStock, author, category, publisher },
         config
       );
 
@@ -149,7 +152,7 @@ export const editProduct = (id) => async (dispatch) => {
 };
 
 // UPDATE PRODUCT
-export const updateProduct = (product) => async (dispatch, getState) => {
+export const updateProduct = (product, files) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_UPDATE_REQUEST });
 

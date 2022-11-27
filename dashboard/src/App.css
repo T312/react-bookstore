@@ -917,3 +917,15 @@ ul.row-sm {
   line-height: 0.7;
   vertical-align: bottom;
 }
+/* Re-Css add product main */
+
+.btn-submit {
+  display: flex;
+  float: right;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-action {
+  margin: 20px;
+}

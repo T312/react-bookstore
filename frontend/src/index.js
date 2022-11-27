@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
+import { ToastContainer } from "react-toastify";
 //--------------------------
 import "./App.scss";
 //--------------------------
@@ -13,8 +14,9 @@ root.render(
   <Provider store={store}>
     <React.StrictMode>
       <App />
+      <ToastContainer />
     </React.StrictMode>
-  </Provider>,
+  </Provider>
 );
 
 reportWebVitals();
