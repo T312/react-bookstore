@@ -6,12 +6,16 @@ import "./address-card.scss";
 
 const AddressCard = ({ address }) => {
   const [openModal, setOpenModal] = useState(false);
+
+  const userInfo = useSelector((state) => state.authUser);
+  const { user } = userInfo;
+
   return (
     <div className='address-card'>
       <div className='address-card__infor'>
         <div className='address-card__infor__text'>
           <h6 className='address-card__infor__text__name'>
-            <strong>sâdsd</strong>
+            <strong>{user.name}</strong>
           </h6>
           <span className='address-card__infor__text__note'>(Địa chỉ nhà)</span>
           <span className='address-card__infor__text__default'>Mặc định</span>

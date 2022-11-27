@@ -17,9 +17,6 @@ import Payment from "../../components/payment/Payment";
 import { createOrder } from "../../features/order/pathAPI";
 const Shipping = () => {
   const cartItems = useSelector((state) => state.cartItems.value); //product in cart
-  // const orderCreate = useSelector((state) => state.orderCreate);
-  // const { order } = orderCreate;
-  // console.log("order: ", order);
 
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(cartItems));
   const [totalProducts, setTotalProducts] = useState(0);

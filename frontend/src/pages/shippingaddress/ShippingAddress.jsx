@@ -11,14 +11,10 @@ import "./shipping-address.scss";
 
 import imguser from "../../assets/images/users.png";
 import AddressCard from "../../components/address-card/AddressCard";
-import { useSelector } from "react-redux";
 
 const ShippingAddress = () => {
   window.scrollTo(0, 0);
 
-  const userInfo = useSelector((state) => state.authUser);
-  const { user } = userInfo;
-  console.log("user: ", user);
   return (
     <Helmet title='Profile'>
       <div className='container'>
