@@ -14,7 +14,7 @@ import Section, {
 } from "../../components/section/Section";
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value);
-
+  console.log(cartItems);
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(cartItems));
 
   const [totalProducts, setTotalProducts] = useState(0);
@@ -26,49 +26,49 @@ const Cart = () => {
     setTotalPrice(
       cartItems.reduce(
         (total, item) => total + Number(item.quantity) * Number(item.price),
-        0,
-      ),
+        0
+      )
     );
     setTotalProducts(
-      cartItems.reduce((total, item) => total + Number(item.quantity), 0),
+      cartItems.reduce((total, item) => total + Number(item.quantity), 0)
     );
   }, [cartItems]);
 
   return (
-    <Helmet title='Cart'>
-      <div className='container'>
+    <Helmet title="Cart">
+      <div className="container">
         <Section>
           <SectionTitle>----</SectionTitle>
           <SectionTitle>Giỏ hàng</SectionTitle>
           <SectionBody>
             {/* <div className='checkout-status'></div> */}
             <CheckoutStatus1 />
-            <div className='cart'>
-              <div iv className='cart__info'>
-                <div className='cart__info__txt'>
+            <div className="cart">
+              <div iv className="cart__info">
+                <div className="cart__info__txt">
                   <p>
                     Bạn đang có (<strong>{totalProducts}</strong>) sản phẩm
                     trong giỏ hàng
                   </p>
-                  <div className='cart__info__txt__price'>
+                  <div className="cart__info__txt__price">
                     <span>Thành tiền</span>{" "}
                     <span>{numberWithCommas(Number(totalPrice))} đ</span>
                   </div>
                 </div>
-                <div className='cart__info__btn'>
-                  <div className='cart__info__btn__item'>
-                    <Link to='/shipping'>
-                      <Button size='block'>Đặt hàng</Button>
+                <div className="cart__info__btn">
+                  <div className="cart__info__btn__item">
+                    <Link to="/shipping">
+                      <Button size="block">Đặt hàng</Button>
                     </Link>
                   </div>
-                  <div className='cart__info__btn__item'>
-                    <Link to='/catalog'>
-                      <Button size='block'>Tiếp tục mua hàng</Button>
+                  <div className="cart__info__btn__item">
+                    <Link to="/catalog">
+                      <Button size="block">Tiếp tục mua hàng</Button>
                     </Link>
                   </div>
                 </div>
               </div>
-              <div className='cart__list'>
+              <div className="cart__list">
                 {cartProducts.map((item, index) => (
                   <CartItem item={item} key={index} />
                 ))}
