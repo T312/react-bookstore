@@ -46,7 +46,7 @@
   &__menu {
     @include flex(center, space-between);
     height: 100%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 
     &__item ~ &__item {
       margin-left: 32px;
@@ -76,14 +76,20 @@
     }
 
     &__right {
-      font-size: 2.25rem;
+      font-size: 2rem;
       // position: relative;
+      @include mobile {
+        font-size: 2rem;
+      }
 
       &__item {
         @include flex(center, center);
 
         @include tablet {
           margin-left: 10px;
+        }
+        @include mobile {
+          padding: 0 10px;
         }
 
         &__user {
@@ -142,9 +148,6 @@
       }
       .search {
         height: 20px;
-      }
-      @include mobile {
-        font-size: 3.5rem;
       }
     }
 
@@ -228,6 +231,10 @@
       @include tablet {
         display: block;
         font-size: 3.5rem;
+      }
+      @include mobile {
+        display: block;
+        font-size: 2rem;
       }
     }
   }

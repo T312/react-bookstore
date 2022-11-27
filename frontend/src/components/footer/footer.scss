@@ -1,9 +1,9 @@
 @use "../../scss/" as *;
 
 .footer {
-    padding: 70px 0;
+    padding: 25px 0;
     box-shadow: $box-shadow;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     @include tablet {
         font-size: 1.7rem;
     }
