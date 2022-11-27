@@ -87,46 +87,40 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 };
 
 // CREATE PRODUCT
-export const createProduct =
-  (
-    { name, price, description, countInStock, author, category, publisher },
-    files
-  ) =>
-  async (dispatch, getState) => {
-    try {
-      dispatch({ type: PRODUCT_CREATE_REQUEST });
+export const createProduct = (form) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: PRODUCT_CREATE_REQUEST });
 
-      const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("accessToken");
 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          // "Content-type": `multipart/form-data;   `,
-        },
-        files: files,
-      };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "multipart/form-data",
+      },
+    };
 
-      const { data } = await axios.post(
-        `http://localhost:8000/v1/product`,
-        { name, price, description, countInStock, author, category, publisher },
-        config
-      );
+    const { data } = await axios.post(
+      `http://localhost:8000/v1/product`,
+      { form },
+      config
+    );
 
-      dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
-    } catch (error) {
-      const message =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
-      if (message === "Not authorized, token failed") {
-        dispatch(logout());
-      }
-      dispatch({
-        type: PRODUCT_CREATE_FAIL,
-        payload: message,
-      });
+    dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
     }
-  };
+    dispatch({
+      type: PRODUCT_CREATE_FAIL,
+      payload: message,
+    });
+  }
+};
 
 // EDIT PRODUCT
 export const editProduct = (id) => async (dispatch) => {

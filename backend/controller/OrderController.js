@@ -12,6 +12,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     paymentMethod,
     shippingPrice,
     itemsPrice,
+    isPaid,
   } = req.body;
   const orderItemIds = Promise.all(
     orderItems.map(async (orderItem) => {
@@ -48,6 +49,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
       itemsPrice,
       shippingPrice,
       totalPrice: total,
+      isPaid,
     });
     const createOrder = await order.save();
     res.status(201).json(createOrder);
