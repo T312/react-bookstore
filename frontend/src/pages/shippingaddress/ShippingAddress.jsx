@@ -18,30 +18,31 @@ const ShippingAddress = () => {
 
   const userInfo = useSelector((state) => state.authUser);
   const { user } = userInfo;
-  console.log("user: ", user);
+  const { shippingAddress } = user;
+  const address = shippingAddress ? shippingAddress : [];
   const date = new Date(user.createdAt);
   return (
-    <Helmet title='Profile'>
-      <div className='container'>
+    <Helmet title="Profile">
+      <div className="container">
         <Section>
           <SectionTitle>---</SectionTitle>
           <SectionTitle>Địa chỉ giao hàng</SectionTitle>
           <SectionBody>
-            <div className='profile'>
+            <div className="profile">
               {/* info card */}
-              <div className='profile__info'>
-                <div className='profile__cover'></div>
-                <div className='profile__info__card'>
-                  <div className='profile__info__avatar'>
-                    <img src={imguser} alt='avatar' />
+              <div className="profile__info">
+                <div className="profile__cover"></div>
+                <div className="profile__info__card">
+                  <div className="profile__info__avatar">
+                    <img src={imguser} alt="avatar" />
                   </div>
-                  <div className='profile__info__text'>
-                    <div className='profile__info__text__username'>
+                  <div className="profile__info__text">
+                    <div className="profile__info__text__username">
                       <h5>
                         <strong>{user.name}</strong>
                       </h5>
                     </div>
-                    <div className='profile__info__text__datetime'>
+                    <div className="profile__info__text__datetime">
                       <span>
                         {" "}
                         Đã tham gia vào{" "}
@@ -53,11 +54,11 @@ const ShippingAddress = () => {
                   </div>
                 </div>
                 {/* tab item */}
-                <div className='profile__setting'>
-                  <div className='profile__setting__btn'>
-                    <Link to='/profile'>
-                      <div className='profile__setting__btn__item'>
-                        <button className='btn-item' type='button'>
+                <div className="profile__setting">
+                  <div className="profile__setting__btn">
+                    <Link to="/profile">
+                      <div className="profile__setting__btn__item">
+                        <button className="btn-item" type="button">
                           Cài đặt tài khoản
                         </button>
                       </div>
@@ -70,15 +71,15 @@ const ShippingAddress = () => {
                         </span>
                       </button>
                     </div> */}
-                    <div className='profile__setting__btn__item'>
-                      <button className='btn-item' type='button'>
+                    <div className="profile__setting__btn__item">
+                      <button className="btn-item" type="button">
                         Địa chỉ giao hàng
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <AddressCard />
+              <AddressCard address={address} />
             </div>
           </SectionBody>
         </Section>

@@ -19,6 +19,8 @@ const MainProducts = () => {
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch, successDelete]);
+  const categoryList = useSelector((state) => state.categoryList);
+  const { category } = categoryList;
 
   return (
     <section className="content-main">
@@ -44,9 +46,16 @@ const MainProducts = () => {
             <div className="col-lg-2 col-6 col-md-3">
               <select className="form-select">
                 <option>All category</option>
-                <option>Electronics</option>
+                {category.map((item, index, key = index) => {
+                  return (
+                    <>
+                      <option value={item._id}>{item.name}</option>
+                    </>
+                  );
+                })}
+                {/* <option>Electronics</option>
                 <option>Clothings</option>
-                <option>Something else</option>
+                <option>Something else</option> */}
               </select>
             </div>
             <div className="col-lg-2 col-6 col-md-3">

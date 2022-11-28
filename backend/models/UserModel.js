@@ -5,7 +5,13 @@ const shippingAddressSchema = mongoose.Schema(
     address: { type: String },
     name: { type: String },
     phoneNumber: { type: String },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
   },
+
   {
     timestamps: true,
   }

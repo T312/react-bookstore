@@ -2,42 +2,40 @@ import React from "react";
 import "./address-modal.scss";
 import Button from "../button/Button";
 import { useForm } from "react-hook-form";
-
+import { shippingUserCreate } from "../../features/user/pathAPI";
+import { useDispatch, useSelector } from "react-redux";
 const AddressModal = ({ open, onClose }) => {
-  if (!open) {
-    return null;
-  }
-
-  return <ModalFormAdress setAddress={(data, canceled) => {}} />;
-};
-export default AddressModal;
-
-const ModalFormAdress = ({ setAddress }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.createShippingAddress);
+  console.log(user);
   const onSubmit = async (data) => {
     try {
-      setAddress(data, false);
+      dispatch(shippingUserCreate(data));
     } catch (error) {
       console.log(error);
     }
   };
+  if (!open) {
+    return null;
+  }
 
   return (
     <form className="" onSubmit={handleSubmit(onSubmit)}>
       <div className="overlay">
         <div className="feedback-users">
           <div className="feedback-header">
-            <div className="close-btn" onClick={() => setAddress(null, true)}>
+            <div className="close-btn" onClick={onClose}>
               <i className="bx bx-x"></i>
             </div>
             <div className="title">Thêm địa chỉ mới</div>
             {/* <div className='txt'>
-            Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm!
-          </div> */}
+          Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm!
+        </div> */}
           </div>
           <div className="feedback-content">
             <div className="forms">
@@ -73,7 +71,7 @@ const ModalFormAdress = ({ setAddress }) => {
               </div>
             </div>
             <div className="btn-feedback">
-              <Button size="sm" onClick={() => setAddress(null, true)}>
+              <Button size="sm" onClick={onClose}>
                 Hủy
               </Button>
               <Button size="sm">Lưu</Button>
@@ -84,3 +82,4 @@ const ModalFormAdress = ({ setAddress }) => {
     </form>
   );
 };
+export default AddressModal;

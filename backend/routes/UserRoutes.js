@@ -7,14 +7,15 @@ import {
   deleteUser,
   getUserById,
   updateUser,
+  createShippingAddress,
 } from "../controller/UserController.js";
 
 const userRouter = express.Router();
 
 userRouter
   .get("/profile", protect, getUserProfile)
-  .put("/profile", protect, updateUserProfile);
-
+  .put("/profile", protect, updateUserProfile)
+  .post("/profile", protect, createShippingAddress);
 userRouter
   .get("/", protect, admin, getUserByAdmin)
   .delete("/users", protect, admin, deleteUser)

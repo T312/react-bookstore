@@ -4,13 +4,21 @@ import { useDispatch } from "react-redux";
 import { deleteProduct } from "../../Redux/Actions/ProductActions";
 
 const Product = ({ product }) => {
-  const { name, descriptionImages, category, price, createdAt, countInStock } =
-    product;
+  const {
+    _id,
+    name,
+    descriptionImages,
+    category,
+    price,
+    createdAt,
+    countInStock,
+  } = product;
   const date = new Date(createdAt);
   const dispatch = useDispatch();
 
   const deletehandler = (id) => {
     if (window.confirm("Are you sure??")) {
+      console.log("long");
       dispatch(deleteProduct(id));
     }
   };
@@ -45,7 +53,13 @@ const Product = ({ product }) => {
               <Link className="dropdown-item" to="#">
                 Edit info
               </Link>
-              <Link className="dropdown-item text-danger" to="#">
+              <Link
+                className="dropdown-item text-danger"
+                to="#"
+                onClick={() => {
+                  deletehandler(_id);
+                }}
+              >
                 Delete
               </Link>
             </div>

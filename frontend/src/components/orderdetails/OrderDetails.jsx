@@ -9,7 +9,7 @@ const OrderDetails = () => {
   const dispatch = useDispatch();
   const listOrderUser = useSelector((state) => state.listUserOrder);
   const { order } = listOrderUser;
-
+  const OrderDes = order ? order : [];
   return (
     <div>
       <table className="table-order">
@@ -23,7 +23,7 @@ const OrderDetails = () => {
           </tr>
         </thead>
         <tbody>
-          {order.map((order, index) => {
+          {OrderDes.map((order, index) => {
             const date = new Date(order.createdAt);
             return (
               <>

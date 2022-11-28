@@ -12,3 +12,20 @@ export const getProduct = createAsyncThunk("detailsProduct", async (id) => {
   // console.log("PRODUCTS DETAILS: ", data.product);
   return data.product;
 });
+
+export const reviewProduct = createAsyncThunk("reviewProduct", async (form) => {
+  const token = localStorage.getItem("accessToken");
+
+  const { data } = await Axios.post(
+    `http://localhost:8000/v1/product/${form.id}/review`,
+    form,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "multipart/form-data",
+      },
+    }
+  );
+  console.log("PRODUCTS DETAILS: ", data.product);
+  return data.product;
+});

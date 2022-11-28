@@ -23,9 +23,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
 //@desc update user profile
 //@access private
 const updateUserProfile = asyncHandler(async (req, res) => {
-  console.log(req);
   const user = await User.findById(req.user._id);
-
+  console.log(user.name);
   if (user) {
     user.name = req.body.user.name || user.name;
     user.email = req.body.user.email || user.email;
@@ -42,6 +41,31 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   } else {
     res.status(404);
     throw new Error("User not found");
+  }
+});
+
+// @route POST v1/product
+// @desc post review product
+// @access private
+const createShippingAddress = asyncHandler(async (req, res) => {
+  const { address, phoneNumber, name } = req.body;
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    const addressUser = {
+      address,
+      phoneNumber,
+      name,
+      user: req.user._id,
+    };
+
+    user.shippingAddress.push(addressUser);
+
+    await user.save();
+    res.status(201).json({ message: "User add adress", user: user });
+  } else {
+    res.status(404);
+    throw new Error("User not Found");
   }
 });
 
@@ -130,4 +154,5 @@ export {
   deleteUser,
   getUserById,
   updateUser,
+  createShippingAddress,
 };
