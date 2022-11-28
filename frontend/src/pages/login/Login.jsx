@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 // import Button from "../components/button/Button";
 import Helmet from "../../components/helmet/Helmet";
 import CheckBox from "../../components/checkbox/CheckBox";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // ------------------------------------
 import "./login.scss";
 import logo from "../../assets/images/logo.png";
@@ -17,13 +20,14 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const notify = () => toast("Wow so easy!");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
       dispatch(loginUser(data));
-      alert("Login success!");
+      toast("Login successful");
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -64,7 +68,7 @@ const Login = () => {
               <input
                 type="password"
                 className="form__input"
-                placeholder="Password"
+                placeholder="Mật khẩu"
                 required
                 {...register("password", { required: true })}
                 aria-invalid={errors.password ? "true" : "false"}
@@ -83,10 +87,10 @@ const Login = () => {
             </div>
             <div className="form__group__checkbox">
               <CheckBox />
-              <label>Remember Me</label>
+              <label>Ghi nhớ mật khẩu</label>
             </div>
-            <button className="form__btn">Sign in</button>
-            <span className="form__delimiter">or connect with</span>
+            <button className="form__btn">Đăng nhập</button>
+            <span className="form__delimiter">Hoặc đăng nhập bằng</span>
             <div className="form__social">
               <Link to="/" className="form__social__item__fb">
                 <i className="bx bxl-facebook"></i>
@@ -99,13 +103,13 @@ const Login = () => {
               </Link>
             </div>
             <span className="form__txt">
-              Don't have an account?
+              Bạn chưa có tài khoản?
               <Link to="/register">
-                <strong> Register</strong>{" "}
+                <strong> Đăng ký</strong>{" "}
               </Link>
             </span>
             <span className="form__txt">
-              <Link>Forgot password</Link>
+              <Link>Quên mật khẩu</Link>
             </span>
           </div>
         </div>

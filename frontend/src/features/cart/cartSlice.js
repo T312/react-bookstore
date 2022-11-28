@@ -25,7 +25,9 @@ export const cartItemsSlice = createSlice({
           ...state.value,
           {
             id: duplicate[0].id,
+            _id: newItem._id,
             name: newItem.name,
+            _id: newItem._id,
             descriptionImages: newItem.descriptionImages,
             author: newItem.author,
             price: newItem.price,
@@ -49,8 +51,8 @@ export const cartItemsSlice = createSlice({
         "cartItems",
         JSON.stringify(
           //sort Item
-          state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0)),
-        ),
+          state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0))
+        )
       );
     },
     updateItem: (state, action) => {
@@ -62,6 +64,7 @@ export const cartItemsSlice = createSlice({
           ...state.value,
           {
             id: item[0].id,
+            _id: newItem._id,
             name: newItem.name,
             descriptionImages: newItem.descriptionImages,
             author: newItem.author,
@@ -74,8 +77,8 @@ export const cartItemsSlice = createSlice({
       localStorage.setItem(
         "cartItems",
         JSON.stringify(
-          state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0)),
-        ),
+          state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0))
+        )
       );
     },
     removeItem: (state, action) => {
@@ -84,8 +87,8 @@ export const cartItemsSlice = createSlice({
       localStorage.setItem(
         "cartItems",
         JSON.stringify(
-          state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0)),
-        ),
+          state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0))
+        )
       );
     },
   },

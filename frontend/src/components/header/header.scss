@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 100;
   height: $header-height;
   transition: height 0.3s ease;
 
@@ -26,7 +26,7 @@
   &.shrink {
     height: $header-shrink-height;
     box-shadow: $box-shadow;
-    z-index: 100;
+    z-index: 99;
 
     @include mobile {
       height: $header-mobile-height;
@@ -39,7 +39,7 @@
     inset: 0;
     pointer-events: none;
     img {
-      height: 32px;
+      height: 35px;
     }
   }
 
@@ -76,8 +76,14 @@
     }
 
     &__right {
-      font-size: 2.25rem;
+      font-size: 2rem;
       // position: relative;
+      @include mobile {
+        font-size: 2rem;
+      }
+      @include tablet {
+        font-size: 2.5rem;
+      }
 
       &__item {
         @include flex(center, center);
@@ -85,6 +91,9 @@
         @include tablet {
           margin-left: 10px;
         }
+        // @include mobile {
+        //   padding: 0 5px;
+        // }
 
         &__user {
           @include flex(center, center);
@@ -98,6 +107,12 @@
         &__user-name {
           margin-left: 5px;
           font-size: 1.25rem;
+          @include tablet {
+            font-size: 1.4rem;
+          }
+          @include mobile {
+            display: none;
+          }
         }
 
         &__dropdown {
@@ -132,6 +147,7 @@
         }
       }
       .badge {
+        cursor: pointer;
         background-color: red;
         color: #fff;
         border-radius: 100px;
@@ -139,9 +155,8 @@
         font-size: 12px;
         margin-bottom: 20px;
       }
-
-      @include mobile {
-        font-size: 1.5rem;
+      .search {
+        height: 20px;
       }
     }
 
@@ -224,7 +239,11 @@
 
       @include tablet {
         display: block;
-        font-size: 2.5rem;
+        font-size: 3.5rem;
+      }
+      @include mobile {
+        display: block;
+        font-size: 2rem;
       }
     }
   }

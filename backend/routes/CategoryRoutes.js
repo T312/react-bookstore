@@ -10,10 +10,10 @@ import { protect, admin } from "../Middleware/auth.js";
 const categoryRoute = express.Router();
 
 categoryRoute
-  .get("/", protect, admin, getCategoryList)
+  .get("/", getCategoryList)
   .post("/", protect, admin, createCategory);
-categoryRoute.get("/:id", protect, admin, getCategoryById);
-categoryRoute.put("/:id", updateCategory);
-categoryRoute.delete("/:id", deleteCategory);
+categoryRoute.get("/:id", getCategoryById);
+categoryRoute.put("/:id", protect, admin, updateCategory);
+categoryRoute.delete("/:id", protect, admin, deleteCategory);
 
 export default categoryRoute;

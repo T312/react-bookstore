@@ -6,13 +6,20 @@ import listProductsSlice from "../features/product/listProductsSlice";
 import productDetailsSlice from "../features/product/productDetailsSlice";
 import cartItemsReducer from "../features/cart/cartSlice";
 import authSlide from "../features/auth/authSlide";
-
+import listCategorySlice from "../features/category/listCategorySlide";
+import userDetailsSlice from "../features/user/userSlide";
+import orderCreateSlice from "../features/order/orderCreateSlice";
+import listUserOrderSlide from "../features/order/listUserOrderSlide";
 const rootReducer = {
   productModal: productModalReducer,
   productList: listProductsSlice,
   productDetails: productDetailsSlice,
   cartItems: cartItemsReducer,
   authUser: authSlide,
+  categoryList: listCategorySlice,
+  userDetails: userDetailsSlice,
+  orderCreate: orderCreateSlice,
+  listUserOrder: listUserOrderSlide,
 };
 
 const store = configureStore({

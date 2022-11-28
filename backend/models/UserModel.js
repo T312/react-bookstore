@@ -1,5 +1,15 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
+const shippingAddressSchema = mongoose.Schema(
+  {
+    address: { type: String },
+    name: { type: String },
+    phoneNumber: { type: String },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const userSchema = new Schema(
   {
@@ -34,10 +44,11 @@ const userSchema = new Schema(
       required: true,
       default: false,
     },
+    shippingAddress: [shippingAddressSchema],
   },
   {
     timestamps: true,
-  },
+  }
 );
 userSchema.virtual("id").get(function () {
   return this._id.toHexString();

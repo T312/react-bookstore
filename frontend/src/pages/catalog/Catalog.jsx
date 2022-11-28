@@ -1,142 +1,57 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 //-------------------------
 import "./catalog.scss";
 import Helmet from "../../components/helmet/Helmet";
 // import Grid from "../components/grid/Grid";
 // import ProductCard from "../components/productcard/ProductCard";
+import Pagination from "../../components/pagination/Pagination";
+import Sort from "../../components/sort/Sort";
 import CheckBox from "../../components/checkbox/CheckBox";
 import Button from "../../components/button/Button";
+import Filter from "../../components/filter/Filter";
 import InfinityList from "../../components/infinitylist/InfinityList";
 //-------------------------
+import Input from "../../components/input/Input";
 
-import category from "../../assets/fake-data/category";
-import author from "../../assets/fake-data/author";
-import provider from "../../assets/fake-data/provider";
-import productPrice from "../../assets/fake-data/product-price";
 //-------------------------
-import { getProductAll } from "../../features/product/pathAPI";
 
+import Axios from "axios";
 const Catalog = () => {
-  const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList);
-  const { products } = productList;
-
-  useEffect(() => {
-    dispatch(getProductAll());
-  }, [dispatch]);
-
-  // Tạo bộ lọc ban đầu
   const initialFilter = {
     category: [],
     author: [],
     provider: [],
     price: [],
   };
-
-  const [product, setProduct] = useState(productList);
-
-  // console.log(products);
-
-  // filter
-  const [filter, setFilter] = useState(initialFilter);
-
-  // console.log(filter);
-
-  const filterSelect = (type, checked, item) => {
-    if (checked) {
-      switch (type) {
-        case "CATEGORY":
-          setFilter({
-            ...filter,
-            category: [...filter.category, item.category],
-          });
-          break;
-        case "AUTHOR":
-          setFilter({ ...filter, author: [...filter.author, item.author] });
-          break;
-        case "PROVIDER":
-          setFilter({
-            ...filter,
-            provider: [...filter.provider, item.provider],
-          });
-          break;
-        case "PRICE":
-          setFilter({ ...filter, price: [...filter.price, item.price] });
-          break;
-        default:
-      }
-    } else {
-      switch (type) {
-        case "CATEGORY":
-          const newCategory = filter.category.filter(
-            (e) => e !== item.category,
-          );
-          setFilter({ ...filter, category: newCategory });
-          break;
-        case "AUTHOR":
-          const newAuthor = filter.author.filter((e) => e !== item.author);
-          setFilter({ ...filter, author: newAuthor });
-          break;
-        case "PROVIDER":
-          const newProvider = filter.provider.filter(
-            (e) => e !== item.provider,
-          );
-          setFilter({ ...filter, provider: newProvider });
-          break;
-        case "PRICE":
-          const newPrice = filter.price.filter((e) => e !== item.price);
-          setFilter({ ...filter, price: newPrice });
-          break;
-        default:
-      }
-    }
-  };
-
-  const clearFilter = () => setFilter(initialFilter);
-
-  const updateProducts = useCallback(() => {
-    let temp = productList;
-    // danh mục
-    if (filter.category.length > 0) {
-      temp = temp.filter((e) => filter.category.includes(e.category));
-    }
-    // tác giả
-    if (filter.author.length > 0) {
-      temp = temp.filter((e) => {
-        const check = e.author.find((author) => filter.author.includes(author));
-        return check !== undefined;
-      });
-    }
-    // nhà cc
-    if (filter.provider.length > 0) {
-      temp = temp.filter((e) => {
-        const check = e.provider.find((provider) =>
-          filter.provider.includes(provider),
-        );
-        return check !== undefined;
-      });
-    }
-    // giá
-    if (filter.price.length > 0) {
-      temp = temp.filter((e) => {
-        const check = e.productPrice.find((price) =>
-          filter.productPrice.includes(price),
-        );
-        return check !== undefined;
-      });
-    }
-    setProduct(temp);
-  }, [filter, productList]);
+  const [obj, setObj] = useState({});
+  const [products, setProducts] = useState([]);
+  const [sort, setSort] = useState({ sort: "rating", order: "desc" });
+  const [filterCategory, setFilterCategory] = useState(initialFilter);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [productsFilter, setProductsFilter] = useState([]);
 
   useEffect(() => {
-    updateProducts();
-  }, [updateProducts]);
+    const getProducts = async () => {
+      try {
+        const url = `http://localhost:8000/v1/product?page=${page}&search=${search}&sort=${
+          sort.sort
+        },${sort.order}&categories=${filterCategory.category.toString()}`;
+        const { data } = await Axios.get(url);
+        setObj(data);
+        setProducts(data.products);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProducts();
+  }, [search, page, sort, filterCategory]);
 
   const filterRef = useRef(null);
 
   const showHideFilter = () => filterRef.current.classList.toggle("active");
-
+  const clearFilter = () => setFilterCategory(initialFilter);
   return (
     <Helmet title='Product'>
       <div className='container'>
@@ -148,88 +63,10 @@ const Catalog = () => {
             >
               <i className='bx bx-left-arrow-alt'></i>
             </div>
-            <div className='catalog__filter__widget'>
-              <div className='catalog__filter__widget__title'>
-                danh mục sản phẩm
-              </div>
-              <div className='catalog__filter__widget__content'>
-                {category.map((item, index) => (
-                  <div
-                    key={index}
-                    className='catalog__filter__widget__content__item'
-                  >
-                    <CheckBox
-                      label={item.display}
-                      onChange={(input) =>
-                        filterSelect("CATEGORY", input.checked, item)
-                      }
-                      checked={filter.category.includes(item.category)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className='catalog__filter__widget'>
-              <div className='catalog__filter__widget__title'>Nhà cung cấp</div>
-              <div className='catalog__filter__widget__content'>
-                {provider.map((item, index) => (
-                  <div
-                    key={index}
-                    className='catalog__filter__widget__content__item'
-                  >
-                    <CheckBox
-                      label={item.display}
-                      onChange={(input) =>
-                        filterSelect("PROVIDER", input.checked, item)
-                      }
-                      checked={filter.provider.includes(item.provider)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className='catalog__filter__widget'>
-              <div className='catalog__filter__widget__title'>Giá sản phẩm</div>
-              <div className='catalog__filter__widget__content'>
-                {productPrice.map((item, index) => (
-                  <div
-                    key={index}
-                    className='catalog__filter__widget__content__item'
-                  >
-                    <CheckBox
-                      label={item.display}
-                      onChange={(input) =>
-                        filterSelect("PRICE", input.checked, item)
-                      }
-                      checked={filter.price.includes(item.price)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className='catalog__filter__widget'>
-              <div className='catalog__filter__widget__title'>Tác giả</div>
-              <div className='catalog__filter__widget__content'>
-                {author.map((item, index) => (
-                  <div
-                    key={index}
-                    className='catalog__filter__widget__content__item'
-                  >
-                    <CheckBox
-                      label={item.display}
-                      onChange={(input) =>
-                        filterSelect("AUTHOR", input.checked, item)
-                      }
-                      checked={filter.author.includes(item.author)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
+            <Filter
+              filterCategory={filterCategory}
+              setFilterCategory={(category) => setFilterCategory(category)}
+            />
             <div className='catalog__filter__widget'>
               <div className='catalog__filter__widget__content'>
                 <Button size='sm' onClick={clearFilter}>
@@ -244,7 +81,22 @@ const Catalog = () => {
             </Button>
           </div>
           <div className='catalog__content'>
-            <InfinityList data={products} />
+            <div className='header__menu__item header__menu__right__item'>
+              <Input setSearch={(search) => setSearch(search)} />
+              <Sort sort={sort} setSort={(sort) => setSort(sort)} />
+            </div>
+            {productsFilter.length != 0 ? (
+              <InfinityList data={productsFilter} />
+            ) : (
+              <InfinityList data={products} />
+            )}
+            {/* <InfinityList data={products} /> */}
+            <Pagination
+              page={page}
+              limit={obj.page ? obj.page : 0}
+              total={obj.pages ? obj.pages : 0}
+              setPage={(page) => setPage(page)}
+            />
           </div>
         </div>
       </div>

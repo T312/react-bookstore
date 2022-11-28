@@ -33,11 +33,10 @@ const authSlide = createSlice({
     },
     logoutUser: (state, action) => {
       state.user = null;
-      console.log(state.user);
       localStorage.removeItem("user");
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-      window.localStorage.clear();
+      // window.localStorage.clear();
     },
   },
   extraReducers: {

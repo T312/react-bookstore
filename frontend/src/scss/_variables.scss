@@ -12,21 +12,21 @@ $btn-main-bg: $main-color;
 $btn-main-color: #fff;
 
 // header
-$header-height: 100px;
+$header-height: 70px;
 $header-tablet-height: 70px;
-$header-mobile-height: 40px;
+$header-mobile-height: 50px;
 $header-shrink-height: 70px;
 
 $box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
 
 $colors: (
-    "blue": #4267b2,
-    "orange": #de3513,
-    "pink": #fe7e73,
-    "white": #fff,
-    "black": #000,
-    "main": $main-color,
-    "purple": purple,
+  "blue": #4267b2,
+  "orange": #de3513,
+  "pink": #fe7e73,
+  "white": #fff,
+  "black": #000,
+  "main": $main-color,
+  "purple": purple,
 );
 
 // responsive

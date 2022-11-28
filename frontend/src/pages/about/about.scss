@@ -1,0 +1,121 @@
+@use "../../scss/" as *;
+
+.about {
+  @include flex(flex-start, flex-start);
+  &__title {
+    width: 100%;
+    text-align: justify;
+    margin-right: 2rem;
+    h1 {
+      font-size: 2rem;
+      @include tablet {
+        text-align: center;
+      }
+    }
+
+    &__contents {
+      h3 {
+        margin-top: 20px;
+        color: #5d5d5d;
+        font-size: 1.5rem;
+        @include tablet {
+          text-align: center;
+        }
+      }
+
+      p {
+        margin-top: 10px;
+        font-family: sans-serif;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+    }
+
+    &__buttons {
+      margin-top: 30px;
+
+      a {
+        padding: 12px 40px;
+        text-decoration: none;
+        color: #fff;
+        font-size: 25px;
+        letter-spacing: 1.5px;
+      }
+      @include tablet {
+        text-align: center;
+      }
+    }
+
+    &__social {
+      margin: 40px 40px;
+      i {
+        color: $main-color;
+        font-size: 30px;
+        padding: 0px 10px;
+        @include tablet {
+          padding: 0 20px;
+          color: #5d5d5d;
+        }
+      }
+      @include tablet {
+        text-align: center;
+        padding: 0 15px;
+      }
+    }
+  }
+
+  &__imageBG {
+    img {
+      height: 100%;
+      border: 2px solid #fff;
+      -moz-box-shadow: 10px 10px 5px #ccc;
+      -webkit-box-shadow: 10px 10px 5px #ccc;
+      box-shadow: 10px 10px 5px #ccc;
+      -moz-border-radius: 25px;
+      -webkit-border-radius: 25px;
+      border-radius: 25px;
+    }
+  }
+  @include tablet {
+    display: block;
+  }
+}
+
+.contact {
+  @include flex(center, center);
+
+  &__info {
+    &__input-container {
+      display: -ms-flexbox; /* IE10 */
+      display: flex;
+      margin-bottom: 15px;
+
+      .icon {
+        background: dodgerblue;
+        color: white;
+        min-width: 50px;
+        @include flex(center, center);
+      }
+
+      i {
+        font-size: 2.5rem;
+      }
+
+      &__input-field {
+        padding: 15px;
+        outline: none;
+      }
+    }
+
+    &__btn {
+      margin-right: 3px;
+      @include flex(0, center);
+    }
+  }
+
+  &__png {
+    img {
+      width: 100%;
+    }
+  }
+}

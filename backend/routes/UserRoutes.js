@@ -16,7 +16,7 @@ userRouter
   .put("/profile", protect, updateUserProfile);
 
 userRouter
-  .get("/users", protect, admin, getUserByAdmin)
+  .get("/", protect, admin, getUserByAdmin)
   .delete("/users", protect, admin, deleteUser)
   .get("/users", protect, admin, getUserById)
   .put("/users", protect, admin, updateUser);

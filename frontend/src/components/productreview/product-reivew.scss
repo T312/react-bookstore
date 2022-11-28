@@ -33,11 +33,13 @@
     .feedback-header {
       color: #fff;
       background-color: $main-color;
+      height: 100px;
+
       .title {
-        margin-bottom: 1rem;
+        margin-top: -3rem;
         font-weight: 600;
         font-size: 24px;
-        text-transform: uppercase;
+        // text-transform: uppercase;
       }
       .txt {
         line-height: 1.5;

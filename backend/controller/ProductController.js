@@ -9,8 +9,8 @@ import fs from "fs-extra";
 // @desc Get all products
 // @access Public
 const getAllProducts = asyncHandler(async (req, res) => {
-  const pageSize = 10;
-  const page = Number(req.query.pageNumber) || 1;
+  const pageSize = Number(req.query.limit) || 8;
+  const page = Number(req.query.page) || 1;
   let filter = {};
   let sort = req.query.sort || "rating";
 
@@ -79,7 +79,12 @@ const getProductById = asyncHandler(async (req, res) => {
   if (!mongoose.isValidObjectId(req.params.id)) {
     res.status(400).json({ message: "Invalid product " });
   }
-  const product = await Product.findById(req.params.id).populate("category");
+  const product = await Product.findById(req.params.id)
+    .populate("category")
+    .populate({
+      path: "reviews",
+      populate: "user",
+    });
   if (product) {
     res.json({ product: product });
   } else {
@@ -104,6 +109,7 @@ const cloudinaryImageDestroyMethod = async (id) => {
 // @desc post product
 // @access private
 const createProduct = asyncHandler(async (req, res) => {
+  console.log(req);
   const {
     name,
     price,
@@ -115,6 +121,7 @@ const createProduct = asyncHandler(async (req, res) => {
     publisher,
   } = req.body;
   const urls = [];
+
   const files = req.files;
   for (const file of files) {
     const { path } = file;
@@ -156,8 +163,15 @@ const createProduct = asyncHandler(async (req, res) => {
 // @desc put product
 // @access private
 const updatedProduct = asyncHandler(async (req, res) => {
-  const { name, price, removeImages, description, countInStock, isFeatured } =
-    req.body;
+  const {
+    name,
+    price,
+    category,
+    removeImages,
+    description,
+    countInStock,
+    isFeatured,
+  } = req.body;
   const product = await Product.findById(req.params.id);
   let urls = [];
   if (removeImages && !req.files) {
@@ -167,7 +181,7 @@ const updatedProduct = asyncHandler(async (req, res) => {
     urls = await Promise.all(
       await product.descriptionImages.filter((item) => {
         return !removeImages.includes(item.image_id);
-      }),
+      })
     );
   } else if (req.files && !removeImages) {
     const files = req.files;
@@ -185,8 +199,8 @@ const updatedProduct = asyncHandler(async (req, res) => {
     }
     urls = await Promise.all(
       await product.descriptionImages.filter(
-        (item) => !removeImages.includes(item.image_id),
-      ),
+        (item) => !removeImages.includes(item.image_id)
+      )
     );
     const files = req.files;
     for (const file of files) {
@@ -200,6 +214,7 @@ const updatedProduct = asyncHandler(async (req, res) => {
     product.price = price || product.price;
     product.description = description || product.description;
     product.descriptionImages = urls.map((url) => url);
+    product.category = category || product.category;
     product.countInStock = countInStock || product.countInStock;
     product.isFeatured = isFeatured || product.isFeatured;
     const updatedProduct = await product.save();
@@ -237,7 +252,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @desc admin get all products
 // @access private
 const getAllProductsByAdmin = asyncHandler(async (req, res) => {
-  const products = await Product.find().sort({ _id: 1 });
+  const products = await Product.find().populate("category");
   res.json(products);
 });
 
@@ -257,13 +272,13 @@ const createProductReview = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
   if (product) {
-    const alreadyReviewed = product.reviews.find(
-      (r) => r.user.toString() === req.user._id.toString(),
-    );
-    if (alreadyReviewed) {
-      res.status(400);
-      throw new Error("Product already Reviewed");
-    }
+    // const alreadyReviewed = product.reviews.find(
+    //   (r) => r.user.toString() === req.user._id.toString()
+    // );
+    // if (alreadyReviewed) {
+    //   res.status(400);
+    //   throw new Error("Product already Reviewed");
+    // }
     const review = {
       name: req.user.name,
       rating: Number(rating),
