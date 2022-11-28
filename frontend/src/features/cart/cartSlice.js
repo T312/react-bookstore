@@ -9,7 +9,7 @@ const items =
 const initialState = {
   value: items,
 };
-
+// cartSlice
 export const cartItemsSlice = createSlice({
   name: "cartItems",
   initialState,
