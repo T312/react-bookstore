@@ -23,3 +23,20 @@ export const orderListOfUser = createAsyncThunk("orderListOfUser", async () => {
   });
   return data;
 });
+
+export const detailsOrder = createAsyncThunk(
+  "detailsOrder",
+  async (orderId) => {
+    const token = localStorage.getItem("accessToken");
+    const { data } = await Axios.get(
+      `http://localhost:8000/v1/order/${orderId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    console.log("Data order:", data);
+    return data;
+  },
+);

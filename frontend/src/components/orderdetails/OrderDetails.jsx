@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { orderListOfUser } from "../../features/order/pathAPI";
 
-const OrderDetails = () => {
+const OrderDetails = ({ orders }) => {
   const dispatch = useDispatch();
   const listOrderUser = useSelector((state) => state.listUserOrder);
   const { order } = listOrderUser;
 
   return (
     <div>
-      <table className="table-order">
+      <table className='table-order'>
         <thead>
           <tr>
             <th>Đơn hàng đã đặt</th>
@@ -27,7 +27,7 @@ const OrderDetails = () => {
             const date = new Date(order.createdAt);
             return (
               <>
-                <tr>
+                <tr key={index}>
                   <td>
                     {`${date.getDate()}/${
                       date.getMonth() + 1
@@ -42,14 +42,14 @@ const OrderDetails = () => {
                     {order.isPaid ? (
                       <>
                         <i
-                          class="bx bx-check-double"
+                          class='bx bx-check-double'
                           style={{ fontSize: "2rem", color: "green" }}
                         ></i>
                       </>
                     ) : (
                       <>
                         <i
-                          className="bx bx-x"
+                          className='bx bx-x'
                           style={{ fontSize: "2rem", color: "red" }}
                         ></i>
                       </>
@@ -59,21 +59,21 @@ const OrderDetails = () => {
                     {order.isDelivered ? (
                       <>
                         <i
-                          class="bx bx-check-double"
+                          class='bx bx-check-double'
                           style={{ fontSize: "2rem", color: "green" }}
                         ></i>
                       </>
                     ) : (
                       <>
                         <i
-                          className="bx bx-x"
+                          className='bx bx-x'
                           style={{ fontSize: "2rem", color: "red" }}
                         ></i>
                       </>
                     )}
                   </td>
                   <td>
-                    <Link to="/">Xem đơn hàng</Link>
+                    <Link to='/view-details'>Xem chi tiết</Link>
                   </td>
                 </tr>
               </>

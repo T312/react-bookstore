@@ -10,6 +10,7 @@ import listCategorySlice from "../features/category/listCategorySlide";
 import userDetailsSlice from "../features/user/userSlide";
 import orderCreateSlice from "../features/order/orderCreateSlice";
 import listUserOrderSlide from "../features/order/listUserOrderSlide";
+import detailsOrderSlice from "../features/order/detailsOrderSlice";
 const rootReducer = {
   productModal: productModalReducer,
   productList: listProductsSlice,
@@ -20,6 +21,7 @@ const rootReducer = {
   userDetails: userDetailsSlice,
   orderCreate: orderCreateSlice,
   listUserOrder: listUserOrderSlide,
+  orderDetails: detailsOrderSlice,
 };
 
 const store = configureStore({
