@@ -44,7 +44,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-// @route POST v1/products/:id/review
+// @route POST v1/product
 // @desc post review product
 // @access private
 const createShippingAddress = asyncHandler(async (req, res) => {

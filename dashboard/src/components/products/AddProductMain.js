@@ -29,7 +29,7 @@ const AddProductMain = () => {
     try {
       const form = new FormData();
       files.forEach((file, i) => {
-        form.append(`file-${i}`, file);
+        form.append(`descriptionImages`, file);
       });
       form.append("name", data.name);
       form.append("description", data.description);

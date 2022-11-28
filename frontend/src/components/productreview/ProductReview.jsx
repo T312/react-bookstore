@@ -1,23 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./product-reivew.scss";
 import Button from "../button/Button";
-
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 import "react-toastify/dist/ReactToastify.css";
+import Axios from "axios";
+import { getProduct, reviewProduct } from "../../features/product/pathAPI";
 
-const ProductReview = ({ open, onClose }) => {
+const ProductReview = ({ open, onClose, id }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const dispatch = useDispatch();
+  const onSubmit = async (data) => {
+    try {
+      // const form = new FormData();
+      // form.append("rating", data.rating);
+      // form.append("comment", data.comment);
+      // form.append("id", id);
+      // toast("Bạn đã bình luận thành công!");
+      // dispatch(reviewProduct(form));
+
+      const token = localStorage.getItem("accessToken");
+
+      const { dataRes } = await Axios.post(
+        `http://localhost:8000/v1/product/${id}/review`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast("Bạn đã bình luận thành công!");
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    dispatch(getProduct(id));
+  }, [dispatch]);
   if (!open) {
     return null;
   }
-  // const [rating, setRating] = useState(0);
-  // const [comment, setComment] = useState("");
-  const submitHandler = (e) => {
-    e.preventDefault();
-    // console.log(rating, comment);
-  };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="overlay">
         <div className="feedback-user">
           <div className="feedback-header">
@@ -47,8 +79,7 @@ const ProductReview = ({ open, onClose }) => {
                   id="name"
                   type="text"
                   placeholder="Nhập tên của bạn"
-                  // value={rating}
-                  // onChange={(e) => setRating(e.target.value)}
+                  {...register("rating", { required: true })}
                 />
               </div>
               <div className="form-input">
@@ -61,6 +92,7 @@ const ProductReview = ({ open, onClose }) => {
                   placeholder="Nhập đánh giá của bạn về sản phẩm ..."
                   // value={comment}
                   // onChange={(e) => setComment(e.target.value)}
+                  {...register("comment", { required: true })}
                 ></textarea>
               </div>
             </div>

@@ -185,6 +185,7 @@ const Product = () => {
                       <ProductReview
                         open={openModal}
                         onClose={() => setOpenModal(false)}
+                        id={id}
                       />
                     </div>
                   </div>

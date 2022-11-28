@@ -54,21 +54,18 @@ export const listProducts = () => async (dispatch) => {
 };
 
 // DELETE PRODUCT
-export const deleteProduct = (id) => async (dispatch, getState) => {
+export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DELETE_REQUEST });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
+    const token = localStorage.getItem("accessToken");
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
-    await axios.delete(`http://localhost:1000/api/products/${id}`, config);
+    await axios.delete(`http://localhost:8000/v1/product/${id}`, config);
 
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
   } catch (error) {
@@ -102,7 +99,7 @@ export const createProduct = (form) => async (dispatch, getState) => {
 
     const { data } = await axios.post(
       `http://localhost:8000/v1/product`,
-      { form },
+      form,
       config
     );
 
@@ -126,9 +123,10 @@ export const createProduct = (form) => async (dispatch, getState) => {
 export const editProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_EDIT_REQUEST });
-    const { data } = await axios.get(
-      `http://localhost:1000/api/products/${id}`
-    );
+    const { data } = await axios
+      .get
+      // `http://localhost:1000/api/products/${id}`
+      ();
     dispatch({ type: PRODUCT_EDIT_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -162,7 +160,7 @@ export const updateProduct = (product, files) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:1000/api/products/${product._id}`,
+      // `http://localhost:1000/api/products/${product._id}`,
       product,
       config
     );

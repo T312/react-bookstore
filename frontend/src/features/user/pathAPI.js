@@ -17,3 +17,23 @@ export const updateProfile = createAsyncThunk("userDetails", async (user) => {
   console.log(data.user);
   return data.user;
 });
+
+export const shippingUserCreate = createAsyncThunk(
+  "shippingUser",
+  async ({ address, phoneNumber, name }) => {
+    const token = localStorage.getItem("accessToken");
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const { data } = await Axios.post(
+      "http://localhost:8000/v1/user/profile",
+      { address, phoneNumber, name },
+      config
+    );
+    console.log(data.user);
+    return data.user;
+  }
+);
