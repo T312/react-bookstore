@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import numberWithCommas from "../../config/numberWithCommas";
 const OrderDetailProducts = (props) => {
+  console.log(props);
   const { order, loading } = props;
 
   if (!loading) {
@@ -10,9 +11,9 @@ const OrderDetailProducts = (props) => {
       return (Math.round(num * 100) / 100).toFixed(2);
     };
 
-    order.itemsPrice = addDecimals(
-      order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-    );
+    // order.itemsPrice = addDecimals(
+    //   order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    // );
   }
 
   return (
@@ -34,18 +35,21 @@ const OrderDetailProducts = (props) => {
               <Link className="itemside" to="#">
                 <div className="left">
                   <img
-                    src={item.image}
-                    alt={item.name}
+                    src={item.product.descriptionImages[0].link}
+                    alt={item.product.name}
                     style={{ width: "40px", height: "40px" }}
                     className="img-xs"
                   />
                 </div>
-                <div className="info">{item.name}</div>
+                <div className="info">{item.product.name}</div>
               </Link>
             </td>
-            <td>${item.price} </td>
-            <td>{item.qty} </td>
-            <td className="text-end"> ${item.qty * item.price}</td>
+            <td>{numberWithCommas(item.product.price)} </td>
+            <td>{item.quantity} </td>
+            <td className="text-end">
+              {" "}
+              {numberWithCommas(item.product.price * item.quantity)}
+            </td>
           </tr>
         ))}
 
@@ -53,15 +57,20 @@ const OrderDetailProducts = (props) => {
           <td colSpan="4">
             <article className="float-end">
               <dl className="dlist">
-                <dt>Subtotal:</dt> <dd>${order.itemsPrice}</dd>
+                <dt>Subtotal:</dt> <dd>{numberWithCommas(order.itemsPrice)}</dd>
               </dl>
               <dl className="dlist">
-                <dt>Shipping cost:</dt> <dd>${order.shippingPrice}</dd>
+                <dt>Shipping cost:</dt>{" "}
+                <dd>{numberWithCommas(order.shippingPrice)}</dd>
+              </dl>
+              <dl className="dlist">
+                <dt>Sales cost:</dt>{" "}
+                <dd>{numberWithCommas(order.itemsPrice * 0.1)}</dd>
               </dl>
               <dl className="dlist">
                 <dt>Grand total:</dt>
                 <dd>
-                  <b className="h5">${order.totalPrice}</b>
+                  <b className="h5">{numberWithCommas(order.totalPrice)}</b>
                 </dd>
               </dl>
               <dl className="dlist">

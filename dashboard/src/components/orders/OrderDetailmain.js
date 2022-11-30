@@ -63,10 +63,11 @@ const OrderDetailmain = (props) => {
                   style={{ maxWidth: "200px" }}
                 >
                   <option>Change status</option>
-                  <option>Awaiting payment</option>
-                  <option>Confirmed</option>
-                  <option>Shipped</option>
-                  <option>Delivered</option>
+                  <option>Chờ xác nhận</option>
+                  <option>Chờ lấy hàng</option>
+                  <option>Đang giao</option>
+                  <option>Đã giao</option>
+                  <option>Đã hủy</option>
                 </select>
                 <Link className="btn btn-success ms-2" to="#">
                   <i className="fas fa-print"></i>

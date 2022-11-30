@@ -37,3 +37,20 @@ export const shippingUserCreate = createAsyncThunk(
     return data.user;
   }
 );
+
+export const getUser = createAsyncThunk("getUser", async () => {
+  const token = localStorage.getItem("accessToken");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const { data } = await Axios.get(
+    "http://localhost:8000/v1/user/profile",
+
+    config
+  );
+  console.log(data.user);
+  return data.user;
+});

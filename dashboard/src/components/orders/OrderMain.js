@@ -56,11 +56,11 @@ const OrderMain = () => {
 
           {/* Table Product */}
 
-          <div className="col-lg-12 col-lg-8">
+          <div className="col-lg-12 col-lg-8 table-responsive">
             <table className="table" style={{ borderCollapse: "separate" }}>
               <thead>
                 <tr>
-                  <th>
+                  {/* <th>
                     <div className="form-check">
                       <input
                         className="form-check-input"
@@ -68,15 +68,15 @@ const OrderMain = () => {
                         value=""
                       />
                     </div>
-                  </th>
-                  {/* <th>ID</th> */}
+                  </th> */}
+
                   <th>Customer</th>
-                  <th>Order Code</th>
-                  <th>Create At</th>
+                  <th>Email</th>
+                  <th>Price</th>
                   <th>Status</th>
-                  <th>Quantity</th>
-                  <th>Total Price</th>
-                  <th className="text-end">Action</th>
+                  <th>Creat At</th>
+                  <th>Edit</th>
+                  {/* <th className="text-end">Action</th> */}
                 </tr>
               </thead>
               {/* Table Data */}

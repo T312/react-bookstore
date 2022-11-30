@@ -12,11 +12,16 @@ import "./shipping-address.scss";
 import imguser from "../../assets/images/users.png";
 import AddressCard from "../../components/address-card/AddressCard";
 import { useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getUser } from "../../features/user/pathAPI";
 const ShippingAddress = () => {
   window.scrollTo(0, 0);
-
-  const userInfo = useSelector((state) => state.authUser);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+  const userInfo = useSelector((state) => state.getUserProfile);
   const { user } = userInfo;
   const { shippingAddress } = user;
   const address = shippingAddress ? shippingAddress : [];

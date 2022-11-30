@@ -15,6 +15,7 @@ import Helmet from "../../components/helmet/Helmet";
 import Button from "../../components/button/Button";
 import CheckoutStatus3 from "../../components/checkout-status/CheckoutStatus3";
 import checkcomplete from "../../assets/images/check-complete.png";
+import { useSelector } from "react-redux";
 // ----------------------------------------------------------------------
 
 CheckoutOrderComplete.propTypes = {
@@ -29,8 +30,8 @@ export default function CheckoutOrderComplete({
   onDownloadPDF,
 }) {
   return (
-    <Helmet title='Order Complete'>
-      <div className='container'>
+    <Helmet title="Order Complete">
+      <div className="container">
         <Section>
           <SectionTitle>--</SectionTitle>
           <SectionTitle>Thanh toán hoàn Tất!</SectionTitle>
@@ -47,7 +48,7 @@ export default function CheckoutOrderComplete({
             >
               <img
                 src={checkcomplete}
-                alt=''
+                alt=""
                 style={{ height: "200px", width: "200px", marginLeft: "150px" }}
               />
               <Typography>
@@ -67,15 +68,15 @@ export default function CheckoutOrderComplete({
 
               <Stack
                 spacing={2}
-                justifyContent='space-between'
+                justifyContent="space-between"
                 direction={{ xs: "column-reverse", sm: "row" }}
               >
-                <Link to='/'>
+                <Link to="/">
                   <Button
                     fullWidth
-                    size='md'
-                    color='inherit'
-                    variant='outlined'
+                    size="md"
+                    color="inherit"
+                    variant="outlined"
                     onClick={onReset}
                   >
                     Continue Shopping
@@ -84,8 +85,8 @@ export default function CheckoutOrderComplete({
 
                 <Button
                   fullWidth
-                  size='md'
-                  variant='contained'
+                  size="md"
+                  variant="contained"
                   onClick={onDownloadPDF}
                 >
                   Download as PDF

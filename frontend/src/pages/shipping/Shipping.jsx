@@ -16,7 +16,7 @@ import Payment from "../../components/payment/Payment";
 // ------------------------------------
 import { createOrder } from "../../features/order/pathAPI";
 const Shipping = () => {
-  const userInfo = useSelector((state) => state.authUser);
+  const userInfo = useSelector((state) => state.getUserProfile);
   const { user } = userInfo;
   const { shippingAddress } = user;
   const address = shippingAddress ? shippingAddress : [];
@@ -29,7 +29,7 @@ const Shipping = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [checkCash, setCheckCash] = useState("Paypal");
-
+  const [addressDefaut, setaddressDefaut] = useState({});
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,24 +52,24 @@ const Shipping = () => {
       quantity: index.quantity,
     });
   }
-  console.log(cartItems);
-  console.log(orderItems);
-  console.log(address[0]);
+  const totalItems = totalPrice;
+  const addressDf = addressDefaut ? addressDefaut : address[0];
   const handleOrder = () => {
     dispatch(
       createOrder({
         orderItems: orderItems,
         paymentMethod: checkCash,
         totalPrice: totalPrice * 0.9 + 30000,
-        itemsPrice: totalPrice,
-        shippingAddress: address[0],
+        shippingPrice: 30000,
+        itemsPrice: totalItems,
+        shippingAddress: addressDf,
         isPaid: checkCash === "Paypal" ? true : false,
       })
     );
-  };
-  useEffect(() => {
+
     localStorage.removeItem("cartItems");
-  }, []);
+  };
+
   return (
     <div className="container">
       <Section>
@@ -81,9 +81,14 @@ const Shipping = () => {
       </Section>
 
       <div className="shipping">
-        <AddressCard address={address} />
+        <AddressCard
+          address={address}
+          setaddressDefaut={(addressDefaut) => {
+            setaddressDefaut(addressDefaut);
+          }}
+        />
         <div className="shipping__info">
-          <BillAddress address={address} />
+          <BillAddress address={addressDf} />
           <div className="shipping__info__txt">
             <Payment
               setCheckCash={(checkCash) => {

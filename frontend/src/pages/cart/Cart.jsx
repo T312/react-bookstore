@@ -56,16 +56,28 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="cart__info__btn">
-                  <div className="cart__info__btn__item">
-                    <Link to="/shipping">
-                      <Button size="block">Đặt hàng</Button>
-                    </Link>
-                  </div>
-                  <div className="cart__info__btn__item">
-                    <Link to="/catalog">
-                      <Button size="block">Tiếp tục mua hàng</Button>
-                    </Link>
-                  </div>
+                  {cartItems.length === 0 ? (
+                    <>
+                      <div className="cart__info__btn__item">
+                        <Link to="/catalog">
+                          <Button size="block">Tiếp tục mua hàng</Button>
+                        </Link>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="cart__info__btn__item">
+                        <Link to="/shipping">
+                          <Button size="block">Đặt hàng</Button>
+                        </Link>
+                      </div>
+                      <div className="cart__info__btn__item">
+                        <Link to="/catalog">
+                          <Button size="block">Tiếp tục mua hàng</Button>
+                        </Link>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
               <div className="cart__list">
