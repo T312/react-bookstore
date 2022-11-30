@@ -1,12 +1,8 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-// @mui
+
 import { Divider, Typography, Stack } from "@mui/material";
-// components
-// import Iconify from '../../../../components/iconify';
-// import { DialogAnimate } from '../../../../components/animate';
-// assets
-// import { OrderCompleteIllustration } from '../../../../assets/illustrations';
+
 import Section, {
   SectionTitle,
   SectionBody,
@@ -16,6 +12,8 @@ import Button from "../../components/button/Button";
 import CheckoutStatus3 from "../../components/checkout-status/CheckoutStatus3";
 import checkcomplete from "../../assets/images/check-complete.png";
 import { useSelector } from "react-redux";
+import checkcomplete from "../../assets/images/success.png";
+import "./chekout-complete.scss";
 // ----------------------------------------------------------------------
 
 CheckoutOrderComplete.propTypes = {
@@ -46,21 +44,18 @@ export default function CheckoutOrderComplete({
                 px: { xs: 2, sm: 0 },
               }}
             >
-              <img
-                src={checkcomplete}
-                alt=""
-                style={{ height: "200px", width: "200px", marginLeft: "150px" }}
-              />
+              <img src={checkcomplete} alt='' className='checkcomplete' />
               <Typography>
-                Thanks for placing order
+                Cảm ơn đã đặt hàng!
                 <br />
                 <br />
                 <Link>01dc1370-3df6-11eb-b378-0242ac130002</Link>
                 <br />
                 <br />
-                We will send you a notification within 5 days when it ships.
-                <br /> If you have any question or queries then fell to get in
-                contact us. <br /> <br />
+                Chúng tôi sẽ gửi thông báo cho bạn trong vòng 5 ngày khi hàng
+                được giao.
+                <br /> Nếu bạn có bất kỳ câu hỏi hoặc thắc mắc nào thì hãy liên
+                hệ với chúng tôi. <br /> <br />
                 All the best,
               </Typography>
 
@@ -79,18 +74,20 @@ export default function CheckoutOrderComplete({
                     variant="outlined"
                     onClick={onReset}
                   >
-                    Continue Shopping
+                    Tiếp tục mua sắm
                   </Button>
                 </Link>
 
-                <Button
-                  fullWidth
-                  size="md"
-                  variant="contained"
-                  onClick={onDownloadPDF}
-                >
-                  Download as PDF
-                </Button>
+                <Link to='#'>
+                  <Button
+                    fullWidth
+                    size='md'
+                    variant='contained'
+                    onClick={onDownloadPDF}
+                  >
+                    Download PDF
+                  </Button>
+                </Link>
               </Stack>
             </Stack>
           </SectionBody>

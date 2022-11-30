@@ -51,7 +51,7 @@ const Cart = () => {
                     trong giỏ hàng
                   </p>
                   <div className="cart__info__txt__price">
-                    <span>Thành tiền</span>{" "}
+                    <span>Thành tiền </span>{" "}
                     <span>{numberWithCommas(Number(totalPrice))} đ</span>
                   </div>
                 </div>

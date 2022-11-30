@@ -12,7 +12,7 @@ const OrderDetails = () => {
   const OrderDes = order ? order : [];
   return (
     <div>
-      <table className="table-order">
+      <table className='table-order'>
         <thead>
           <tr>
             <th>Đơn hàng đã đặt</th>
@@ -42,14 +42,14 @@ const OrderDetails = () => {
                     {order.isPaid ? (
                       <>
                         <i
-                          class="bx bx-check-double"
+                          className='bx bx-check-double'
                           style={{ fontSize: "2rem", color: "green" }}
                         ></i>
                       </>
                     ) : (
                       <>
                         <i
-                          className="bx bx-x"
+                          className='bx bx-x'
                           style={{ fontSize: "2rem", color: "red" }}
                         ></i>
                       </>
@@ -59,21 +59,21 @@ const OrderDetails = () => {
                     {order.isDelivered ? (
                       <>
                         <i
-                          class="bx bx-check-double"
+                          className='bx bx-check-double'
                           style={{ fontSize: "2rem", color: "green" }}
                         ></i>
                       </>
                     ) : (
                       <>
                         <i
-                          className="bx bx-x"
+                          className='bx bx-x'
                           style={{ fontSize: "2rem", color: "red" }}
                         ></i>
                       </>
                     )}
                   </td>
                   <td>
-                    <Link to="/">Xem đơn hàng</Link>
+                    <Link to='/view-details'>Xem đơn hàng</Link>
                   </td>
                 </tr>
               </>

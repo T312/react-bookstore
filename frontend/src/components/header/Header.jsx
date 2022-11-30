@@ -91,17 +91,7 @@ const Header = () => {
             <div className="header__menu__left__close" onClick={menuToggle}>
               <i className="bx bx-chevron-left"></i>
             </div>
-            {/* <div className='header__menu__left__sign-up'>
-              <strong>Đăng ký</strong> (Bạn chưa đăng nhập.)
-            </div>
-            <div className='header__menu__left__btn'>
-              <span className='header__menu__left__login'>
-                <i className='bx bxs-user'></i>Đăng nhập
-              </span>
-              <span className='header__menu__left__cart'>
-                <i className='bx bx-cart-alt'></i>Giỏ hàng
-              </span>
-            </div> */}
+
             {headerNav.map((item, index) => (
               <div
                 key={index}

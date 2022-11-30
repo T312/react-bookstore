@@ -62,48 +62,47 @@ const About = () => {
           <SectionTitle>Liên hệ với chúng tôi</SectionTitle>
           <SectionBody>
             <div className='contact'>
-              <div className='contact__info'>
-                <form>
-                  <div className='contact__info__input-container'>
-                    <i className='bx bxs-user icon'></i>
-                    <input
-                      className='contact__info__input-container__input-field'
-                      type='text'
-                      placeholder='Họ và tên'
-                      name='usrnm'
-                    />
-                  </div>
+              <form className='contact__info'>
+                <div className='contact__info__input-container'>
+                  {/* <i className='bx bxs-user icon'></i> */}
+                  <input
+                    className='contact__info__input-container__input-field'
+                    type='text'
+                    placeholder='Họ và tên'
+                    name='name'
+                  />
+                </div>
 
-                  <div className='contact__info__input-container'>
-                    <i className='bx bx-envelope icon'></i>
-                    <input
-                      className='contact__info__input-container__input-field'
-                      type='text'
-                      placeholder='Email'
-                      name='email'
-                    />
-                  </div>
+                <div className='contact__info__input-container'>
+                  {/* <i className='bx bx-envelope icon'></i> */}
+                  <input
+                    className='contact__info__input-container__input-field'
+                    type='text'
+                    placeholder='Email'
+                    name='email'
+                  />
+                </div>
 
-                  <div className='contact__info__input-container'>
-                    <i className='bx bxs-edit-location icon'></i>
-                    <input
-                      className='contact__info__input-container__input-field'
-                      type='password'
-                      placeholder='Số điện thoại'
-                      name='psw'
-                    />
-                  </div>
+                <div className='contact__info__input-container'>
+                  {/* <i className='bx bxs-edit-location icon'></i> */}
+                  <input
+                    className='contact__info__input-container__input-field'
+                    type='password'
+                    placeholder='Số điện thoại'
+                    name='psw'
+                  />
+                </div>
 
-                  <div className='contact__info__btn'>
-                    <Button size='md'>Liên hệ</Button>
-                  </div>
-                </form>
-              </div>
-              <div className='contact__png'>
-                <img src={contact} alt='' />
-              </div>
+                <div className='contact__info__btn'>
+                  <Button size='md'>Liên hệ</Button>
+                </div>
+              </form>
             </div>
-            <div className=''>
+            {/* <div className='contact__png'>
+                <img src={contact} alt='' />
+              </div> */}
+
+            <div className='contact__map'>
               <img src={map} alt='' />
             </div>
           </SectionBody>

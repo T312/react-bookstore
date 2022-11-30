@@ -82,13 +82,14 @@
 }
 
 .contact {
+  margin-bottom: 50px;
+  @include mobile {
+    margin-bottom: 50px;
+  }
   @include flex(center, center);
-
   &__info {
     &__input-container {
-      display: -ms-flexbox; /* IE10 */
-      display: flex;
-      margin-bottom: 15px;
+      margin-bottom: 24px;
 
       .icon {
         background: dodgerblue;
@@ -100,22 +101,24 @@
       i {
         font-size: 2.5rem;
       }
-
-      &__input-field {
-        padding: 15px;
+      input {
+        padding: 20px;
         outline: none;
       }
     }
 
     &__btn {
       margin-right: 3px;
-      @include flex(0, center);
+      @include flex(flex-end, flex-end);
     }
   }
 
   &__png {
     img {
-      width: 100%;
+      width: 50%;
+      @include mobile {
+        display: none;
+      }
     }
   }
 }
