@@ -10,7 +10,7 @@ import Section, {
 import Helmet from "../../components/helmet/Helmet";
 import Button from "../../components/button/Button";
 import CheckoutStatus3 from "../../components/checkout-status/CheckoutStatus3";
-import checkcomplete from "../../assets/images/check-complete.png";
+
 import { useSelector } from "react-redux";
 import checkcomplete from "../../assets/images/success.png";
 import "./chekout-complete.scss";
@@ -44,7 +44,7 @@ export default function CheckoutOrderComplete({
                 px: { xs: 2, sm: 0 },
               }}
             >
-              <img src={checkcomplete} alt='' className='checkcomplete' />
+              <img src={checkcomplete} alt="" className="checkcomplete" />
               <Typography>
                 Cảm ơn đã đặt hàng!
                 <br />
@@ -78,11 +78,11 @@ export default function CheckoutOrderComplete({
                   </Button>
                 </Link>
 
-                <Link to='#'>
+                <Link to="#">
                   <Button
                     fullWidth
-                    size='md'
-                    variant='contained'
+                    size="md"
+                    variant="contained"
                     onClick={onDownloadPDF}
                   >
                     Download PDF
