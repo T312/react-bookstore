@@ -8,7 +8,8 @@
   }
 
   &__info {
-    margin-left: 50px;
+    margin-left: 25px;
+    width: 60%;
     padding: 20px;
     box-shadow: $box-shadow;
     position: sticky;
@@ -16,9 +17,7 @@
 
     @include mobile {
       width: 100%;
-      margin-right: 0;
-      margin-bottom: 30px;
-      position: unset;
+      margin: 0;
     }
 
     &__txt {

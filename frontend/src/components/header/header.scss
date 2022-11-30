@@ -60,6 +60,14 @@
       }
     }
 
+    &__item {
+      &__filter {
+        @include mobile {
+          display: block;
+        }
+      }
+    }
+
     &__item.active {
       font-weight: 600;
       color: $main-color;

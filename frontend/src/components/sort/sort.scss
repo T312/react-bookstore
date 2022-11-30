@@ -1,51 +1,42 @@
 @use "../../scss/" as *;
-.container_sort {
+
+.sort {
   height: 50px;
   margin: 10px;
   @include flex(center, center);
   // box-shadow: $box-shadow;
   background-color: white;
   border-radius: 4px;
-}
 
-.sort_by {
-  font-size: 1.25rem;
-  // font-weight: 500;
-  color: $txt-main-color !important;
-  margin: 0 10px;
-}
+  &__by {
+    font-size: 1.25rem;
+    // font-weight: 500;
+    color: $txt-main-color !important;
+    margin: 0 10px;
+  }
+  &__select {
+    width: 200px;
+    height: 35px;
 
-.select {
-  width: 200px;
-  height: 35px;
-
-  border-radius: 4px;
-  border: 1px solid rgba(209, 209, 209, 0.8);
-  outline: none;
-  cursor: pointer;
-  padding: 5px;
-  font-size: 1.25rem;
-}
-
-.arrow_btn {
-  @include flex(center, center);
-  height: 35px;
-  width: 35px;
-  outline: none;
-  border: 1px solid rgba(209, 209, 209, 0.8);
-  margin-left: 5px;
-  border-radius: 4px;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-// .up_arrow,
-// .down_arrow {
-//   font-size: 1.5rem;
-//   font-weight: bold;
-//   color: black;
-// }
-
-option {
-  margin: 1rem;
+    border-radius: 4px;
+    border: 1px solid rgba(209, 209, 209, 0.8);
+    outline: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1.25rem;
+  }
+  &__arrow-btn {
+    @include flex(center, center);
+    height: 35px;
+    width: 35px;
+    outline: none;
+    border: 1px solid rgba(209, 209, 209, 0.8);
+    margin-left: 5px;
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  option {
+    margin: 1rem;
+  }
 }
