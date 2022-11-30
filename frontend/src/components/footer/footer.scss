@@ -13,6 +13,12 @@
     p {
       margin-bottom: 2rem;
       text-align: justify;
+
+      img {
+        @include mobile {
+          margin-left: 140px;
+        }
+      }
     }
   }
 
@@ -20,9 +26,15 @@
     text-transform: uppercase;
     margin-bottom: 2rem;
     font-weight: 600;
+    @include mobile {
+      @include flex(center, center);
+    }
   }
 
   &__content {
+    @include mobile {
+      @include flex(center, center);
+    }
     p {
       margin-bottom: 1.25rem;
     }

@@ -14,11 +14,11 @@ const Sort = ({ sort, setSort }) => {
   };
 
   return (
-    <div className='container_sort'>
-      <p className='sort_by'>Sắp xếp:</p>
+    <div className='sort'>
+      <p className='sort__by'>Sắp xếp:</p>
       <select
         onChange={onSelectChange}
-        className='select'
+        className='sort__select'
         defaultValue={sort.sort}
       >
         <option value='isFeatured'>Sản phẩm mới</option>
@@ -26,7 +26,7 @@ const Sort = ({ sort, setSort }) => {
         <option value='price'>Giá sản phẩm</option>
         <option value='none'>Hủy lọc</option>
       </select>
-      <button className='arrow_btn' onClick={onArrowChange}>
+      <button className='sort__arrow-btn' onClick={onArrowChange}>
         <i className='bx bx-filter' style={{ fontSize: "28px" }}></i>
         {/* <i class='bx bx-filter'></i> */}
       </button>

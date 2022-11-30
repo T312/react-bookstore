@@ -92,7 +92,12 @@
 
   .form-profile {
     width: 60%;
+    @include mobile {
+      margin-top: 30px;
+      width: 100%;
+    }
   }
+
   .profile-tab {
     &__form {
       &__group {

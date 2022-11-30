@@ -81,7 +81,7 @@ const Catalog = () => {
             </Button>
           </div>
           <div className='catalog__content'>
-            <div className='header__menu__item header__menu__right__item'>
+            <div className='header__menu__item header__menu__right__item header__menu__item__filter'>
               <Input setSearch={(search) => setSearch(search)} />
               <Sort sort={sort} setSort={(sort) => setSort(sort)} />
             </div>

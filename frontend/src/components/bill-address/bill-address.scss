@@ -11,9 +11,11 @@
     box-shadow: rgb(145 158 171 / 16%) 0px 4px 8px 0px;
     border-radius: 16px;
     z-index: 0;
-    padding: 24px;
-
+    padding: 16px;
     margin-bottom: 24px;
+    @include tablet {
+      width: 100%;
+    }
 
     &__text {
       display: flex;

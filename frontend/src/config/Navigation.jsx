@@ -16,6 +16,7 @@ import NotFound from "../pages/404/notFound";
 import Shipping from "../pages/shipping/Shipping";
 import ShippingAddress from "../pages/shippingaddress/ShippingAddress";
 import CheckoutOrderComplete from "../pages/checkordercomplete/CheckOrderComplete";
+import ViewDetails from "../pages/viewdetails/VierwDetails";
 const Navigation = () => {
   return (
     <Routes>
@@ -32,6 +33,7 @@ const Navigation = () => {
         <Route path='/shipping' element={<Shipping />} />
         <Route path='/shipping-address' element={<ShippingAddress />} />
         <Route path='/order-complete' element={<CheckoutOrderComplete />} />
+        <Route path='/view-details' element={<ViewDetails />} />
       </Route>
       <Route path='*' element={<NotFound />} />
     </Routes>
