@@ -9,10 +9,15 @@ import Axios from "axios";
 import { getProduct, reviewProduct } from "../../features/product/pathAPI";
 
 const ProductReview = ({ open, onClose, id }) => {
+  const initState = {
+    rating: 0,
+    comment: "",
+  };
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
@@ -35,15 +40,17 @@ const ProductReview = ({ open, onClose, id }) => {
           },
         }
       );
+      setTimeout(() => {
+        dispatch(getProduct(id));
+      }, 1000);
+
       toast("Bạn đã bình luận thành công!");
+      reset(initState);
       onClose();
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    dispatch(getProduct(id));
-  }, [dispatch]);
   if (!open) {
     return null;
   }
@@ -74,11 +81,11 @@ const ProductReview = ({ open, onClose, id }) => {
             </div>
             <div className="forms">
               <div className="forms-input">
-                <label htmlFor="name">Tên của bạn</label>
+                <label htmlFor="name">Nhập đánh giá từ 1 tới 10</label>
                 <input
                   id="name"
                   type="text"
-                  placeholder="Nhập tên của bạn"
+                  placeholder="Nhập đánh giá"
                   {...register("rating", { required: true })}
                 />
               </div>

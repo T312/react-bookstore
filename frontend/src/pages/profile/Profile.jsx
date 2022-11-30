@@ -15,24 +15,25 @@ import userImage from "../../assets/images/users.png";
 import { logoutUser } from "../../features/auth/authSlide";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../../features/user/pathAPI";
-
+import { getUser } from "../../features/user/pathAPI";
 import OrderDetails from "../../components/orderdetails/OrderDetails";
 
 const Profile = () => {
   window.scrollTo(0, 0);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const userInfo = useSelector((state) => state.userDetails);
-  // localStorage.removeItem("user");
-  // localStorage.setItem("user", userInfo);
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+  const userInfo = useSelector((state) => state.getUserProfile);
   const user = JSON.parse(localStorage.getItem("user"));
   const date = new Date(user.createdAt); // formated_Date - SDK returned date
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const onSubmit = async (data) => {
     try {
       if (data.confirmPassword == "" && data.password) {

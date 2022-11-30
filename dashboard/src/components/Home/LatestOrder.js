@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/Loading";
-
+import numberWithCommas from "../../config/numberWithCommas";
 const LatestOrder = (props) => {
   const { loading, error, orders } = props;
   return (
@@ -17,13 +17,13 @@ const LatestOrder = (props) => {
         <div className="table-responsive">
           <table className="table">
             <tbody>
-              {/* {orders.slice(0, 5).map((order) => (
+              {orders.slice(orders.length - 5, orders.length).map((order) => (
                 <tr key={order._id}>
                   <td>
                     <b>{order.user.name}</b>
                   </td>
                   <td>{order.user.email}</td>
-                  <td>${order.totalPrice}</td>
+                  <td>{numberWithCommas(order.totalPrice)} đ</td>
                   <td>
                     {order.isPaid ? (
                       <span className="badge rounded-pill alert-success">
@@ -42,7 +42,7 @@ const LatestOrder = (props) => {
                     </Link>
                   </td>
                 </tr>
-              ))} */}
+              ))}
             </tbody>
           </table>
         </div>

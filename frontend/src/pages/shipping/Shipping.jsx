@@ -16,7 +16,7 @@ import Payment from "../../components/payment/Payment";
 // ------------------------------------
 import { createOrder } from "../../features/order/pathAPI";
 const Shipping = () => {
-  const userInfo = useSelector((state) => state.authUser);
+  const userInfo = useSelector((state) => state.getUserProfile);
   const { user } = userInfo;
   const { shippingAddress } = user;
   const address = shippingAddress ? shippingAddress : [];
@@ -29,7 +29,7 @@ const Shipping = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [checkCash, setCheckCash] = useState("Paypal");
-
+  const [addressDefaut, setaddressDefaut] = useState({});
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,11 +37,11 @@ const Shipping = () => {
     setTotalPrice(
       cartItems.reduce(
         (total, item) => total + Number(item.quantity) * Number(item.price),
-        0,
-      ),
+        0
+      )
     );
     setTotalProducts(
-      cartItems.reduce((total, item) => total + Number(item.quantity), 0),
+      cartItems.reduce((total, item) => total + Number(item.quantity), 0)
     );
   }, [cartItems]);
   const orderItems = [];
@@ -52,26 +52,26 @@ const Shipping = () => {
       quantity: index.quantity,
     });
   }
-  // console.log(cartItems);
-  // console.log(orderItems);
-  // console.log(address[0]);
+  const totalItems = totalPrice;
+  const addressDf = addressDefaut ? addressDefaut : address[0];
   const handleOrder = () => {
     dispatch(
       createOrder({
         orderItems: orderItems,
         paymentMethod: checkCash,
         totalPrice: totalPrice * 0.9 + 30000,
-        itemsPrice: totalPrice,
-        shippingAddress: address[0],
+        shippingPrice: 30000,
+        itemsPrice: totalItems,
+        shippingAddress: addressDf,
         isPaid: checkCash === "Paypal" ? true : false,
-      }),
+      })
     );
-  };
-  useEffect(() => {
+
     localStorage.removeItem("cartItems");
-  }, []);
+  };
+
   return (
-    <div className='container'>
+    <div className="container">
       <Section>
         <SectionTitle>---</SectionTitle>
         <SectionTitle>Thủ tục thanh toán</SectionTitle>
@@ -80,41 +80,46 @@ const Shipping = () => {
         </SectionBody>
       </Section>
 
-      <div className='shipping'>
-        <AddressCard address={address} />
-        <div className='shipping__info'>
-          <BillAddress address={address} />
-          <div className='shipping__info__txt'>
+      <div className="shipping">
+        <AddressCard
+          address={address}
+          setaddressDefaut={(addressDefaut) => {
+            setaddressDefaut(addressDefaut);
+          }}
+        />
+        <div className="shipping__info">
+          <BillAddress address={addressDf} />
+          <div className="shipping__info__txt">
             <Payment
               setCheckCash={(checkCash) => {
                 setCheckCash(checkCash);
               }}
             />
-            <div className='shipping__info__btn-edit'>
-              <h2 className='shipping__info__title'>Chi tiết hóa đơn</h2>
+            <div className="shipping__info__btn-edit">
+              <h2 className="shipping__info__title">Chi tiết hóa đơn</h2>
 
-              <Link to='/cart'>
-                <i className='bx bxs-edit-alt'></i>
+              <Link to="/cart">
+                <i className="bx bxs-edit-alt"></i>
               </Link>
             </div>
             <hr></hr>
             <p>
               Bạn đang có (<strong>{totalProducts}</strong>) sản phẩm!
             </p>
-            <div className='shipping__info__txt__price'>
+            <div className="shipping__info__txt__price">
               <span>Tổng giá sản phẩm</span>
               <span>{numberWithCommas(Number(totalPrice))} đ</span>
             </div>
-            <div className='shipping__info__txt__price'>
+            <div className="shipping__info__txt__price">
               <span>Giảm giá</span>
               <span>{numberWithCommas(Number(10))} % </span>
             </div>
-            <div className='shipping__info__txt__price'>
+            <div className="shipping__info__txt__price">
               <span>Phí ship</span>
               <span>{numberWithCommas(Number(30000))} đ</span>
             </div>
             <hr></hr>
-            <div className='shipping__info__txt__price'>
+            <div className="shipping__info__txt__price">
               <span>Thành tiền:</span>
               <span>
                 {numberWithCommas(Number(totalPrice * 0.9 + 30000))} đ
@@ -122,10 +127,10 @@ const Shipping = () => {
             </div>
           </div>
 
-          <div className='shipping__info__btn'>
-            <div className='shipping__info__btn__item'>
-              <Link to='/order-complete'>
-                <Button onClick={() => handleOrder()} size='sm'>
+          <div className="shipping__info__btn">
+            <div className="shipping__info__btn__item">
+              <Link to="/order-complete">
+                <Button onClick={() => handleOrder()} size="sm">
                   Hoàn tất thanh toán
                 </Button>
               </Link>

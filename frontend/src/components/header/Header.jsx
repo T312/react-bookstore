@@ -17,10 +17,10 @@ const headerNav = [
     display: "Sản phẩm",
     path: "/catalog",
   },
-  {
-    display: "Phụ kiện",
-    path: "/accessories",
-  },
+  // {
+  //   display: "Phụ kiện",
+  //   path: "/accessories",
+  // },
   {
     display: "Liên hệ",
     path: "/about",
@@ -67,27 +67,29 @@ const Header = () => {
 
   // update count when new cart changes
   useEffect(() => {
-    setCount(cartItemCount.length);
+    setTimeout(() => {
+      setCount(cartItemCount.length);
+    }, 500);
   }, [cartItemCount]);
   const handleClick = () => {
     dispatch(orderListOfUser());
   };
   return (
-    <div className='header' ref={headerRef}>
-      <div className='container'>
-        <div className='header__logo'>
-          <Link to='/'>
-            <img src={logo} alt='' />
+    <div className="header" ref={headerRef}>
+      <div className="container">
+        <div className="header__logo">
+          <Link to="/">
+            <img src={logo} alt="" />
           </Link>
         </div>
-        <div className='header__menu'>
-          <div className='header__menu__mobile-toggle' onClick={menuToggle}>
-            <i className='bx bx-menu'></i>
+        <div className="header__menu">
+          <div className="header__menu__mobile-toggle" onClick={menuToggle}>
+            <i className="bx bx-menu"></i>
           </div>
 
-          <div className='header__menu__left' ref={menuLeft}>
-            <div className='header__menu__left__close' onClick={menuToggle}>
-              <i className='bx bx-chevron-left'></i>
+          <div className="header__menu__left" ref={menuLeft}>
+            <div className="header__menu__left__close" onClick={menuToggle}>
+              <i className="bx bx-chevron-left"></i>
             </div>
 
             {headerNav.map((item, index) => (
@@ -104,35 +106,35 @@ const Header = () => {
               </div>
             ))}
           </div>
-          <div className='header__menu__right'>
-            <div className='header__menu__item header__menu__right__item'>
-              <Link to='/cart'>
-                <i className='bx bx-cart-alt'></i>
+          <div className="header__menu__right">
+            <div className="header__menu__item header__menu__right__item">
+              <Link to="/cart">
+                <i className="bx bx-cart-alt"></i>
               </Link>
-              <span className='badge'>{count}</span>
+              <span className="badge">{count}</span>
             </div>
             {user ? (
               <>
-                <div className='header__menu__item header__menu__right__item'>
-                  <div className='header__menu__right__item__user'>
-                    <img src={userImg} alt='' />
-                    <div className='header__menu__right__item__user-name'>
+                <div className="header__menu__item header__menu__right__item">
+                  <div className="header__menu__right__item__user">
+                    <img src={userImg} alt="" />
+                    <div className="header__menu__right__item__user-name">
                       {user.name}
                     </div>
-                    <div className='header__menu__right__item__dropdown hide'>
-                      <i className='bx bxs-down-arrow'></i>
+                    <div className="header__menu__right__item__dropdown hide">
+                      <i className="bx bxs-down-arrow"></i>
 
-                      <div className='header__menu__right__item__dropdown-list'>
-                        <div className='header__menu__right__item__dropdown-list__item'>
-                          <Link to='/profile' onClick={handleClick()}>
+                      <div className="header__menu__right__item__dropdown-list">
+                        <div className="header__menu__right__item__dropdown-list__item">
+                          <Link to="/profile" onClick={handleClick()}>
                             Tài khoản
                           </Link>
                         </div>
                         <div
                           onClick={logout}
-                          className='header__menu__right__item__dropdown-list__item'
+                          className="header__menu__right__item__dropdown-list__item"
                         >
-                          <Link to='/'>Đăng xuất</Link>
+                          <Link to="/">Đăng xuất</Link>
                         </div>
                       </div>
                     </div>
@@ -141,9 +143,9 @@ const Header = () => {
               </>
             ) : (
               <>
-                <div className='header__menu__item header__menu__right__item'>
-                  <Link to='/login'>
-                    <i className='bx bxs-user'></i>
+                <div className="header__menu__item header__menu__right__item">
+                  <Link to="/login">
+                    <i className="bx bxs-user"></i>
                   </Link>
                 </div>
               </>

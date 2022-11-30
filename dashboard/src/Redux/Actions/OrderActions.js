@@ -50,22 +50,20 @@ export const listOrders = () => async (dispatch, getState) => {
 };
 
 // ORDER DETAILS
-export const getOrderDetails = (id) => async (dispatch, getState) => {
+export const getOrderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+    const token = localStorage.getItem("accessToken");
 
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
     const { data } = await axios.get(
-      `http://localhost:1000/api/orders/${id}`,
+      `http://localhost:8000/v1/order/${id}`,
       config
     );
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
@@ -85,22 +83,19 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 };
 
 // ORDER DELIVER
-export const deliverOrder = (order) => async (dispatch, getState) => {
+export const deliverOrder = (order) => async (dispatch) => {
   try {
     dispatch({ type: ORDER_DELIVERED_REQUEST });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
+    const token = localStorage.getItem("accessToken");
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
     const { data } = await axios.put(
-      `http://localhost:1000/api/orders/${order._id}/delivered`,
+      `http://localhost:8000/v1/order/${order._id}/delivered`,
       {},
       config
     );

@@ -4,18 +4,35 @@ import Button from "../button/Button";
 import { useForm } from "react-hook-form";
 import { shippingUserCreate } from "../../features/user/pathAPI";
 import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../features/user/pathAPI";
+import { useEffect } from "react";
+
 const AddressModal = ({ open, onClose }) => {
+  const initState = {
+    address: "",
+    name: "",
+    phoneNumber: "",
+  };
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.createShippingAddress);
-  console.log(user);
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
   const onSubmit = async (data) => {
     try {
       dispatch(shippingUserCreate(data));
+      setTimeout(() => {
+        dispatch(getUser());
+      }, 1000);
+
+      onClose();
+      reset(initState);
     } catch (error) {
       console.log(error);
     }

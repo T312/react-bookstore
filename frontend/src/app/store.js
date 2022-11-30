@@ -11,6 +11,7 @@ import cartItemsReducer from "../features/cart/cartSlice";
 import authSlide from "../features/auth/authSlide";
 import listCategorySlice from "../features/category/listCategorySlide";
 import userDetailsSlice from "../features/user/userSlide";
+import getUserSlide from "../features/user/getUserSlide";
 
 import orderCreateSlice from "../features/order/orderCreateSlice";
 import listUserOrderSlide from "../features/order/listUserOrderSlide";
@@ -26,6 +27,7 @@ const rootReducer = {
   listUserOrder: listUserOrderSlide,
   reviewProduct: productReviewSlice,
   createShippingAddress: shippingUserSlide,
+  getUserProfile: getUserSlide,
 };
 
 const store = configureStore({
