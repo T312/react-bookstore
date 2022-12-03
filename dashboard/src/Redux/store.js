@@ -13,6 +13,7 @@ import {
   orderDeliveredReducer,
   orderDetailsReducer,
   orderListReducer,
+  orderListShipReducer,
 } from "./Reducers/OrderReducres";
 import {
   categoryListReducer,
@@ -34,6 +35,7 @@ const reducer = combineReducers({
   categoryList: categoryListReducer,
   createCategory: createCategoryReducer,
   deleteCategory: deleteCategoryReducer,
+  orderShipList: orderListShipReducer,
 });
 
 // login

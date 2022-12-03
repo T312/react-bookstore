@@ -11,7 +11,7 @@ import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import moment from "moment";
 import axios from "axios";
-const OrderDetailmain = (props) => {
+const OrderDetailShipMain = (props) => {
   const { orderId } = props;
   const dispatch = useDispatch();
 
@@ -26,8 +26,9 @@ const OrderDetailmain = (props) => {
     dispatch(getOrderDetails(orderId));
   }, [dispatch, orderId, successDelivered]);
 
-  const deliverHandler = () => {
-    dispatch(deliverOrder(order));
+  const PaidHandler = () => {
+    // dispatch(deliverOrder(order));
+    console.log("helooo");
   };
   const handleSave = async () => {
     const token = localStorage.getItem("accessToken");
@@ -38,7 +39,7 @@ const OrderDetailmain = (props) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:8000/v1/order/${order._id}/status`,
+      `http://localhost:8000/v1/order/${order._id}/ship`,
       status,
       config
     );
@@ -88,11 +89,9 @@ const OrderDetailmain = (props) => {
                       onChange={(e) => setStatus({ status: e.target.value })}
                     >
                       <option>Change status</option>
-                      <option value={"Chờ xác nhận"}>Chờ xác nhận</option>
-                      <option value={"Chờ lấy hàng"}>Chờ lấy hàng</option>
+
                       <option value={"Đang giao"}>Đang giao</option>
                       <option value={"Đã giao"}>Đã giao</option>
-                      <option value={"Đã hủy"}>Đã hủy</option>
                     </select>
                     <Link className="btn btn-success ms-2" to="#">
                       <i className="fas fa-print" onClick={handleSave}></i>
@@ -119,9 +118,9 @@ const OrderDetailmain = (props) => {
                 <>
                   {/* <div className="col-lg-3">
                     <div className="box shadow-sm bg-light">
-                      {order.isDelivered ? (
+                      {order.isPaid ? (
                         <button className="btn btn-success col-12">
-                          DELIVERED AT ({" "}
+                          PAID AT ({" "}
                           {moment(order.isDeliveredAt).format("MMM Do YY")})
                         </button>
                       ) : (
@@ -129,10 +128,10 @@ const OrderDetailmain = (props) => {
                           {loadingDelivered && <Loading />}
 
                           <button
-                            onClick={deliverHandler}
+                            onClick={PaidHandler}
                             className="btn btn-dark col-12"
                           >
-                            MARK AS DELIVERED
+                            MARK AS PAID
                           </button>
                         </>
                       )}
@@ -148,4 +147,4 @@ const OrderDetailmain = (props) => {
   );
 };
 
-export default OrderDetailmain;
+export default OrderDetailShipMain;

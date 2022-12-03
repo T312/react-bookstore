@@ -16,8 +16,15 @@ const Login = ({ history }) => {
   const { error, loading, userInfo } = userLogin;
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo && userInfo.isAdmin) {
       history.push("/");
+    }
+    // history.push("/ship");
+  }, [userInfo, history]);
+
+  useEffect(() => {
+    if (userInfo && userInfo.isShiper) {
+      history.push("/ship");
     }
   }, [userInfo, history]);
 
