@@ -34,13 +34,15 @@ export const login = (email, password) => async (dispatch) => {
       config
     );
     console.log(data);
-    if (!data.user.isAdmin === true) {
+    if (data.user.isAdmin === true) {
+      dispatch({ type: USER_LOGIN_SUCCESS, payload: data.user });
+    } else if (data.user.isShiper === true) {
+      dispatch({ type: USER_LOGIN_SUCCESS, payload: data.user });
+    } else {
       toast.error("You are not Admin", ToastObjects);
       dispatch({
         type: USER_LOGIN_FAIL,
       });
-    } else {
-      dispatch({ type: USER_LOGIN_SUCCESS, payload: data.user });
     }
 
     localStorage.setItem("userInfo", JSON.stringify(data.user));

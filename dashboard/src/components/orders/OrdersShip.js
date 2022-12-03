@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import numberWithCommas from "../../config/numberWithCommas";
 
-const Orders = ({ order }) => {
+const OrdersShip = ({ order }) => {
   return (
     <tr key={order._id}>
       <td>
@@ -31,16 +31,12 @@ const Orders = ({ order }) => {
       <td>{order.status}</td>
       <td>{moment(order.createdAt).calendar()}</td>
       <td className="d-flex justify-content-end align-item-center">
-        <Link to={`/order/${order._id}`} className="text-success">
+        <Link to={`/shipping/${order._id}`} className="text-success">
           <i className="fas fa-eye"></i>
         </Link>
       </td>
     </tr>
-    //       ))}
-    //     </tbody>
-    //   </table>
-    // </div>
   );
 };
 
-export default Orders;
+export default OrdersShip;

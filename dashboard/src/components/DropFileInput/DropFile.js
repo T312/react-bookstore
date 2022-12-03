@@ -20,16 +20,18 @@ const DropFile = (props) => {
   const onFileDrop = (e) => {
     const newFile = e.target.files[0];
     if (newFile) {
-      const updatedList = [...fileList, newFile];
-      setFileList(updatedList);
+      const updatedList = [...props.value, newFile];
+      // setFileList(updatedList);
+      props.setValue(updatedList);
       props.onFileChange(updatedList);
     }
   };
 
   const fileRemove = (file) => {
-    const updatedList = [...fileList];
+    const updatedList = [...props.value];
     updatedList.splice(fileList.indexOf(file), 1);
-    setFileList(updatedList);
+    // setFileList(updatedList);
+    props.setValue(updatedList);
     props.onFileChange(updatedList);
   };
 
@@ -50,10 +52,10 @@ const DropFile = (props) => {
           <input type="file" value="" onChange={onFileDrop} />
         </div>
       </div>
-      {fileList.length > 0 ? (
+      {props.value.length > 0 ? (
         <div className="drop-file-preview">
           <p className="drop-file-preview__title">Ready to upload</p>
-          {fileList.map((item, index) => (
+          {props.value.map((item, index) => (
             <div key={index} className="drop-file-preview__item">
               <img
                 src={

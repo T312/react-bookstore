@@ -1,26 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Product from "./Product";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../Redux/Actions/ProductActions";
+import { listCategory } from "../../Redux/Actions/CategoryActions";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
-
+import Axios from "axios";
 const MainProducts = () => {
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  // const productList = useSelector((state) => state.productList);
+  // const { loading, error, products } = productList;
+  const [products, setProducts] = useState([]);
   const productDelete = useSelector((state) => state.productDelete);
   const { error: errorDelete, success: successDelete } = productDelete;
-  const numberWithCommas = (num) =>
-    num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || "";
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [filterCategory, setFilterCategory] = useState("");
 
   useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const url = `http://localhost:8000/v1/product?page=${page}&search=${search}&categories=${filterCategory.toString()}`;
+        const { data } = await Axios.get(url);
+        setProducts(data.products);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProducts();
+  }, [search, page, filterCategory]);
+  useEffect(() => {
     dispatch(listProducts());
+    dispatch(listCategory(2, ""));
   }, [dispatch, successDelete]);
-  const categoryList = useSelector((state) => state.categoryList);
-  const { category } = categoryList;
+  const { category } = useSelector((state) => state.categoryList);
 
   return (
     <section className="content-main">
@@ -41,10 +56,16 @@ const MainProducts = () => {
                 type="search"
                 placeholder="Search..."
                 className="form-control p-2"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </div>
             <div className="col-lg-2 col-6 col-md-3">
-              <select className="form-select">
+              <select
+                className="form-select"
+                value={filterCategory}
+                onChange={(e) => setFilterCategory(e.target.value)}
+              >
                 <option>All category</option>
                 {category.map((item, index, key = index) => {
                   return (
@@ -58,13 +79,13 @@ const MainProducts = () => {
                 <option>Something else</option> */}
               </select>
             </div>
-            <div className="col-lg-2 col-6 col-md-3">
+            {/* <div className="col-lg-2 col-6 col-md-3">
               <select className="form-select">
                 <option>Latest added</option>
                 <option>Cheap first</option>
                 <option>Most viewed</option>
               </select>
-            </div>
+            </div> */}
           </div>
         </header>
 
@@ -211,12 +232,24 @@ const MainProducts = () => {
                 </Link>
               </li>
               <li className="page-item">
-                <Link className="page-link" to="#">
+                <Link
+                  className="page-link"
+                  to="#"
+                  onClick={() => {
+                    setPage(2);
+                  }}
+                >
                   2
                 </Link>
               </li>
               <li className="page-item">
-                <Link className="page-link" to="#">
+                <Link
+                  className="page-link"
+                  to="#"
+                  onClick={() => {
+                    setPage(3);
+                  }}
+                >
                   3
                 </Link>
               </li>

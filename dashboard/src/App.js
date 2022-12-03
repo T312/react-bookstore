@@ -14,9 +14,13 @@ import UsersScreen from "./screens/UsersScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import NotFound from "./screens/NotFound";
 import PrivateRouter from "./PrivateRouter";
+import ShipRouter from "./ShipRouter";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "./Redux/Actions/ProductActions";
 import { listOrders } from "./Redux/Actions/OrderActions";
+import HomeShipScreen from "./screens/HomeShipScreen";
+import OrderShipScreen from "./screens/OrderShipScreen";
+import OrderDetailShipScreen from "./screens/OrderDetailShipScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +51,9 @@ function App() {
             component={ProductEditScreen}
           />
           <Route path="/login" component={Login} />
+          <ShipRouter path="/ship" component={HomeShipScreen} />
+          <ShipRouter path="/order" component={OrderShipScreen} />
+          <ShipRouter path="/shipping/:id" component={OrderDetailShipScreen} />
           <PrivateRouter path="*" component={NotFound} />
         </Switch>
       </Router>

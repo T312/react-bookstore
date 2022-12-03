@@ -1,13 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Message from "../LoadingError/Error";
-import Loading from "../LoadingError/Loading";
-import Orders from "./Orders";
-import { useSelector } from "react-redux";
-
-const OrderMain = () => {
-  const orderList = useSelector((state) => state.orderList);
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { listOrdersShipper } from "../../Redux/Actions/OrderActions";
+import OrdersShip from "./OrdersShip";
+const OrderShipMain = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(listOrdersShipper());
+  }, []);
+  const orderList = useSelector((state) => state.orderShipList);
   const { loading, error, orders } = orderList;
+  console.log(orders);
   return (
     <section className="content-main">
       <div className="content-header">
@@ -27,9 +29,9 @@ const OrderMain = () => {
             <div className="col-lg-2 col-6 col-md-3">
               <select className="form-select">
                 <option>Status</option>
-                <option>Active</option>
-                <option>Disabled</option>
-                <option>Show all</option>
+                <option>Chờ lấy hàng</option>
+                <option>Đang giao</option>
+                <option>Đã giao</option>
               </select>
             </div>
             <div className="col-lg-2 col-6 col-md-3">
@@ -42,32 +44,10 @@ const OrderMain = () => {
           </div>
         </header>
         <div className="card-body">
-          {/* <div className="table-responsive">
-            {loading ? (
-              <Loading />
-            ) : error ? (
-              <Message variant="alert-danger">{error}</Message>
-            ) : (
-              <Orders orders={orders} />
-            )}
-          </div> */}
-
-          {/* Table Product */}
-
           <div className="col-lg-12 col-lg-8 table-responsive">
             <table className="table" style={{ borderCollapse: "separate" }}>
               <thead>
                 <tr>
-                  {/* <th>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                      />
-                    </div>
-                  </th> */}
-
                   <th>Customer</th>
                   <th>Email</th>
                   <th>Price</th>
@@ -75,12 +55,10 @@ const OrderMain = () => {
                   <th>Status</th>
                   <th>Creat At</th>
                   <th>Edit</th>
-                  {/* <th className="text-end">Action</th> */}
                 </tr>
               </thead>
-              {/* Table Data */}
               {orders.map((order) => (
-                <Orders order={order} key={order.id} />
+                <OrdersShip order={order} key={order.id} />
               ))}
             </table>
           </div>
@@ -92,4 +70,4 @@ const OrderMain = () => {
   );
 };
 
-export default OrderMain;
+export default OrderShipMain;

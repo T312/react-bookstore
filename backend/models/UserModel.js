@@ -51,6 +51,11 @@ const userSchema = new Schema(
       default: false,
     },
     shippingAddress: [shippingAddressSchema],
+    isShiper: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   {
     timestamps: true,

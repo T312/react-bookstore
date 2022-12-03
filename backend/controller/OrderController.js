@@ -1,7 +1,7 @@
 import Order from "../models/OrderModel.js";
 import asyncHandler from "express-async-handler";
 import OrderItem from "../models/OrderItemModel.js";
-
+import Product from "../models/ProductModel.js";
 // @route POST v1/order
 // @desc create order
 // @access private
@@ -80,6 +80,63 @@ const getAllOrderByAdmin = asyncHandler(async (req, res) => {
     });
   res.json(orders);
 });
+// @route get v1/order/ship
+// @desc admin get all order
+// @access private/admin
+const getOrderByShipper = asyncHandler(async (req, res) => {
+  const orders = await Order.find({
+    status: { $in: ["Chờ lấy hàng", "Đang giao", "Đã giao"] },
+  })
+
+    .populate("user", "id name email")
+    .populate({
+      path: "orderItems",
+      populate: { path: "product", populate: "category" },
+    });
+  res.json(orders);
+});
+// @route put v1/order/ship
+const updateStatusOrderByShip = asyncHandler(async (req, res) => {
+  try {
+    const { status } = req.body;
+    const order = await Order.findById(req.params.id)
+      .populate("orderItems")
+      .populate({
+        path: "orderItems",
+        populate: "product",
+      });
+
+    if (order) {
+      order.status = status || order.status;
+      if (status === "Đang giao") {
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+      }
+      if (status === "Đã giao") {
+        order.isPaid = true;
+      }
+      if (status === "Đã giao" && order.isPaid === true) {
+        for (let i = 0; i < order.orderItems.length; i++) {
+          const product = await Product.findById(
+            order.orderItems[i].product._id
+          );
+          product.countInStock =
+            product.countInStock - order.orderItems[i].quantity;
+          await product.save();
+        }
+      }
+      const updatedOrder = await order.save();
+      res.json(updatedOrder);
+    } else {
+      res.status(404);
+      throw new Error("Order Not Found");
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error" });
+  }
+});
 
 // @route get v1/order/myorders
 // @desc user get all order
@@ -157,6 +214,52 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
   }
 });
 
+// @route update v1/order/:id/delivered
+// @desc update is delivered
+// @access private
+const updateStatusOrder = asyncHandler(async (req, res) => {
+  try {
+    const { status } = req.body;
+    const order = await Order.findById(req.params.id)
+      .populate("orderItems")
+      .populate({
+        path: "orderItems",
+        populate: "product",
+      });
+
+    if (order) {
+      order.status = status || order.status;
+
+      if (status === "Đang giao") {
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+      }
+      if (status === "Đã giao") {
+        order.isPaid = true;
+      }
+      if (status === "Đã giao" && order.isPaid === true) {
+        for (let i = 0; i < order.orderItems.length; i++) {
+          const product = await Product.findById(
+            order.orderItems[i].product._id
+          );
+          product.countInStock =
+            product.countInStock - order.orderItems[i].quantity;
+          await product.save();
+        }
+      }
+      const updatedOrder = await order.save();
+      res.json(updatedOrder);
+    } else {
+      res.status(404);
+      throw new Error("Order Not Found");
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error" });
+  }
+});
+
 // @route DELETE v1/order/:id
 // @desc DELETE order
 // @access private/admin
@@ -209,4 +312,7 @@ export {
   deleteOrder,
   getOrderCount,
   totalSales,
+  updateStatusOrder,
+  getOrderByShipper,
+  updateStatusOrderByShip,
 };
