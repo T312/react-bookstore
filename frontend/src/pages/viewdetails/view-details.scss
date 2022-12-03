@@ -1,97 +1,143 @@
 @use "../../scss/" as *;
 
-.view-details {
-  @include flex(center, space-between);
-  background-color: rgb(88, 202, 255);
-  height: 50px;
+.details {
+  background: $main-color;
   width: 100%;
-  overflow: hidden;
-  &__customer-info {
-    &__title {
+  padding: 1rem;
+  &__info {
+    color: #fff;
+    display: block;
+    &__time {
+      margin-bottom: 1rem;
+      i {
+        font-size: 1.5rem;
+        color: #fff;
+      }
+      span {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__code {
       font-size: 1.5rem;
-      padding: 0 20px;
-      font-weight: 500;
+      span {
+        font-size: 1.5rem;
+      }
     }
   }
 }
-
-.details-info {
-  @include flex(center, space-between);
-  background-color: rgb(174, 229, 255);
-  overflow: hidden;
-  &__text {
-    padding: 10px 20px;
-    p {
-      line-height: 28px;
-      font-size: 1.25rem;
-    }
-  }
-}
-
-.order-product {
-  padding: 2rem 0;
+.items-infor-card {
   @include flex(center, flex-start);
 
-  &__image {
-    // width: 10%;
-    margin-right: 20px;
-
-    img {
-      height: 150px;
-    }
+  @include mobile {
+    display: block;
   }
+  .items-info {
+    padding: 1rem;
+    width: 100%;
 
-  &__info {
-    flex-grow: 1;
-    padding: 0 2rem;
+    @include flex(center, flex-start);
 
-    @include flex(center, space-between);
     @include mobile {
-      @include flex(flex-start, center);
-      flex-direction: column;
+      border-bottom: 1px solid #ccc;
+    }
+    &__card {
+      padding: 0 0.75rem;
 
-      & > * {
-        margin-bottom: 10px;
+      &__icon {
+        @include flex(center, center);
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        background: #a3d1fa;
+        i {
+          z-index: 1;
+          font-size: 2rem;
+          color: $main-color;
+        }
       }
     }
 
-    &__name {
-      width: 30%;
+    &__txt {
+      margin: 0 20px;
+      &__title {
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
 
-      @include mobile {
-        width: 100%;
+      &__infor {
+        font-size: 1.25rem;
+        span {
+          line-height: 24px;
+          // display: block;
+          font-size: 1.25rem;
+        }
+
+        &__name {
+          display: block;
+        }
       }
     }
-
-    &__name,
-    &__price {
-      font-size: 1.25rem;
-    }
   }
+}
 
-  .tbl-order {
-    @include mobile {
-      flex: row;
+.detail-product {
+  .order-product {
+    &__btn {
+      @include flex(flex-end, flex-end);
+      margin: 20px 0;
     }
-    &__tbl {
-      background-color: #f3f3f3;
+    &__tables {
+      border-collapse: collapse;
       width: 100%;
-      height: 100%;
-      font-size: 1.25rem;
-      padding: 10px;
 
-      &__rows {
-        line-height: 30px;
+      &__title {
+        th {
+          font-size: 1.25rem;
+          font-weight: normal;
+        }
       }
 
-      &__bd {
-        border-bottom: 1px solid #ccc;
-        padding: 0 50px;
-      }
+      &__row {
+        td {
+          font-size: 1.25rem;
+        }
 
-      &__total {
-        padding: 0 50px;
+        img {
+          height: 60px;
+          margin-right: 2rem;
+        }
       }
+      &__image {
+        @include flex(center, flex-start);
+      }
+    }
+
+    &__tables td,
+    &__tables th {
+      border: 1px solid rgb(255, 255, 255);
+      padding: 8px;
+    }
+
+    &__tables tr {
+      background-color: #b9deff;
+    }
+
+    // &__tables tr:hover {
+    //   opacity: 0.9;
+    // }
+
+    &__tables th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: $main-color;
+      color: white;
+    }
+
+    &__total {
+      margin-top: 1rem;
     }
   }
 }

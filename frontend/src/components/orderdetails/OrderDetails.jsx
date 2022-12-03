@@ -7,9 +7,10 @@ import { orderListOfUser } from "../../features/order/pathAPI";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
-  const listOrderUser = useSelector((state) => state.listUserOrder);
-  const { order } = listOrderUser;
+  const { order } = useSelector((state) => state.listUserOrder);
   const OrderDes = order ? order : [];
+
+  console.log("OrderDes:", OrderDes._id);
   return (
     <div>
       <table className='table-order'>
@@ -73,7 +74,9 @@ const OrderDetails = () => {
                     )}
                   </td>
                   <td>
-                    <Link to='/view-details'>Xem đơn hàng</Link>
+                    <Link to={`/view-details/${OrderDes._id}`}>
+                      Xem đơn hàng
+                    </Link>
                   </td>
                 </tr>
               </>
