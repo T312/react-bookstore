@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 //------------------------
 import Helmet from "../../components/helmet/Helmet";
 import Section, {
@@ -12,124 +12,150 @@ import { useSelector } from "react-redux";
 import anh from "../../assets/images/books/bachdahanh01.png";
 import numberWithCommas from "../../utils/numberWithCommas";
 import { useDispatch } from "react-redux";
-import { detailsOrder } from "../../features/order/pathAPI";
+import Button from "../../components/button/Button";
 
-const ViewDetails = ({ orderId }) => {
-  const dispatch = useDispatch();
+const ViewDetails = ({ id }) => {
+  console.log(id);
+  // const dispatch = useDispatch();
 
   return (
     <>
-      <Helmet title="View Details">
-        <div className="container">
+      <Helmet title='View Details'>
+        <div className='container'>
           <Section>
             <SectionTitle>----</SectionTitle>
             <SectionTitle>Chi tiết đơn hàng</SectionTitle>
             <SectionBody>
-              {/* Tiêu đề */}
-              <div className="view-details">
-                <div className="view-details__customer-info">
-                  <div className="view-details__customer-info__title">
-                    Khách hàng
+              <div className='details'>
+                <dic className='details__info'>
+                  <div className='details__info__time'>
+                    <i className='bx bx-calendar'></i>
+                    <span> Thứ 2, 12/12/2022, 12:30 PM</span>
                   </div>
-                </div>
-                <div className="view-details__order-info">
-                  <div className="view-details__customer-info__title">
-                    Thông tin đặt hàng
+                  <div className='details__info__code'>
+                    Mã sản phẩm: <span>1234567890</span>
                   </div>
-                </div>
-
-                <div className="view-details__deliver-info">
-                  <div className="view-details__customer-info__title">
-                    Thông tin giao hàng
-                  </div>
-                </div>
+                </dic>
               </div>
-              {/* Thông tin khách hàng */}
-              <div className="details-info">
-                <div className="details-info__text">
-                  <p>
-                    Tên người đặt hàng:{" "}
-                    <strong>
-                      Gia Long
-                      {/* {checkOrderId.user.name} */}
-                    </strong>
-                  </p>
-                  <p>
-                    Email:{" "}
-                    <strong>
-                      test@gmail.com
-                      {/* {checkOrderId.user.email} */}
-                    </strong>
-                  </p>
-                </div>
-                <div className="details-info__text">
-                  <p>
-                    Đang chuyển hàng tới: <strong>Viet Nam</strong>
-                  </p>
-                  <p>
-                    Phương thức thanh toán:{" "}
-                    <strong>
-                      {/* {checkOrderId.paymentMethod} */}
-                      By Cash
-                    </strong>
-                  </p>
-                </div>
-                <div className="details-info__text">
-                  <p>
-                    Địa chỉ:
-                    <strong>
-                      Lê Đức Thọ, GV
-                      {/* {checkOrderId.shippingAddress.address} */}
-                    </strong>
-                  </p>
-                  <p>
-                    Số điện thoại: <strong>123123</strong>
-                  </p>
-                </div>
-              </div>
-              {/* Sản phẩm đã mua */}
-              <div className="cart">
-                {/* Thông tin sản phẩm */}
-                <div className="cart__list">
-                  <div className="cart__item">
-                    <div className="cart__item__image">
-                      <img src={anh} alt="" />
+              <div className='items-infor-card'>
+                <div className='items-info'>
+                  <div className='items-info__card'>
+                    <div className='items-info__card__icon'>
+                      <i className='bx bxs-user'></i>
                     </div>
-                    <div className="cart__item__info">
-                      <div className="cart__item__info__name">
-                        <strong>Bạch dạ hành</strong>
+                  </div>
+                  <div className='items-info__txt'>
+                    <div className='items-info__txt__title'>Khách hàng</div>
+                    <div className='items-info__txt__infor'>
+                      <div className='items-info__txt__infor__name'>
+                        Hiếu Lâm
                       </div>
-                      <div className="cart__item__info__price">
-                        Giá: <span>{numberWithCommas(140000)} đ</span>
+
+                      <span>
+                        <Link to='/'>hieulam@gmail.com</Link>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className='items-info'>
+                  <div className='items-info__card'>
+                    <div className='items-info__card__icon'>
+                      <i className='bx bxs-car'></i>
+                    </div>
+                  </div>
+                  <div className='items-info__txt'>
+                    <div className='items-info__txt__title'>
+                      Thông tin đặt hàng
+                    </div>
+                    <div className='items-info__txt__infor'>
+                      <div className='items-info__txt__infor-status'>
+                        Trạng thái: <span>Đang giao hàng</span>
                       </div>
-                      <div className="cart__item__info__price">Số lượng: 1</div>
+                      Phương thức thanh toán:
+                      <span>Thanh toán khi nhận hàng</span>
+                    </div>
+                  </div>
+                </div>
+                <div className='items-info'>
+                  <div className='items-info__card'>
+                    <div className='items-info__card__icon'>
+                      <i className='bx bxs-map'></i>
+                    </div>
+                  </div>
+                  <div className='items-info__txt'>
+                    <div className='items-info__txt__title'>
+                      Thông tin giao hàng
+                    </div>
+                    <div className='items-info__txt__infor'>
+                      Địa chỉ giao hàng:{" "}
+                      <span>Hẻm 43, Đường số 6, quận Gò Vấp, TP.HCM</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="cart__info">
-                <div className="cart__info__txt">
-                  <p>
-                    Bạn đã đặt (<strong>6</strong>) sản phẩm từ của hàng
-                  </p>
+              <div className='detail-product'>
+                <div className='order-product'>
+                  <table className='order-product__tables'>
+                    <tr className='order-product__tables__title'>
+                      <th>Sản phẩm</th>
+                      <th>Đơn giá</th>
+                      <th>Số lượng</th>
+                      <th>Tổng tiền</th>
+                    </tr>
+                    <tr className='order-product__tables__row'>
+                      <td className='order-product__tables__image'>
+                        <img src={anh} alt='' />
+                        <strong> Bạch dạ hành</strong>
+                      </td>
+                      <td>140.000 đ</td>
+                      <td>2</td>
+                      <td>280.000 đ</td>
+                    </tr>
+                    <tr className='order-product__tables__row'>
+                      <td className='order-product__tables__image'>
+                        <img src={anh} alt='' />
+                        <strong> Bạch dạ hành</strong>
+                      </td>
+                      <td>140.000 đ</td>
+                      <td>2</td>
+                      <td>280.000 đ</td>
+                    </tr>
+                    <tr className='order-product__tables__row'>
+                      <td className='order-product__tables__image'>
+                        <img src={anh} alt='' />
+                        <strong> Bạch dạ hành </strong>
+                      </td>
+                      <td>140.000 đ</td>
+                      <td>2</td>
+                      <td>280.000 đ</td>
+                    </tr>
+                  </table>
+                </div>
+                <div className='order-product__total'>
+                  <div className='cart__info'>
+                    <div className='cart__info__txt'>
+                      <div className='cart__info__txt__price'>
+                        <span>Tổng giá sản phẩm:</span>
+                        <span>{numberWithCommas(Number(840000))} đ</span>
+                      </div>
+                      <div className='cart__info__txt__price'>
+                        <span>Phí giao hàng:</span>
+                        <span>{numberWithCommas(Number(20000))} đ</span>
+                      </div>
+                      <div className='cart__info__txt__price'>
+                        <span>Giảm giá</span>
+                        <span>10%</span>
+                      </div>
 
-                  <div className="cart__info__txt__price">
-                    <span>Tổng giá sản phẩm</span>
-                    <span>{numberWithCommas(Number(12))} đ</span>
+                      <div className='cart__info__txt__price'>
+                        <strong>Thành tiền:</strong>
+                        <span>{numberWithCommas(Number(774000))} đ</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="cart__info__txt__price">
-                    <span>Giảm giá</span>
-                    <span>{numberWithCommas(Number(12))} đ</span>
-                  </div>
-                  <div className="cart__info__txt__price">
-                    <span>Phí ship</span>
-                    <span>{numberWithCommas(Number(12))} đ</span>
-                  </div>
-
-                  <div className="cart__info__txt__price">
-                    <strong>Tổng tiền</strong>
-                    <span>{numberWithCommas(Number(12))} đ</span>
-                  </div>
+                </div>
+                <div className='order-product__btn'>
+                  <Button size='sm'>Hủy đơn</Button>
                 </div>
               </div>
             </SectionBody>
