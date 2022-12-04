@@ -66,6 +66,10 @@ const orderSchema = mongoose.Schema(
       type: String,
       default: "Chờ xác nhận",
     },
+    isHide: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

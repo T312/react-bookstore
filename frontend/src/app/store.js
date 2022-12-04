@@ -17,6 +17,8 @@ import orderCreateSlice from "../features/order/orderCreateSlice";
 import orderDetailSlice from "../features/order/orderDetailSlice";
 import listUserOrderSlide from "../features/order/listUserOrderSlide";
 import cancelOrderSilde from "../features/order/cancelOrderSilde";
+import hideOrderSlide from "../features/order/hideOrderSlide";
+
 const rootReducer = {
   productModal: productModalReducer,
   productList: listProductsSlice,
@@ -32,6 +34,7 @@ const rootReducer = {
   createShippingAddress: shippingUserSlide,
   getUserProfile: getUserSlide,
   cancelOrderUser: cancelOrderSilde,
+  hideOrderUser: hideOrderSlide,
 };
 
 const store = configureStore({

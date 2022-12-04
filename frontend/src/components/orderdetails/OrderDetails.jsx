@@ -27,55 +27,64 @@ const OrderDetails = () => {
             const date = new Date(order.createdAt);
             return (
               <>
-                <tr key={index}>
-                  <td>
-                    {`${date.getDate()}/${
-                      date.getMonth() + 1
-                    }/${date.getFullYear()} ${date.getHours()}:${
-                      date.getMinutes() < 10
-                        ? "0" + date.getMinutes()
-                        : date.getMinutes()
-                    }`}
-                  </td>
-                  <td>{numberWithCommas(order.totalPrice)} đ</td>
-                  <td>
-                    {order.isPaid ? (
-                      <>
-                        <i
-                          className="bx bx-check-double"
-                          style={{ fontSize: "2rem", color: "green" }}
-                        ></i>
-                      </>
-                    ) : (
-                      <>
-                        <i
-                          className="bx bx-x"
-                          style={{ fontSize: "2rem", color: "red" }}
-                        ></i>
-                      </>
-                    )}
-                  </td>
-                  <td>
-                    {order.isDelivered ? (
-                      <>
-                        <i
-                          className="bx bx-check-double"
-                          style={{ fontSize: "2rem", color: "green" }}
-                        ></i>
-                      </>
-                    ) : (
-                      <>
-                        <i
-                          className="bx bx-x"
-                          style={{ fontSize: "2rem", color: "red" }}
-                        ></i>
-                      </>
-                    )}
-                  </td>
-                  <td>
-                    <Link to={`/view-details/${order._id}`}>Xem đơn hàng</Link>
-                  </td>
-                </tr>
+                {order.isHide ? (
+                  <></>
+                ) : (
+                  <>
+                    {" "}
+                    <tr key={index}>
+                      <td>
+                        {`${date.getDate()}/${
+                          date.getMonth() + 1
+                        }/${date.getFullYear()} ${date.getHours()}:${
+                          date.getMinutes() < 10
+                            ? "0" + date.getMinutes()
+                            : date.getMinutes()
+                        }`}
+                      </td>
+                      <td>{numberWithCommas(order.totalPrice)} đ</td>
+                      <td>
+                        {order.isPaid ? (
+                          <>
+                            <i
+                              className="bx bx-check-double"
+                              style={{ fontSize: "2rem", color: "green" }}
+                            ></i>
+                          </>
+                        ) : (
+                          <>
+                            <i
+                              className="bx bx-x"
+                              style={{ fontSize: "2rem", color: "red" }}
+                            ></i>
+                          </>
+                        )}
+                      </td>
+                      <td>
+                        {order.isDelivered ? (
+                          <>
+                            <i
+                              className="bx bx-check-double"
+                              style={{ fontSize: "2rem", color: "green" }}
+                            ></i>
+                          </>
+                        ) : (
+                          <>
+                            <i
+                              className="bx bx-x"
+                              style={{ fontSize: "2rem", color: "red" }}
+                            ></i>
+                          </>
+                        )}
+                      </td>
+                      <td>
+                        <Link to={`/view-details/${order._id}`}>
+                          Xem đơn hàng
+                        </Link>
+                      </td>
+                    </tr>
+                  </>
+                )}
               </>
             );
           })}

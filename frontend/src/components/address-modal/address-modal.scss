@@ -10,6 +10,7 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.4);
   margin-top: 4.5rem;
+
   .feedback-users {
     // position: absolute;
     // visibility: hidden;
@@ -20,6 +21,7 @@
     left: 0;
     z-index: 9;
     overflow: hidden;
+    overflow-y: scroll;
     border-radius: 20px;
     background-color: #fff;
     // transform: scale(0.9);
@@ -35,6 +37,7 @@
       color: #fff;
       background-color: $main-color;
       height: 100px;
+
       .title {
         margin-top: -2rem;
         font-weight: 600;
@@ -55,19 +58,6 @@
       }
     }
     .feedback-content {
-      .rating .title {
-        font-weight: 600;
-        color: $txt-main-color;
-        font-size: 18px;
-        margin-bottom: 12px;
-      }
-      .stars {
-        font-size: 20px;
-        color: #ffcc48;
-        i {
-          font-size: 2rem;
-        }
-      }
       .forms {
         display: flex;
         flex-direction: column;
@@ -104,6 +94,28 @@
         }
         textarea {
           resize: none;
+        }
+        .forms-input-province {
+          margin-top: 10px;
+          @include flex(flex-start, space-between);
+
+          @include mobile {
+            display: block;
+          }
+        }
+
+        .listAddress {
+          max-height: 200px;
+          padding: 0 5px;
+          overflow-y: scroll;
+          li {
+            list-style-type: none;
+            text-align: left;
+            &:hover {
+              background-color: #dadada;
+              cursor: pointer;
+            }
+          }
         }
       }
 

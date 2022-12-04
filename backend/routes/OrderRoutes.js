@@ -14,6 +14,7 @@ import {
   getOrderByShipper,
   updateStatusOrderByShip,
   updateStatusOrderByUser,
+  updateHideOrderByUser,
 } from "../controller/OrderController.js";
 const orderRoute = express.Router();
 
@@ -28,6 +29,8 @@ orderRoute.get("/ship", protect, shipper, getOrderByShipper);
 orderRoute.put("/:id/ship", protect, shipper, updateStatusOrderByShip);
 
 orderRoute.put("/:id/cancel", protect, updateStatusOrderByUser);
+
+orderRoute.put("/:id/hide", protect, updateHideOrderByUser);
 
 orderRoute.get("/myorders", protect, getUserOrder);
 

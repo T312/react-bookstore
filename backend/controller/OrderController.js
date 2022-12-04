@@ -72,7 +72,6 @@ const getOrderCount = asyncHandler(async (req, res) => {
 // @access private/admin
 const getAllOrderByAdmin = asyncHandler(async (req, res) => {
   const orders = await Order.find({})
-
     .populate("user", "id name email")
     .populate({
       path: "orderItems",
@@ -150,6 +149,26 @@ const updateStatusOrderByUser = asyncHandler(async (req, res) => {
 
     if (order) {
       order.status = status || order.status;
+      const updatedOrder = await order.save();
+      res.json(updatedOrder);
+    } else {
+      res.status(404);
+      throw new Error("Order Not Found");
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error" });
+  }
+});
+
+const updateHideOrderByUser = asyncHandler(async (req, res) => {
+  try {
+    const { isHide } = req.body;
+    const order = await Order.findById(req.params.id);
+
+    if (order) {
+      order.isHide = isHide || order.isHide;
       const updatedOrder = await order.save();
       res.json(updatedOrder);
     } else {
@@ -341,4 +360,5 @@ export {
   getOrderByShipper,
   updateStatusOrderByShip,
   updateStatusOrderByUser,
+  updateHideOrderByUser,
 };
