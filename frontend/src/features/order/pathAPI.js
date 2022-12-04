@@ -38,3 +38,22 @@ export const getOrderDetail = createAsyncThunk("getOrderDetail", async (id) => {
 
   return data;
 });
+
+export const cancelOrder = createAsyncThunk("cancelOrder", async (id) => {
+  const token = localStorage.getItem("accessToken");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const status = {
+    status: "Đã hủy",
+  };
+  const { data } = await Axios.put(
+    `http://localhost:8000/v1/order/${id}/cancel`,
+    status,
+    config
+  );
+
+  return data;
+});

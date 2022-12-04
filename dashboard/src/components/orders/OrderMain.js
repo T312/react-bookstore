@@ -11,7 +11,7 @@ const OrderMain = () => {
   return (
     <section className="content-main">
       <div className="content-header">
-        <h2 className="content-title">Orders</h2>
+        <h2 className="content-title">Đơn hàng</h2>
       </div>
 
       <div className="card mb-4 shadow-sm">
@@ -20,23 +20,18 @@ const OrderMain = () => {
             <div className="col-lg-4 col-md-6 me-auto">
               <input
                 type="text"
-                placeholder="Search..."
+                placeholder="Tìm kiếm..."
                 className="form-control p-2"
               />
             </div>
             <div className="col-lg-2 col-6 col-md-3">
               <select className="form-select">
-                <option>Status</option>
-                <option>Active</option>
-                <option>Disabled</option>
-                <option>Show all</option>
-              </select>
-            </div>
-            <div className="col-lg-2 col-6 col-md-3">
-              <select className="form-select">
-                <option>Show 20</option>
-                <option>Show 30</option>
-                <option>Show 40</option>
+                <option>Trạng thái</option>
+                <option>Chờ xác nhận</option>
+                <option>Chờ lấy hàng</option>
+                <option>Đang giao</option>
+                <option>Đã giao</option>
+                <option>Đã hủy</option>
               </select>
             </div>
           </div>
@@ -68,13 +63,13 @@ const OrderMain = () => {
                     </div>
                   </th> */}
 
-                  <th>Customer</th>
+                  <th>Khách hàng</th>
                   <th>Email</th>
-                  <th>Price</th>
-                  <th>Paid</th>
-                  <th>Status</th>
-                  <th>Creat At</th>
-                  <th>Edit</th>
+                  <th>Giá</th>
+                  <th>Thanh toán</th>
+                  <th>Trạng thái</th>
+                  <th>Ngày tạo</th>
+                  <th>Chỉnh sửa</th>
                   {/* <th className="text-end">Action</th> */}
                 </tr>
               </thead>

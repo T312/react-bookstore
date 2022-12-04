@@ -7,6 +7,7 @@ INCLUDE STYLES AND COMPONENTS
 .table thead th {
   color: #adb5bd;
   font-weight: 400;
+  width: 2rem;
 }
 .table-lg td,
 .table-lg th {
@@ -570,6 +571,7 @@ a.itemside:hover .title {
   flex-grow: 1;
   margin-bottom: 0;
   text-align: right;
+  font-size: 1.2rem;
 }
 
 /* -------------------- list.row--------------------- */

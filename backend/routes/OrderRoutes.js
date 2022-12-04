@@ -13,6 +13,7 @@ import {
   updateStatusOrder,
   getOrderByShipper,
   updateStatusOrderByShip,
+  updateStatusOrderByUser,
 } from "../controller/OrderController.js";
 const orderRoute = express.Router();
 
@@ -25,6 +26,8 @@ orderRoute.get("/all", protect, admin, getAllOrderByAdmin);
 orderRoute.get("/ship", protect, shipper, getOrderByShipper);
 
 orderRoute.put("/:id/ship", protect, shipper, updateStatusOrderByShip);
+
+orderRoute.put("/:id/cancel", protect, updateStatusOrderByUser);
 
 orderRoute.get("/myorders", protect, getUserOrder);
 

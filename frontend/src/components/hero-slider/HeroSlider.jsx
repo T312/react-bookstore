@@ -86,7 +86,7 @@ const HeroSliderItem = (props) => {
               icon='bx bx-cart-alt'
               animate={true}
             >
-              xem chi tiết
+              Xem chi tiết
             </Button>
           </Link>
         </div>

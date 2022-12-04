@@ -16,17 +16,15 @@ import { useDispatch } from "react-redux";
 import Button from "../../components/button/Button";
 import { getOrderDetail } from "../../features/order/pathAPI";
 import moment from "moment";
-
+import { cancelOrder } from "../../features/order/pathAPI";
 const ViewDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getOrderDetail(id));
-    console.log("âdasdasd");
   }, [dispatch, id]);
   const orderDetail = useSelector((state) => state.orderDetail);
   const { order } = orderDetail;
-  console.log("order:", order);
   const orderCheck = order
     ? order
     : {
@@ -38,6 +36,12 @@ const ViewDetails = () => {
         paymentMethod: "",
         orderItems: [],
       };
+  const handleCancelOrder = () => {
+    dispatch(cancelOrder(id));
+    setTimeout(() => {
+      dispatch(getOrderDetail(id));
+    }, 1000);
+  };
   // const orderItems = order.orderItems ? order.orderItems : [];
   return (
     <>
@@ -190,7 +194,9 @@ const ViewDetails = () => {
                   <>
                     {" "}
                     <div className="order-product__btn">
-                      <Button size="sm">Hủy đơn</Button>
+                      <Button size="sm" onClick={handleCancelOrder}>
+                        Hủy đơn
+                      </Button>
                     </div>
                   </>
                 ) : (

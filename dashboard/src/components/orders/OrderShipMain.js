@@ -13,7 +13,7 @@ const OrderShipMain = () => {
   return (
     <section className="content-main">
       <div className="content-header">
-        <h2 className="content-title">Orders</h2>
+        <h2 className="content-title">Đơn hàng</h2>
       </div>
 
       <div className="card mb-4 shadow-sm">
@@ -22,13 +22,13 @@ const OrderShipMain = () => {
             <div className="col-lg-4 col-md-6 me-auto">
               <input
                 type="text"
-                placeholder="Search..."
+                placeholder="Tìm kiếm..."
                 className="form-control p-2"
               />
             </div>
             <div className="col-lg-2 col-6 col-md-3">
               <select className="form-select">
-                <option>Status</option>
+                <option>Trạng thái</option>
                 <option>Chờ lấy hàng</option>
                 <option>Đang giao</option>
                 <option>Đã giao</option>
@@ -36,9 +36,9 @@ const OrderShipMain = () => {
             </div>
             <div className="col-lg-2 col-6 col-md-3">
               <select className="form-select">
-                <option>Show 20</option>
-                <option>Show 30</option>
-                <option>Show 40</option>
+                <option>Hiện 20</option>
+                <option>Hiện 30</option>
+                <option>Hiện 40</option>
               </select>
             </div>
           </div>
@@ -48,13 +48,13 @@ const OrderShipMain = () => {
             <table className="table" style={{ borderCollapse: "separate" }}>
               <thead>
                 <tr>
-                  <th>Customer</th>
+                  <th>Tên Khách hàng</th>
                   <th>Email</th>
-                  <th>Price</th>
-                  <th>Paid</th>
-                  <th>Status</th>
-                  <th>Creat At</th>
-                  <th>Edit</th>
+                  <th>Giá</th>
+                  <th>Thanh toán</th>
+                  <th>Trạng thái</th>
+                  <th>Ngày tạo</th>
+                  <th>Chỉnh sửa</th>
                 </tr>
               </thead>
               {orders.map((order) => (

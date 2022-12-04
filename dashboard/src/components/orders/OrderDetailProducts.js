@@ -20,11 +20,11 @@ const OrderDetailProducts = (props) => {
     <table className='table border table-lg'>
       <thead>
         <tr>
-          <th style={{ width: "60%" }}>Product</th>
-          <th style={{ width: "20%" }}>Unit Price</th>
-          <th style={{ width: "20%" }}>Quantity</th>
+          <th style={{ width: "60%" }}>Sản phẩm</th>
+          <th style={{ width: "20%" }}>Giá</th>
+          <th style={{ width: "20%" }}>Số lượng</th>
           <th style={{ width: "20%" }} className='text-end'>
-            Total
+            Tổng tiền
           </th>
         </tr>
       </thead>
@@ -57,32 +57,32 @@ const OrderDetailProducts = (props) => {
           <td colSpan='4'>
             <article className='float-end'>
               <dl className='dlist'>
-                <dt>Subtotal:</dt> <dd>{numberWithCommas(order.itemsPrice)}</dd>
+                <dt>Tổng giả sản phẩm:</dt> <dd>{numberWithCommas(order.itemsPrice)}</dd>
               </dl>
               <dl className='dlist'>
-                <dt>Shipping cost:</dt>{" "}
+                <dt>Chi phí giao hàng:</dt>{" "}
                 <dd>{numberWithCommas(order.shippingPrice)}</dd>
               </dl>
               <dl className='dlist'>
-                <dt>Sales cost:</dt>{" "}
+                <dt>Khuyến mãi:</dt>{" "}
                 <dd>{numberWithCommas(order.itemsPrice * 0.1)}</dd>
               </dl>
               <dl className='dlist'>
-                <dt>Grand total:</dt>
+                <dt>Thành tiền:</dt>
                 <dd>
                   <b className='h5'>{numberWithCommas(order.totalPrice)}</b>
                 </dd>
               </dl>
               <dl className='dlist'>
-                <dt className='text-muted'>Status:</dt>
+                <dt className='text-muted'>Trạng thái:</dt>
                 <dd>
                   {order.isPaid ? (
                     <span className='badge rounded-pill alert alert-success text-success'>
-                      Payment done
+                      Đã thanh toán
                     </span>
                   ) : (
                     <span className='badge rounded-pill alert alert-danger text-danger'>
-                      Not Paid
+                      Chưa thanh toán
                     </span>
                   )}
                 </dd>

@@ -38,9 +38,9 @@ const CategoriesTable = ({ parentCallback }) => {
               </div>
             </th>
             <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th className="text-end">Action</th>
+            <th>Tên sản phẩm</th>
+            <th>Mô tả</th>
+            <th className="text-end">Trạng thái</th>
           </tr>
         </thead>
         <tbody>
