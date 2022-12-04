@@ -31,7 +31,7 @@ export const login = (email, password) => async (dispatch) => {
     const { data } = await axios.post(
       `http://localhost:8000/v1/auth/login`,
       { email, password },
-      config
+      config,
     );
     console.log(data);
     if (data.user.isAdmin === true) {
@@ -86,7 +86,7 @@ export const listUser = (limitUser, search) => async (dispatch) => {
 
     const { data } = await axios.get(
       `http://localhost:8000/v1/user?limit=${limitUser.limit}&search=${search}`,
-      config
+      config,
     );
     console.log(data);
     dispatch({ type: USER_LIST_SUCCESS, payload: data.users });
