@@ -138,6 +138,31 @@ const updateStatusOrderByShip = asyncHandler(async (req, res) => {
   }
 });
 
+const updateStatusOrderByUser = asyncHandler(async (req, res) => {
+  try {
+    const { status } = req.body;
+    const order = await Order.findById(req.params.id)
+      .populate("orderItems")
+      .populate({
+        path: "orderItems",
+        populate: "product",
+      });
+
+    if (order) {
+      order.status = status || order.status;
+      const updatedOrder = await order.save();
+      res.json(updatedOrder);
+    } else {
+      res.status(404);
+      throw new Error("Order Not Found");
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error" });
+  }
+});
+
 // @route get v1/order/myorders
 // @desc user get all order
 // @access private
@@ -315,4 +340,5 @@ export {
   updateStatusOrder,
   getOrderByShipper,
   updateStatusOrderByShip,
+  updateStatusOrderByUser,
 };

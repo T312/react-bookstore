@@ -35,6 +35,17 @@ const LatestOrder = (props) => {
                       </span>
                     )}
                   </td>
+                  <td>
+                    {order.status !== "Đã hủy" ? (
+                      <span className="badge rounded-pill alert-success">
+                        {order.status}
+                      </span>
+                    ) : (
+                      <span className="badge rounded-pill alert-danger">
+                        {order.status}
+                      </span>
+                    )}
+                  </td>
                   <td>{moment(order.createdAt).calendar()}</td>
                   <td className="d-flex justify-content-end align-item-center">
                     <Link to={`/order/${order._id}`} className="text-success">
