@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 //------------------------
 import Helmet from "../../components/helmet/Helmet";
@@ -10,16 +10,17 @@ import Section, {
 //-------------------------
 import "./view-details.scss";
 import { useSelector } from "react-redux";
-import anh from "../../assets/images/books/bachdahanh01.png";
 import numberWithCommas from "../../utils/numberWithCommas";
 import { useDispatch } from "react-redux";
 import Button from "../../components/button/Button";
 import { getOrderDetail } from "../../features/order/pathAPI";
 import moment from "moment";
 import { cancelOrder } from "../../features/order/pathAPI";
+import { hideOrder } from "../../features/order/pathAPI";
 const ViewDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getOrderDetail(id));
   }, [dispatch, id]);
@@ -41,6 +42,13 @@ const ViewDetails = () => {
     setTimeout(() => {
       dispatch(getOrderDetail(id));
     }, 1000);
+  };
+
+  const handleHideOrder = () => {
+    dispatch(hideOrder(id));
+    setTimeout(() => {
+      navigate("/profile");
+    }, 500);
   };
   // const orderItems = order.orderItems ? order.orderItems : [];
   return (
@@ -196,6 +204,24 @@ const ViewDetails = () => {
                     <div className="order-product__btn">
                       <Button size="sm" onClick={handleCancelOrder}>
                         Hủy đơn
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* <div className="order-product__btn">
+                      <Button size="sm" onClick={handleHideOrder}>
+                        Xóa đơn
+                      </Button>
+                    </div> */}
+                  </>
+                )}
+                {orderCheck.status === "Đã giao" ||
+                orderCheck.status === "Đã hủy" ? (
+                  <>
+                    <div className="order-product__btn">
+                      <Button size="sm" onClick={handleHideOrder}>
+                        Xóa đơn
                       </Button>
                     </div>
                   </>

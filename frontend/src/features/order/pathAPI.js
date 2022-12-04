@@ -57,3 +57,22 @@ export const cancelOrder = createAsyncThunk("cancelOrder", async (id) => {
 
   return data;
 });
+
+export const hideOrder = createAsyncThunk("cancelOrder", async (id) => {
+  const token = localStorage.getItem("accessToken");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const isHide = {
+    isHide: true,
+  };
+  const { data } = await Axios.put(
+    `http://localhost:8000/v1/order/${id}/hide`,
+    isHide,
+    config
+  );
+
+  return data;
+});
