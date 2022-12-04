@@ -4,44 +4,53 @@ import ReactPaginate from "react-paginate";
 import Product from "./Product";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../Redux/Actions/ProductActions";
+import { listCategory } from "../../Redux/Actions/CategoryActions";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
+import Pagination from "../paginate/Pagination";
 import Axios from "axios";
 const MainProducts = () => {
   const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+
+  // const productList = useSelector((state) => state.productList);
+  // const { loading, error, products } = productList;
+  // ---------------- Pagination-----------------
   const productDelete = useSelector((state) => state.productDelete);
   const { error: errorDelete, success: successDelete } = productDelete;
-  const numberWithCommas = (num) =>
-    num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || "";
-
-  useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch, successDelete]);
-  const categoryList = useSelector((state) => state.categoryList);
-  const { category } = categoryList;
-  //---------------------Pagination---------------------------------
+  //-----------------------------------------
+  const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const [items, setItems] = useState([]);
+
   const [obj, setObj] = useState({});
+  const [filterCategory, setFilterCategory] = useState("");
+
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const url = `http://localhost:8000/v1/product?page=${page}`;
+        const url = `http://localhost:8000/v1/product?page=${page}&search=${search}&categories=${filterCategory.toString()}`;
         const { data } = await Axios.get(url);
+        console.log("Pagination:", data.products);
         setObj(data);
-        setItems(data.products);
+        setProducts(data.products);
       } catch (err) {
         console.log(err);
       }
     };
     getProducts();
-  }, [page]);
-  const handlePageClick = () => {
-    console.log("aa");
-  };
-  //---------------------End Pagination---------------------------------
+  }, [search, page, filterCategory]);
+
+  // const handlePageClick = (nextPage) => {
+  //   // console.log("handlePageClick:", data.selected);
+  //   setPage(nextPage + 1);
+  // };
+
+  // ----------------End Pagination-----------------
+  useEffect(() => {
+    dispatch(listProducts());
+    dispatch(listCategory(2, ""));
+  }, [dispatch, successDelete]);
+  const { category } = useSelector((state) => state.categoryList);
 
   return (
     <section className='content-main'>
@@ -62,10 +71,16 @@ const MainProducts = () => {
                 type='search'
                 placeholder='Search...'
                 className='form-control p-2'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </div>
             <div className='col-lg-2 col-6 col-md-3'>
-              <select className='form-select'>
+              <select
+                className='form-select'
+                value={filterCategory}
+                onChange={(e) => setFilterCategory(e.target.value)}
+              >
                 <option>All category</option>
                 {category.map((item, index, key = index) => {
                   return (
@@ -79,13 +94,13 @@ const MainProducts = () => {
                 <option>Something else</option> */}
               </select>
             </div>
-            <div className='col-lg-2 col-6 col-md-3'>
-              <select className='form-select'>
+            {/* <div className="col-lg-2 col-6 col-md-3">
+              <select className="form-select">
                 <option>Latest added</option>
                 <option>Cheap first</option>
                 <option>Most viewed</option>
               </select>
-            </div>
+            </div> */}
           </div>
         </header>
 
@@ -233,12 +248,24 @@ const MainProducts = () => {
                 </Link>
               </li>
               <li className="page-item">
-                <Link className="page-link" to="#">
+                <Link
+                  className="page-link"
+                  to="#"
+                  onClick={() => {
+                    setPage(2);
+                  }}
+                >
                   2
                 </Link>
               </li>
               <li className="page-item">
-                <Link className="page-link" to="#">
+                <Link
+                  className="page-link"
+                  to="#"
+                  onClick={() => {
+                    setPage(3);
+                  }}
+                >
                   3
                 </Link>
               </li>
@@ -249,24 +276,11 @@ const MainProducts = () => {
               </li>
             </ul>
           </nav> */}
-          <ReactPaginate
-            previousLabel={"<< Previous"}
-            breakLabel={"..."}
-            nextLabel={"Next >>"}
-            pageCount={5}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={3}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination justify-content-center"}
-            pageClassName={"page-item"}
-            pageLinkClassName={"page-link"}
-            previousClassName={"page-item"}
-            previousLinkClassName={"page-link"}
-            nextClassName={"page-item"}
-            nextLinkClassName={"page-link"}
-            breakClassName={"page-item"}
-            breakLinkClassName={"page-link"}
-            activeClassName={"active"}
+          <Pagination
+            page={page}
+            limit={obj.page ? obj.page : 0}
+            total={obj.pages ? obj.pages : 0}
+            setPage={(page) => setPage(page)}
           />
         </div>
       </div>

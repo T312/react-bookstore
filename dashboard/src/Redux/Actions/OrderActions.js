@@ -8,6 +8,9 @@ import {
   ORDER_LIST_FAIL,
   ORDER_LIST_REQUEST,
   ORDER_LIST_SUCCESS,
+  ORDER_LIST_SHIP_SUCCESS,
+  ORDER_LIST_SHIP_REQUEST,
+  ORDER_LIST_SHIP_FAIL,
 } from "../Constants/OrderConstants";
 import { logout } from "./userActions";
 import axios from "axios";
@@ -44,6 +47,35 @@ export const listOrders = () => async (dispatch, getState) => {
     }
     dispatch({
       type: ORDER_LIST_FAIL,
+      payload: message,
+    });
+  }
+};
+export const listOrdersShipper = () => async (dispatch) => {
+  try {
+    dispatch({ type: ORDER_LIST_SHIP_REQUEST });
+    const token = localStorage.getItem("accessToken");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const { data } = await axios.get(
+      `http://localhost:8000/v1/order/ship`,
+      config
+    );
+    console.log(data);
+    dispatch({ type: ORDER_LIST_SHIP_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: ORDER_LIST_SHIP_FAIL,
       payload: message,
     });
   }

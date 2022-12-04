@@ -17,12 +17,22 @@ const ToastObjects = {
   pauseOnHover: false,
   autoClose: 2000,
 };
+const initState = {
+  name: "",
+  description: "",
+  category: "",
+  price: "",
+  countInStock: "",
+  author: "",
+  publisher: "",
+};
 
 const AddProductMain = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -39,8 +49,11 @@ const AddProductMain = () => {
       form.append("author", data.author);
       form.append("publisher", data.publisher);
 
-      console.log(form);
+      console.log(data.category);
       dispatch(createProduct(form));
+      reset(initState);
+      toast("Đăng bài thành công");
+      setFiles([]);
     } catch (error) {
       console.log(error);
     }
@@ -101,6 +114,8 @@ const AddProductMain = () => {
                   <div className="mb-4">
                     <DropFileInput
                       onFileChange={(files) => onFileChange(files)}
+                      value={files}
+                      setValue={setFiles}
                       // {...register("files", { required: true })}
                     />
                     {/* <input
@@ -118,13 +133,13 @@ const AddProductMain = () => {
                 </label>
                 <select
                   className="form-select"
-                  // {...register("category", { required: true })}
+                  {...register("category", { required: true })}
                 >
                   {category.map((cate) => {
                     return (
                       <option
                         value={cate.id}
-                        {...register("category", { required: true })}
+                        // {...register("category", { required: true })}
                       >
                         {cate.name}
                       </option>

@@ -62,6 +62,10 @@ const orderSchema = mongoose.Schema(
     deliveredAt: {
       type: Date,
     },
+    status: {
+      type: String,
+      default: "Chờ xác nhận",
+    },
   },
   {
     timestamps: true,

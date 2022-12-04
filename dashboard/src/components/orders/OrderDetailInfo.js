@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const OrderDetailInfo = (props) => {
   const { order } = props;
+
   return (
     <div className="row mb-5 order-info-wrap">
       <div className="col-md-6 col-lg-4">
@@ -26,7 +27,7 @@ const OrderDetailInfo = (props) => {
           <div className="text">
             <h6 className="mb-1">Order info</h6>
             <p className="mb-1">
-              Status: Đang giao <br /> Pay method: {order.paymentMethod}
+              Status: {order.status} <br /> Pay method: {order.paymentMethod}
             </p>
           </div>
         </article>

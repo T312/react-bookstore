@@ -9,6 +9,9 @@ import {
   ORDER_LIST_FAIL,
   ORDER_LIST_REQUEST,
   ORDER_LIST_SUCCESS,
+  ORDER_LIST_SHIP_REQUEST,
+  ORDER_LIST_SHIP_FAIL,
+  ORDER_LIST_SHIP_SUCCESS,
 } from "../Constants/OrderConstants";
 
 export const orderListReducer = (state = { orders: [] }, action) => {
@@ -23,7 +26,18 @@ export const orderListReducer = (state = { orders: [] }, action) => {
       return state;
   }
 };
-
+export const orderListShipReducer = (state = { orders: [] }, action) => {
+  switch (action.type) {
+    case ORDER_LIST_SHIP_REQUEST:
+      return { loading: true, orders: [] };
+    case ORDER_LIST_SHIP_SUCCESS:
+      return { loading: false, orders: action.payload };
+    case ORDER_LIST_SHIP_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
 // ORDER DETAILS
 export const orderDetailsReducer = (
   state = { loading: true, orderItems: [], shippingAddress: {} },
