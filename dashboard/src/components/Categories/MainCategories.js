@@ -9,7 +9,7 @@ const MainCategories = () => {
   return (
     <section className="content-main">
       <div className="content-header">
-        <h2 className="content-title">Categories</h2>
+        <h2 className="content-title">Thể loại</h2>
       </div>
 
       <div className="card shadow-sm">
@@ -20,23 +20,16 @@ const MainCategories = () => {
                 <div className="col-lg-4 col-md-6 me-auto ">
                   <input
                     type="search"
-                    placeholder="Search..."
+                    placeholder="Tìm kiếm..."
                     className="form-control p-2"
                   />
                 </div>
+                
                 <div className="col-lg-2 col-6 col-md-3">
                   <select className="form-select">
-                    <option>All category</option>
-                    <option>Electronics</option>
-                    <option>Clothings</option>
-                    <option>Something else</option>
-                  </select>
-                </div>
-                <div className="col-lg-2 col-6 col-md-3">
-                  <select className="form-select">
-                    <option>Latest added</option>
-                    <option>Cheap first</option>
-                    <option>Most viewed</option>
+                    <option>Chọn</option>
+                    <option>Giá thấp đến cao</option>
+                    <option>Nhiều lượt xem</option>
                   </select>
                 </div>
               </div>

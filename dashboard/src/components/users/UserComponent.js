@@ -23,10 +23,10 @@ const UserComponent = () => {
   return (
     <section className="content-main">
       <div className="content-header">
-        <h2 className="content-title">Customers</h2>
+        <h2 className="content-title">Khách hàng</h2>
         <div>
           <Link to="#" className="btn btn-primary">
-            <i className="material-icons md-plus"></i> Create new
+            <i className="material-icons md-plus"></i> Tạo mới
           </Link>
         </div>
       </div>
@@ -37,7 +37,7 @@ const UserComponent = () => {
             <div className="col-lg-4 col-md-6 me-auto">
               <input
                 type="text"
-                placeholder="Search..."
+                placeholder="Tìm kiếm..."
                 className="form-control"
                 onChange={({ currentTarget: input }) => setSearch(input.value)}
               />
@@ -48,17 +48,10 @@ const UserComponent = () => {
                 onChange={onSelectChange}
                 defaultValue={limitUser}
               >
-                <option>Show all</option>
-                <option value="10">Show 10</option>
-                <option value="20">Show 20</option>
-                <option value="30">Show 30</option>
-              </select>
-            </div>
-            <div className="col-lg-2 col-6 col-md-3">
-              <select className="form-select">
-                <option>Status: all</option>
-                <option>Active only</option>
-                <option>Disabled</option>
+                <option>Tất cả</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
               </select>
             </div>
           </div>
@@ -88,7 +81,7 @@ const UserComponent = () => {
                         {user.isAdmin === true ? (
                           <p className="m-0">Admin</p>
                         ) : (
-                          <p className="m-0">Customer</p>
+                          <p className="m-0">Khách hàng</p>
                         )}
 
                         <p>
@@ -107,7 +100,7 @@ const UserComponent = () => {
             <ul className="pagination">
               <li className="page-item disabled">
                 <Link className="page-link" to="#">
-                  Previous
+                  Trước
                 </Link>
               </li>
               <li className="page-item active">
@@ -117,7 +110,7 @@ const UserComponent = () => {
               </li>
               <li className="page-item">
                 <Link className="page-link" to="#">
-                  Next
+                  Kế tiếp
                 </Link>
               </li>
             </ul>

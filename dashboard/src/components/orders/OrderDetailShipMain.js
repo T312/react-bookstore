@@ -52,7 +52,7 @@ const OrderDetailShipMain = (props) => {
     <section className='content-main'>
       <div className='content-header'>
         <Link to='/orders' className='btn btn-dark text-white'>
-          Back To Orders
+          Quay lại
         </Link>
       </div>
 
@@ -73,7 +73,7 @@ const OrderDetailShipMain = (props) => {
                 </span>
                 <br />
                 <small className='text-white mx-3 '>
-                  Order ID: {order._id}
+                  ID đơn hàng: {order._id}
                 </small>
               </div>
               {order.status === "Đã giao" || order.status === "Đã hủy" ? (
@@ -88,7 +88,7 @@ const OrderDetailShipMain = (props) => {
                       // value={status}
                       onChange={(e) => setStatus({ status: e.target.value })}
                     >
-                      <option>Change status</option>
+                      <option>Thay đổi trạng thái</option>
 
                       <option value={"Đang giao"}>Đang giao</option>
                       <option value={"Đã giao"}>Đã giao</option>

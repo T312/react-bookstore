@@ -17,14 +17,14 @@ const OrdersShip = ({ order }) => {
             className="badge rounded-pill alert-success"
             style={{ backgroundColor: "#d1e7dd" }}
           >
-            Paid At {moment(order.paidAt).format("MMM Do YY")}
+            Đã thanh toán {moment(order.paidAt).format("MMM Do YY")}
           </span>
         ) : (
           <span
             className="badge rounded-pill alert-danger"
             style={{ backgroundColor: "#f8d7da" }}
           >
-            Not Paid
+            Chưa thanh toán
           </span>
         )}
       </td>
