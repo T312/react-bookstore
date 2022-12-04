@@ -55,10 +55,10 @@ const MainProducts = () => {
   return (
     <section className='content-main'>
       <div className='content-header'>
-        <h2 className='content-title'>Products</h2>
+        <h2 className='content-title'>Sản phẩm</h2>
         <div>
           <Link to='/addproduct' className='btn btn-primary'>
-            Create new
+            Tạo mới
           </Link>
         </div>
       </div>
@@ -69,7 +69,7 @@ const MainProducts = () => {
             <div className='col-lg-4 col-md-6 me-auto '>
               <input
                 type='search'
-                placeholder='Search...'
+                placeholder='Tìm kiếm...'
                 className='form-control p-2'
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -81,7 +81,7 @@ const MainProducts = () => {
                 value={filterCategory}
                 onChange={(e) => setFilterCategory(e.target.value)}
               >
-                <option>All category</option>
+                <option>Tất cả</option>
                 {category.map((item, index, key = index) => {
                   return (
                     <>
@@ -136,13 +136,13 @@ const MainProducts = () => {
                     </div>
                   </th>
                   {/* <th>ID</th> */}
-                  <th>Image</th>
-                  <th>Product Name</th>
-                  <th>Create At</th>
-                  <th>Category</th>
-                  <th>Price</th>
-                  <th>Count</th>
-                  <th className='text-end'>Action</th>
+                  <th>Ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Ngày đăng</th>
+                  <th>Thể loại</th>
+                  <th>Giá</th>
+                  <th>Số lượng</th>
+                  <th className='text-end'>Trạng thái</th>
                 </tr>
               </thead>
               {/* Table Data */}
