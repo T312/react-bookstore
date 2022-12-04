@@ -14,6 +14,7 @@ import userDetailsSlice from "../features/user/userSlide";
 import getUserSlide from "../features/user/getUserSlide";
 
 import orderCreateSlice from "../features/order/orderCreateSlice";
+import orderDetailSlice from "../features/order/orderDetailSlice";
 import listUserOrderSlide from "../features/order/listUserOrderSlide";
 const rootReducer = {
   productModal: productModalReducer,
@@ -24,6 +25,7 @@ const rootReducer = {
   categoryList: listCategorySlice,
   userDetails: userDetailsSlice,
   orderCreate: orderCreateSlice,
+  orderDetail: orderDetailSlice,
   listUserOrder: listUserOrderSlide,
   reviewProduct: productReviewSlice,
   createShippingAddress: shippingUserSlide,
