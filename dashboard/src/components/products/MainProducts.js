@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 import Product from "./Product";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../Redux/Actions/ProductActions";
 import { listCategory } from "../../Redux/Actions/CategoryActions";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
+import Pagination from "../paginate/Pagination";
 import Axios from "axios";
 const MainProducts = () => {
   const dispatch = useDispatch();
 
   // const productList = useSelector((state) => state.productList);
   // const { loading, error, products } = productList;
-  const [products, setProducts] = useState([]);
+  // ---------------- Pagination-----------------
   const productDelete = useSelector((state) => state.productDelete);
   const { error: errorDelete, success: successDelete } = productDelete;
+  //-----------------------------------------
+  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+
+  const [obj, setObj] = useState({});
   const [filterCategory, setFilterCategory] = useState("");
 
   useEffect(() => {
@@ -24,6 +30,8 @@ const MainProducts = () => {
       try {
         const url = `http://localhost:8000/v1/product?page=${page}&search=${search}&categories=${filterCategory.toString()}`;
         const { data } = await Axios.get(url);
+        console.log("Pagination:", data.products);
+        setObj(data);
         setProducts(data.products);
       } catch (err) {
         console.log(err);
@@ -31,6 +39,13 @@ const MainProducts = () => {
     };
     getProducts();
   }, [search, page, filterCategory]);
+
+  // const handlePageClick = (nextPage) => {
+  //   // console.log("handlePageClick:", data.selected);
+  //   setPage(nextPage + 1);
+  // };
+
+  // ----------------End Pagination-----------------
   useEffect(() => {
     dispatch(listProducts());
     dispatch(listCategory(2, ""));
@@ -38,31 +53,31 @@ const MainProducts = () => {
   const { category } = useSelector((state) => state.categoryList);
 
   return (
-    <section className="content-main">
-      <div className="content-header">
-        <h2 className="content-title">Products</h2>
+    <section className='content-main'>
+      <div className='content-header'>
+        <h2 className='content-title'>Products</h2>
         <div>
-          <Link to="/addproduct" className="btn btn-primary">
+          <Link to='/addproduct' className='btn btn-primary'>
             Create new
           </Link>
         </div>
       </div>
 
-      <div className="card mb-4 shadow-sm">
-        <header className="card-header bg-white ">
-          <div className="row gx-3 py-3">
-            <div className="col-lg-4 col-md-6 me-auto ">
+      <div className='card mb-4 shadow-sm'>
+        <header className='card-header bg-white '>
+          <div className='row gx-3 py-3'>
+            <div className='col-lg-4 col-md-6 me-auto '>
               <input
-                type="search"
-                placeholder="Search..."
-                className="form-control p-2"
+                type='search'
+                placeholder='Search...'
+                className='form-control p-2'
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-            <div className="col-lg-2 col-6 col-md-3">
+            <div className='col-lg-2 col-6 col-md-3'>
               <select
-                className="form-select"
+                className='form-select'
                 value={filterCategory}
                 onChange={(e) => setFilterCategory(e.target.value)}
               >
@@ -89,7 +104,7 @@ const MainProducts = () => {
           </div>
         </header>
 
-        <div className="card-body">
+        <div className='card-body'>
           {/* {errorDelete && (
             <Message variant="alert-danger">{errorDelete}</Message>
           )}
@@ -107,16 +122,16 @@ const MainProducts = () => {
           )} */}
 
           {/* Table Product */}
-          <div className="col-lg-12 col-lg-8">
-            <table className="table" style={{ borderCollapse: "separate" }}>
+          <div className='col-lg-12 col-lg-8'>
+            <table className='table' style={{ borderCollapse: "separate" }}>
               <thead>
                 <tr>
                   <th>
-                    <div className="form-check">
+                    <div className='form-check'>
                       <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
+                        className='form-check-input'
+                        type='checkbox'
+                        value=''
                       />
                     </div>
                   </th>
@@ -127,7 +142,7 @@ const MainProducts = () => {
                   <th>Category</th>
                   <th>Price</th>
                   <th>Count</th>
-                  <th className="text-end">Action</th>
+                  <th className='text-end'>Action</th>
                 </tr>
               </thead>
               {/* Table Data */}
@@ -219,7 +234,8 @@ const MainProducts = () => {
 
           {/* End Table Product */}
 
-          <nav className="float-end mt-4" aria-label="Page navigation">
+          {/* Pagination */}
+          {/* <nav className="float-end mt-4" aria-label="Page navigation">
             <ul className="pagination">
               <li className="page-item disabled">
                 <Link className="page-link" to="#">
@@ -259,7 +275,13 @@ const MainProducts = () => {
                 </Link>
               </li>
             </ul>
-          </nav>
+          </nav> */}
+          <Pagination
+            page={page}
+            limit={obj.page ? obj.page : 0}
+            total={obj.pages ? obj.pages : 0}
+            setPage={(page) => setPage(page)}
+          />
         </div>
       </div>
     </section>
