@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import numberWithCommas from "../../utils/numberWithCommas.js";
 import "./profile.scss";
 import { orderListOfUser } from "../../features/order/pathAPI";
-
+import { toast } from "react-toastify";
 import userImage from "../../assets/images/users.png";
 import { logoutUser } from "../../features/auth/authSlide";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,13 +37,13 @@ const Profile = () => {
   const onSubmit = async (data) => {
     try {
       if (data.confirmPassword == "" && data.password) {
-        alert("Mật khẩu chưa hợp lệ");
+        toast.error("Mật khẩu chưa hợp lệ");
         return;
       } else if (
         data.confirmPassword &&
         data.password !== data.confirmPassword
       ) {
-        alert("Xác thực mật khẩu chưa hợp lệ");
+        toast.error("Nhập lại mật khẩu chưa đúng!");
         return;
       } else if (data.confirmPassword == "" && data.password == "") {
         delete data.confirmPassword;
@@ -62,27 +62,27 @@ const Profile = () => {
   };
 
   return (
-    <Helmet title="Profile">
-      <div className="container">
+    <Helmet title='Profile'>
+      <div className='container'>
         <Section>
           <SectionTitle>---</SectionTitle>
           <SectionTitle>Tài khoản của tôi</SectionTitle>
           <SectionBody>
-            <div className="profile">
+            <div className='profile'>
               {/* info card */}
-              <div className="profile__info">
-                <div className="profile__cover"></div>
-                <div className="profile__info__card">
-                  <div className="profile__info__avatar">
-                    <img src={userImage} alt="avatar" />
+              <div className='profile__info'>
+                <div className='profile__cover'></div>
+                <div className='profile__info__card'>
+                  <div className='profile__info__avatar'>
+                    <img src={userImage} alt='avatar' />
                   </div>
-                  <div className="profile__info__text">
-                    <div className="profile__info__text__username">
+                  <div className='profile__info__text'>
+                    <div className='profile__info__text__username'>
                       <h5>
                         <strong>{user.name}</strong>
                       </h5>
                     </div>
-                    <div className="profile__info__text__datetime">
+                    <div className='profile__info__text__datetime'>
                       <span>
                         Đã tham gia vào{" "}
                         {`${date.getDate()}/${
@@ -93,10 +93,10 @@ const Profile = () => {
                   </div>
                 </div>
                 {/* tab item */}
-                <div className="profile__setting">
-                  <div className="profile__setting__btn">
-                    <div className="profile__setting__btn__item">
-                      <button className="btn-item" type="button">
+                <div className='profile__setting'>
+                  <div className='profile__setting__btn'>
+                    <div className='profile__setting__btn__item'>
+                      <button className='btn-item' type='button'>
                         Cài đặt tài khoản
                       </button>
                     </div>
@@ -108,9 +108,9 @@ const Profile = () => {
                         </span>
                       </button>
                     </div> */}
-                    <Link to="/shipping-address">
-                      <div className="profile__setting__btn__item">
-                        <button className="btn-item" type="button">
+                    <Link to='/shipping-address'>
+                      <div className='profile__setting__btn__item'>
+                        <button className='btn-item' type='button'>
                           Địa chỉ giao hàng
                         </button>
                       </div>
@@ -118,45 +118,49 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <form className="form-profile" onSubmit={handleSubmit(onSubmit)}>
-                <div className="profile-tab">
-                  <div className="profile-tab__form">
-                    <div className="profile-tab__form__group">
+              <form className='form-profile' onSubmit={handleSubmit(onSubmit)}>
+                <div className='profile-tab'>
+                  <div className='profile-tab__form'>
+                    <div className='profile-tab__form__group'>
                       <input
-                        type="username"
-                        className="profile-tab__form__input"
+                        type='username'
+                        className='profile-tab__form__input'
                         defaultValue={user.name}
                         {...register("name", { required: true })}
                       />
                     </div>
-                    <div className="profile-tab__form__group">
+                    <div className='profile-tab__form__group'>
                       <input
-                        type="email"
-                        className="profile-tab__form__input"
+                        type='email'
+                        className='profile-tab__form__input'
                         defaultValue={user.email}
                         {...register("email", { required: true })}
                       />
                     </div>
 
-                    <div className="profile-tab__form__group">
+                    <div className='profile-tab__form__group'>
                       <input
-                        type="new-password"
-                        className="profile-tab__form__input"
-                        placeholder="Mật khẩu mới"
+                        type='new-password'
+                        className='profile-tab__form__input'
+                        placeholder='Mật khẩu mới'
                         {...register("password")}
                       />
                     </div>
-                    <div className="profile-tab__form__group">
+                    <div className='profile-tab__form__group'>
                       <input
-                        type="confirm-password"
-                        className="profile-tab__form__input"
-                        placeholder="Nhập lại mật khẩu"
+                        type='password'
+                        className='profile-tab__form__input'
+                        placeholder='Nhập lại mật khẩu'
                         {...register("confirmPassword")}
                       />
                     </div>
 
-                    <div className="profile-tab__form__btn">
-                      <Button size="sm" type="submit">
+                    <div className='profile-tab__form__btn'>
+                      <Button
+                        size='sm'
+                        type='submit'
+                        onClick={() => toast("Cập nhật thành công!")}
+                      >
                         Cập nhật
                       </Button>
                     </div>

@@ -1,6 +1,6 @@
 @use "../../scss/" as *;
 
-input {
+.input-component {
   outline: none;
   background-color: $main-bg;
   padding: 0.5rem 1.5rem;
