@@ -30,7 +30,7 @@ const SidebarShip = () => {
                 to="/order"
               >
                 <i className="icon fas fa-bags-shopping"></i>
-                <span className="text">Orders</span>
+                <span className="text">Đơn hàng</span>
               </NavLink>
             </li>
           </ul>

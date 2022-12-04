@@ -80,7 +80,7 @@ const AddProductMain = () => {
       <section className="content-main" style={{ maxWidth: "1200px" }}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="content-header">
-            <h2 className="content-title">Add product</h2>
+            <h2 className="content-title">Thêm sản phẩm</h2>
           </div>
 
           <div className="row mb-2">
@@ -92,7 +92,7 @@ const AddProductMain = () => {
                   <div className="mb-4">
                     <input
                       type="text"
-                      placeholder="Product title"
+                      placeholder="Tiêu đề"
                       className="form-control"
                       id="product_title"
                       required
@@ -103,7 +103,7 @@ const AddProductMain = () => {
                   <div className="mb-4">
                     <textarea
                       style={{ minHeight: " calc(10.5em + 0.75rem + 2px" }}
-                      placeholder="Description"
+                      placeholder="Mô tả chi tiết"
                       className="form-control"
                       rows="7"
                       required
@@ -129,7 +129,7 @@ const AddProductMain = () => {
             <div className="col">
               <div className="mb-4">
                 <label htmlFor="product_price" className="form-label">
-                  Category
+                  Thể loại
                 </label>
                 <select
                   className="form-select"
@@ -149,11 +149,12 @@ const AddProductMain = () => {
               </div>
               <div className="mb-4">
                 <label htmlFor="product_price" className="form-label">
-                  Price
+                  Giá
                 </label>
                 <input
                   type="number"
-                  placeholder="Price"
+                  placeholder="Nhập giá"
+                  min= "0"
                   className="form-control"
                   id="product_price"
                   required
@@ -163,11 +164,12 @@ const AddProductMain = () => {
               </div>
               <div className="mb-4">
                 <label htmlFor="product_price" className="form-label">
-                  Count In Stock
+                  Số lượng
                 </label>
                 <input
                   type="number"
-                  placeholder="Price"
+                  placeholder="Nhập số lượng"
+                  min = "0"
                   className="form-control"
                   id="product_price"
                   required
@@ -177,11 +179,11 @@ const AddProductMain = () => {
               </div>
               <div className="mb-4">
                 <label htmlFor="product_price" className="form-label">
-                  Publisher
+                  Nhà xuất bản
                 </label>
                 <input
                   type="text"
-                  placeholder="Publisher"
+                  placeholder="Nhập tên nhà xuất bản..."
                   className="form-control"
                   id="product_title"
                   required
@@ -191,11 +193,11 @@ const AddProductMain = () => {
               </div>
               <div className="mb-4">
                 <label htmlFor="product_price" className="form-label">
-                  Author
+                  Tác giả
                 </label>
                 <input
                   type="text"
-                  placeholder="Author"
+                  placeholder="Nhập tên ác giả..."
                   className="form-control"
                   id="product_title"
                   required
@@ -212,12 +214,12 @@ const AddProductMain = () => {
                 className="btn btn-primary  text-white "
                 style={{ background: "#dc3545 !important" }}
               >
-                Go to products
+                Đi đến sản phẩm
               </Link>
             </div>
             <div className="btn-action">
               <button type="submit" className="btn btn-primary">
-                Publish now
+                Đăng
               </button>
             </div>
           </div>
