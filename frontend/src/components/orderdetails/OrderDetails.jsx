@@ -10,16 +10,15 @@ const OrderDetails = () => {
   const { order } = useSelector((state) => state.listUserOrder);
   const OrderDes = order ? order : [];
 
-  console.log("OrderDes:", OrderDes._id);
   return (
     <div>
-      <table className='table-order'>
+      <table className="table-order">
         <thead>
           <tr>
             <th>Đơn hàng đã đặt</th>
             <th>Tổng số tiền</th>
             <th>Đã thanh toán</th>
-            <th>Đã giao</th>
+            <th>Đang giao</th>
             <th>Chi tiết</th>
           </tr>
         </thead>
@@ -28,7 +27,7 @@ const OrderDetails = () => {
             const date = new Date(order.createdAt);
             return (
               <>
-                <tr>
+                <tr key={index}>
                   <td>
                     {`${date.getDate()}/${
                       date.getMonth() + 1
@@ -43,14 +42,14 @@ const OrderDetails = () => {
                     {order.isPaid ? (
                       <>
                         <i
-                          className='bx bx-check-double'
+                          className="bx bx-check-double"
                           style={{ fontSize: "2rem", color: "green" }}
                         ></i>
                       </>
                     ) : (
                       <>
                         <i
-                          className='bx bx-x'
+                          className="bx bx-x"
                           style={{ fontSize: "2rem", color: "red" }}
                         ></i>
                       </>
@@ -60,23 +59,21 @@ const OrderDetails = () => {
                     {order.isDelivered ? (
                       <>
                         <i
-                          className='bx bx-check-double'
+                          className="bx bx-check-double"
                           style={{ fontSize: "2rem", color: "green" }}
                         ></i>
                       </>
                     ) : (
                       <>
                         <i
-                          className='bx bx-x'
+                          className="bx bx-x"
                           style={{ fontSize: "2rem", color: "red" }}
                         ></i>
                       </>
                     )}
                   </td>
                   <td>
-                    <Link to={`/view-details/${OrderDes._id}`}>
-                      Xem đơn hàng
-                    </Link>
+                    <Link to={`/view-details/${order._id}`}>Xem đơn hàng</Link>
                   </td>
                 </tr>
               </>
