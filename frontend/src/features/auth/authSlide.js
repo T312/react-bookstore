@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser, registerUser } from "./pathAPI";
-
+import { toast } from "react-toastify";
 const items =
   localStorage.getItem("user") !== null
     ? {
@@ -48,6 +48,7 @@ const authSlide = createSlice({
       if (action.payload.error) {
         state.error = action.payload.error;
       } else {
+        toast("Đăng nhập thành công!");
         state.msg = action.payload.data.message;
         state.token = action.payload.data.accessToken;
         state.user = action.payload.data.user;
@@ -59,6 +60,7 @@ const authSlide = createSlice({
       }
     },
     [loginUser.rejected]: (state, action) => {
+      toast.error("Nhập sai Email hoặc mật khẩu!");
       state.loading = false;
       state.error = action.error;
     },
