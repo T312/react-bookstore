@@ -11,6 +11,7 @@ import OrderDetailScreen from "./screens/OrderDetailScreen";
 import AddProduct from "./screens/AddProduct";
 import Login from "./screens/LoginScreen";
 import UsersScreen from "./screens/UsersScreen";
+import AddUser from "./screens/AddUser";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import NotFound from "./screens/NotFound";
 import PrivateRouter from "./PrivateRouter";
@@ -39,22 +40,23 @@ function App() {
     <>
       <Router>
         <Switch>
-          <PrivateRouter path="/" component={HomeScreen} exact />
-          <PrivateRouter path="/products" component={ProductScreen} />
-          <PrivateRouter path="/category" component={CategoriesScreen} />
-          <PrivateRouter path="/orders" component={OrderScreen} />
-          <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
-          <PrivateRouter path="/addproduct" component={AddProduct} />
-          <PrivateRouter path="/users" component={UsersScreen} />
+          <PrivateRouter path='/' component={HomeScreen} exact />
+          <PrivateRouter path='/products' component={ProductScreen} />
+          <PrivateRouter path='/category' component={CategoriesScreen} />
+          <PrivateRouter path='/orders' component={OrderScreen} />
+          <PrivateRouter path='/order/:id' component={OrderDetailScreen} />
+          <PrivateRouter path='/addproduct' component={AddProduct} />
+          <PrivateRouter path='/users' component={UsersScreen} />
+          <PrivateRouter path='/adduser' component={AddUser} />
           <PrivateRouter
-            path="/product/:id/edit"
+            path='/product/:id/edit'
             component={ProductEditScreen}
           />
-          <Route path="/login" component={Login} />
-          <ShipRouter path="/ship" component={HomeShipScreen} />
-          <ShipRouter path="/order" component={OrderShipScreen} />
-          <ShipRouter path="/shipping/:id" component={OrderDetailShipScreen} />
-          <PrivateRouter path="*" component={NotFound} />
+          <Route path='/login' component={Login} />
+          <ShipRouter path='/ship' component={HomeShipScreen} />
+          <ShipRouter path='/order' component={OrderShipScreen} />
+          <ShipRouter path='/shipping/:id' component={OrderDetailShipScreen} />
+          <PrivateRouter path='*' component={NotFound} />
         </Switch>
       </Router>
     </>
