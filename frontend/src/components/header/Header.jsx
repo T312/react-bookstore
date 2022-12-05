@@ -74,6 +74,7 @@ const Header = () => {
   const handleClick = () => {
     dispatch(orderListOfUser());
   };
+
   return (
     <div className="header" ref={headerRef}>
       <div className="container">
@@ -117,7 +118,7 @@ const Header = () => {
               <>
                 <div className="header__menu__item header__menu__right__item">
                   <div className="header__menu__right__item__user">
-                    <img src={userImg} alt="" />
+                    <img src={user.image ? user.image : userImg} alt="" />
                     <div className="header__menu__right__item__user-name">
                       {user.name}
                     </div>
