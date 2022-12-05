@@ -221,10 +221,12 @@ const AddressModal = ({ open, onClose }) => {
       <div className="overlay">
         <div className="feedback-users">
           <div className="feedback-header">
-            <div className="close-btn" onClick={onClose}>
-              <i className="bx bx-x"></i>
-            </div>
-            <div className="title">Thêm địa chỉ mới</div>
+          
+              <div className="close-btn" onClick={onClose}>
+                <i className="bx bx-x"></i>
+              </div>
+              <div className="title">Thêm địa chỉ mới</div>
+           
             {/* <div className='txt'>
           Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm!
         </div> */}
@@ -256,7 +258,9 @@ const AddressModal = ({ open, onClose }) => {
                       ? provinces.map((province) => (
                           <li
                             key={province.code}
-                            onClick={(e) => handleSelectProvince(e, province)}
+                            onClick={(e) => {
+                              handleSelectProvince(e, province);
+                            }}
                           >
                             {province.name}
                           </li>
