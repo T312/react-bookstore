@@ -28,21 +28,39 @@
     // transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     backface-visibility: hidden;
     animation: modalComeIn ease 0.5s;
+    @include tablet {
+      width: 80%;
+      height: 55%;
+    }
+    @include mobile {
+      border-radius: 5px;
+      width: 90%;
+      height: 90%;
+    }
 
     .feedback-header,
     .feedback-content {
-      padding: 2rem;
+      padding: 1.5rem;
     }
     .feedback-header {
       color: #fff;
       background-color: $main-color;
       height: 100px;
-
+      @include mobile {
+        height: 80px;
+      }
+    
       .title {
         margin-top: -2rem;
         font-weight: 600;
         font-size: 24px;
         // text-transform: uppercase;
+        @include tablet {
+          text-align: center;
+        }
+        @include mobile {
+          font-size: 2rem;
+        }
       }
       .txt {
         line-height: 1.5;
@@ -51,19 +69,35 @@
       .close-btn {
         text-align: right;
         // margin-bottom: 10px;
+       
       }
       .close-btn i {
         cursor: pointer;
         font-size: 3rem;
+        @include tablet {
+          font-size: 3rem;
+        }
+       
+      }
+      @include mobile {
+        
+      text-align: center;
+        i {
+          font-size: 1rem;
+        }
       }
     }
-    .feedback-content {
+  
+   .feedback-content {
       .forms {
         display: flex;
         flex-direction: column;
         margin: 2rem 0;
+        @include tablet {
+          font-size: 16px;
+        }
 
-        .forms-input:nth-child(1) {
+        .forms-input {
           margin-bottom: 1rem;
         }
         label {
@@ -73,6 +107,9 @@
           font-weight: 600;
           color: $txt-main-color;
           @include flex(flex-start, flex-start);
+          @include tablet {
+            font-size: 18px;
+          }
         }
         input,
         textarea {
@@ -101,6 +138,7 @@
 
           @include mobile {
             display: block;
+            
           }
         }
 
@@ -108,6 +146,11 @@
           max-height: 200px;
           padding: 0 5px;
           overflow-y: scroll;
+          box-shadow: 0.2px 0.2px 0.9px;
+          @include tablet {
+            margin-bottom: 10px;
+            
+          }
           li {
             list-style-type: none;
             text-align: left;
@@ -121,6 +164,9 @@
 
       .btn-feedback {
         @include flex(center, space-between);
+        .bg-main {
+          font-size: 15px;
+        }
       }
     }
   }
