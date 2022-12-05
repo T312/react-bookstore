@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "./pathAPI";
+import {
+  loginUser,
+  registerUser,
+  registerGoogleUser,
+  loginGoogleUser,
+} from "./pathAPI";
 import { toast } from "react-toastify";
 const items =
   localStorage.getItem("user") !== null
@@ -84,6 +89,57 @@ const authSlide = createSlice({
       }
     },
     [registerUser.rejected]: (state, action) => {
+      state.loading = false;
+      toast.error("Nhập sai Email hoặc mật khẩu!");
+      state.error = action.error;
+    },
+
+    // ********************************************************** register user ************************************
+    [registerGoogleUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [registerGoogleUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      if (action.payload.error) {
+        state.error = action.payload.error;
+        toast.error(action.payload.error);
+      } else {
+        toast.error(action.payload.data.message);
+        state.msg = action.payload.data.message;
+        state.token = action.payload.data.accessToken;
+        state.user = action.payload.data.user;
+        state.refreshToken = action.payload.data.refreshToken;
+
+        localStorage.setItem("user", JSON.stringify(action.payload.data.user));
+        localStorage.setItem("accessToken", action.payload.data.accessToken);
+        localStorage.setItem("refreshToken", action.payload.data.refreshToken);
+      }
+    },
+    [registerGoogleUser.rejected]: (state, action) => {
+      state.loading = false;
+
+      state.error = action.error;
+    },
+    // ********************************************************** register user ************************************
+    [loginGoogleUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [loginGoogleUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      if (action.payload.error) {
+        state.error = action.payload.error;
+      } else {
+        state.msg = action.payload.data.message;
+        state.token = action.payload.data.accessToken;
+        state.user = action.payload.data.user;
+        state.refreshToken = action.payload.data.refreshToken;
+
+        localStorage.setItem("user", JSON.stringify(action.payload.data.user));
+        localStorage.setItem("accessToken", action.payload.data.accessToken);
+        localStorage.setItem("refreshToken", action.payload.data.refreshToken);
+      }
+    },
+    [loginGoogleUser.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.error;
     },

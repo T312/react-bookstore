@@ -3,6 +3,72 @@ import User from "../models/UserModel.js";
 import { accessToken, refreshToken } from "../utils/generateToken.js";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
+import { OAuth2Client } from "google-auth-library";
+import dotenv from "dotenv";
+// const { OAuth2Client } = require("google-auth-library");
+
+//@route  v1/auth/loginGoogle
+//@desc login the user
+//@access public
+dotenv.config();
+const client = new OAuth2Client(process.env.REACT_APP_GOOGLE_CLIENT_ID);
+const loginGoogleUser = asyncHandler(async (req, res) => {
+  const { token } = req.body;
+  const ticket = await client.verifyIdToken({
+    idToken: token,
+    audience: process.env.CLIENT_ID,
+  });
+  const { email } = ticket.getPayload();
+  const user = await User.findOne({ email });
+  // const passwordValid = await argon2.verify(user.password, "GiaLong");
+  if (user) {
+    res.json({
+      success: true,
+      message: "Login success",
+      accessToken: accessToken(user._id),
+      refreshToken: refreshToken(user._id),
+      user: user,
+    });
+  } else {
+    res.status(401);
+    throw new Error("Invalid Email or Password");
+  }
+});
+
+const singupGoogleUser = asyncHandler(async (req, res) => {
+  const { token } = req.body;
+  const ticket = await client.verifyIdToken({
+    idToken: token,
+    audience: process.env.CLIENT_ID,
+  });
+  const { name, email } = ticket.getPayload();
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
+  const hashedPassword = await argon2.hash("GiaLong");
+  const user = await User.create({
+    name,
+    email,
+    password: hashedPassword,
+  });
+
+  if (user) {
+    res.status(201).json({
+      success: true,
+      message: "register profile success",
+      accessToken: accessToken(user._id),
+      refreshToken: refreshToken(user._id),
+      user: user,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid User Data");
+  }
+});
+
 //@route  v1/auth/login
 //@desc login the user
 //@access public
@@ -110,4 +176,11 @@ const logoutUser = asyncHandler(async (req, res) => {
   res.json({ message: "Cookie cleared" });
 });
 
-export { loginUser, registerUser, refreshAccessToken, logoutUser };
+export {
+  loginUser,
+  registerUser,
+  refreshAccessToken,
+  logoutUser,
+  singupGoogleUser,
+  loginGoogleUser,
+};

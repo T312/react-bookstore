@@ -147,6 +147,39 @@ const updateUser = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
+
+// @route get v1/category/
+// @desc create categories
+// @access private/admin
+const createUser = asyncHandler(async (req, res) => {
+  const { name, email, admin, password, phone } = req.body;
+  const emailExist = await User.findOne({ email });
+
+  if (emailExist) {
+    res.status(400);
+    throw new Error("Email are already exist");
+  } else {
+    let isAdmin = true;
+    admin === "Admin" ? isAdmin : (isAdmin = false);
+    const isShiper = !isAdmin;
+    const hashedPassword = await argon2.hash(password);
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+      phone,
+      isAdmin,
+      isShiper,
+    });
+    if (user) {
+      const createdUser = await user.save();
+      res.status(201).json(createdUser);
+    } else {
+      res.status(400);
+      throw new Error("Invalid category data");
+    }
+  }
+});
 export {
   getUserProfile,
   updateUserProfile,
@@ -155,4 +188,5 @@ export {
   getUserById,
   updateUser,
   createShippingAddress,
+  createUser,
 };

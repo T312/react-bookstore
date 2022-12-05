@@ -8,6 +8,7 @@ import {
   getUserById,
   updateUser,
   createShippingAddress,
+  createUser,
 } from "../controller/UserController.js";
 
 const userRouter = express.Router();
@@ -18,6 +19,7 @@ userRouter
   .post("/profile", protect, createShippingAddress);
 userRouter
   .get("/", protect, admin, getUserByAdmin)
+  .post("/", protect, admin, createUser)
   .delete("/users", protect, admin, deleteUser)
   .get("/users", protect, admin, getUserById)
   .put("/users", protect, admin, updateUser);

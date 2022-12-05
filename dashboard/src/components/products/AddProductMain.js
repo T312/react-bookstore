@@ -52,7 +52,9 @@ const AddProductMain = () => {
       console.log(data.category);
       dispatch(createProduct(form));
       reset(initState);
-      toast("Đăng bài thành công");
+      setTimeout(() => {
+        toast("Đăng bài thành công");
+      }, 10000);
       setFiles([]);
     } catch (error) {
       console.log(error);
@@ -154,7 +156,7 @@ const AddProductMain = () => {
                 <input
                   type="number"
                   placeholder="Nhập giá"
-                  min= "0"
+                  min="0"
                   className="form-control"
                   id="product_price"
                   required
@@ -169,7 +171,7 @@ const AddProductMain = () => {
                 <input
                   type="number"
                   placeholder="Nhập số lượng"
-                  min = "0"
+                  min="0"
                   className="form-control"
                   id="product_price"
                   required
